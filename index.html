@@ -219,6 +219,8 @@
 
     <div id="pilots-list"></div>
 
+    <button id="share-btn" class="btn" style="margin-top:12px;">🔗 Copiar enlace de esta vista</button>
+
     <div id="status"></div>
   </div>
 </div>
@@ -245,6 +247,11 @@
   "use strict";
 
   const params = new URLSearchParams(window.location.search);
+
+  // Parámetros URL para autoreproducción / configuración inicial
+  const urlComp = params.get('comp');
+  const urlManga = params.get('manga');
+  const urlPilot = params.get('pilot');
 
   const COMPETITIONS = [
     {id:'A', label:'Lliga A', fsdb:'LLIGA_A.fsdb'},
@@ -305,6 +312,7 @@
   const fileBanner = document.getElementById('file-banner');
   const collapseBtn = document.getElementById('collapse-btn');
   const panel = document.getElementById('panel');
+  const shareBtn = document.getElementById('share-btn');
 
   const timeContainer = document.getElementById('time-control-container');
   const timeSlider = document.getElementById('time-slider');
@@ -315,6 +323,27 @@
   collapseBtn.addEventListener('click', () => {
     panel.classList.toggle('collapsed');
     collapseBtn.textContent = panel.classList.contains('collapsed') ? '+' : '−';
+  });
+
+  // Generar enlace compartido de la configuración activa
+  shareBtn.addEventListener('click', () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('comp', competitionSelect.value);
+    if (taskSelect.value) url.searchParams.set('manga', taskSelect.value);
+    
+    const activePilotIds = Object.keys(activePilots);
+    if (activePilotIds.length > 0) {
+      url.searchParams.set('pilot', activePilotIds.join(','));
+    } else {
+      url.searchParams.delete('pilot');
+    }
+
+    navigator.clipboard.writeText(url.toString()).then(() => {
+      setStatus('¡Enllaç copiat al portapapers!', 'ok');
+      setTimeout(() => setStatus(''), 3000);
+    }).catch(() => {
+      setStatus('Error al copiar l\'enllaç', 'error');
+    });
   });
 
   function setStatus(msg, kind){
@@ -343,8 +372,8 @@
   function detectTakeoffIndex(points) {
     if (!points || points.length < 5) return 0;
 
-    const MIN_SPEED_KMH = 12; // Velocidad mínima en km/h para movimiento sostenido de vuelo
-    const SUSTAINED_SECONDS = 12; // Duración mínima del movimiento para evitar ruido de GPS
+    const MIN_SPEED_KMH = 12;
+    const SUSTAINED_SECONDS = 12;
 
     for (let i = 0; i < points.length - 1; i++) {
       const p1 = points[i];
@@ -411,7 +440,7 @@
     fileBanner.style.display = 'none';
   }
 
-  function loadFsdb(url){
+  function loadFsdb(url, onComplete){
     resetForNewCompetition();
     setStatus('Carregant ' + url + '…');
     fetch(url).then(r => {
@@ -420,6 +449,7 @@
     }).then(text => {
       parseFsdb(text);
       setStatus('Fsdb carregat: ' + Object.keys(tasksById).length + ' mangues.', 'ok');
+      if (onComplete) onComplete();
     }).catch(err => {
       setStatus('Error carregant el fsdb: ' + err.message, 'error');
       if (location.protocol === 'file:') {
@@ -554,7 +584,7 @@
     takeoff_ss: {color:'#2e9bff', label:'Enlairament / Sortida'}
   };
 
-  function selectTask(task){
+  function selectTask(task, onComplete){
     currentTask = task;
     resetPilots();
 
@@ -616,6 +646,7 @@
       'Carpeta: ' + (task.folder || '—');
 
     buildPilotSelect(task);
+    if (onComplete) onComplete();
   }
 
   function buildPilotSelect(task){
@@ -666,8 +697,16 @@
   function addPilotTrack(pilotId){
     if (activePilots[pilotId]) return;
     const task = currentTask;
-    const fd = task.participants[pilotId];
-    const name = (rosterById[pilotId] || {}).name || ('Pilot ' + pilotId);
+    
+    // Si pilotId no es un ID directo, buscar por nombre
+    let resolvedId = pilotId;
+    if (!task.participants[resolvedId]) {
+      const match = Object.entries(rosterById).find(([id, r]) => r.name.toLowerCase() === pilotId.toLowerCase());
+      if (match) resolvedId = match[0];
+    }
+
+    const fd = task.participants[resolvedId];
+    const name = (rosterById[resolvedId] || {}).name || ('Pilot ' + resolvedId);
     if (!fd || !fd.trackFile) return;
 
     const matchId = fd.trackFile.trim().match(/\.(\d+)\.igc$/i);
@@ -689,7 +728,7 @@
     setStatus('Carregant track de ' + name + '…');
 
     const color = nextColor();
-    activePilots[pilotId] = {layerGroup:null, marker:null, color, name, loading:true};
+    activePilots[resolvedId] = {layerGroup:null, marker:null, color, name, loading:true};
     renderPilotsList();
 
     fetch(primaryUrl)
@@ -707,12 +746,11 @@
       let points = parseIgc(igcText);
       if (!points.length) throw new Error('sense punts B vàlids');
 
-      // Trim inicial: Detecció automàtica de desenganxament/enlairament real per moviment sostenut
       const takeoffIdx = detectTakeoffIndex(points);
       if (takeoffIdx > 0) {
         const takeoffEpoch = points[takeoffIdx].epoch;
         if (takeoffEpoch) {
-          const marginMs = 2 * 60 * 1000; // 2 minuts de marge abans de l'enlairament real
+          const marginMs = 2 * 60 * 1000;
           const trimmedStart = points.filter(p => p.epoch === null || p.epoch >= (takeoffEpoch - marginMs));
           if (trimmedStart.length) points = trimmedStart;
         } else {
@@ -720,7 +758,6 @@
         }
       }
 
-      // Trim final: Aterratge
       if (fd.lastPointTime) {
         const landingEpoch = new Date(fd.lastPointTime).getTime();
         if (!isNaN(landingEpoch)) {
@@ -766,16 +803,16 @@
       });
 
       const liveMarker = L.marker([start.lat, start.lon], {icon: customIcon, zIndexOffset: 1000});
-      liveMarker.bindPopup(`<b>${name}</b><div id="pop-${pilotId}"></div>`);
+      liveMarker.bindPopup(`<b>${name}</b><div id="pop-${resolvedId}"></div>`);
 
-      activePilots[pilotId] = {layerGroup, marker: liveMarker, color, name, latlngs, points, fd};
+      activePilots[resolvedId] = {layerGroup, marker: liveMarker, color, name, latlngs, points, fd};
       
       recalcTimeBounds();
       renderPilotsList();
       setStatus('Track de ' + name + ' carregat.', 'ok');
       map.fitBounds(latlngs, {padding:[40,40]});
     }).catch(err => {
-      delete activePilots[pilotId];
+      delete activePilots[resolvedId];
       renderPilotsList();
       setStatus('No s\'ha pogut carregar el track de ' + name + ': ' + err.message + ' — URL intentada: ' + primaryUrl, 'error');
     });
@@ -987,7 +1024,12 @@
   function buildCompetitionSelect(){
     competitionSelect.innerHTML = COMPETITIONS.map(c => '<option value="'+c.id+'">'+c.label+'</option>').join('');
     let initial = COMPETITIONS[0];
-    if (customFsdb) {
+    
+    // Si viene por URL la competición, seleccionarla
+    if (urlComp) {
+      const matchComp = COMPETITIONS.find(c => c.id.toLowerCase() === urlComp.toLowerCase());
+      if (matchComp) initial = matchComp;
+    } else if (customFsdb) {
       const match = COMPETITIONS.find(c => c.fsdb === customFsdb);
       if (match) initial = match;
     }
@@ -999,8 +1041,20 @@
     if (comp) loadFsdb(comp.fsdb);
   });
 
+  // Carga inicial y lectura de parámetros URL
   buildCompetitionSelect();
-  loadFsdb(COMPETITIONS.find(c => c.id === competitionSelect.value).fsdb);
+  const initialComp = COMPETITIONS.find(c => c.id === competitionSelect.value);
+  loadFsdb(initialComp.fsdb, () => {
+    if (urlManga && tasksById[urlManga]) {
+      taskSelect.value = urlManga;
+      selectTask(tasksById[urlManga], () => {
+        if (urlPilot) {
+          const pilots = urlPilot.split(',');
+          pilots.forEach(pId => addPilotTrack(pId.trim()));
+        }
+      });
+    }
+  });
 })();
 </script>
 </body>
