@@ -40,26 +40,35 @@
     </div>
   </main>
 
-  <script>
-    // Prioritat d'ordenació per a sub-categories
+<script>
+    // Prioritat d'ordenació estricta per a sub-categories
     const categoryPriority = [
-      'GENERAL',
-      'SERIAL',
-      'SPORT',
-      'CLUB',
-      'FEMINES',
-      'CLUBS-LLICENCIA',
-      'LLIGA B',
-      'LLIGA-B'
+      { key: 'CLUBS-LLICENCIA', score: 6 },
+      { key: 'CLUBS_LLICENCIA', score: 6 },
+      { key: 'CLUB', score: 4 },
+      { key: 'SERIAL', score: 2 },
+      { key: 'SPORT', score: 3 },
+      { key: 'FEMINES', score: 5 },
+      { key: 'LLIGA B', score: 7 },
+      { key: 'LLIGA-B', score: 7 },
+      { key: 'GENERAL', score: 1 } // Va al final de les comparacions per no treure prioritat a GENERAL_SERIAL, GENERAL_CLUB, etc.
     ];
 
     function getCategoryScore(name) {
-      const upperName = name.toUpperCase();
-      for (let i = 0; i < categoryPriority.length; i++) {
-        if (upperName.includes(categoryPriority[i])) {
-          return i;
+      const upperName = name.toUpperCase().trim();
+      
+      // Comprovar si coincideix exactament amb "GENERAL" o amb "T01-GENERAL"
+      if (upperName === 'GENERAL' || upperName.endsWith('-GENERAL')) {
+        return 1;
+      }
+
+      // Buscar la resta de categories específiques
+      for (const cat of categoryPriority) {
+        if (cat.key !== 'GENERAL' && upperName.includes(cat.key)) {
+          return cat.score;
         }
       }
+
       return 99; // Si no està a la llista, va al final
     }
 
@@ -154,5 +163,6 @@
 
     init();
   </script>
+  
 </body>
 </html>
