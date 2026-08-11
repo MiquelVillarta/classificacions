@@ -39,28 +39,46 @@
       <iframe id="viewer" class="w-full h-[800px] border-0 rounded" src="about:blank"></iframe>
     </div>
   </main>
-
-  <script>
-    // Prioritat d'ordenació per a sub-categories
-    const categoryPriority = [
-      'GENERAL',
-      'SERIAL',
-      'SPORT',
-      'CLUB',
-      'FEMINES',
-      'CLUBS-LLICENCIA',
-      'LLIGA B',
-      'LLIGA-B'
+  
+<script>
+    // Regles de prioritat per a qualsevol tipus de nom de fitxer
+    const categoryRules = [
+      { keys: ['OVERALL', 'GENERAL'], score: 1 },
+      { keys: ['SERIAL'], score: 2 },
+      { keys: ['SPORT'], score: 3 },
+      { keys: ['CLUB'], score: 4 },
+      { keys: ['FEMINES', 'FEMENINA'], score: 5 },
+      { keys: ['CLUBS-LLICENCIA', 'CLUBS_LLICENCIA'], score: 6 },
+      { keys: ['LLIGA B', 'LLIGA-B', 'LLIGA_B', 'B_T', 'B_OVERALL'], score: 7 }
     ];
 
     function getCategoryScore(name) {
-      const upperName = name.toUpperCase();
-      for (let i = 0; i < categoryPriority.length; i++) {
-        if (upperName.includes(categoryPriority[i])) {
-          return i;
+      const upperName = name.toUpperCase().trim();
+
+      // Cas especial per a Lliga B (fitxers que comencen per B_ o contenen LLIGA B)
+      if (upperName.startsWith('B_') || upperName.includes('LLIGA B') || upperName.includes('LLIGA_B')) {
+        return 7;
+      }
+
+      // Si és la general/overall principal de la manga (A_..._OVERALL o GENERAL sola)
+      if (
+        (upperName.includes('OVERALL') || upperName.endsWith('-GENERAL') || upperName === 'GENERAL') &&
+        !upperName.includes('SERIAL') &&
+        !upperName.includes('SPORT') &&
+        !upperName.includes('CLUB') &&
+        !upperName.includes('FEMINES')
+      ) {
+        return 1;
+      }
+
+      // Comprovar la resta de categories per ordre de prioritat
+      for (const rule of categoryRules) {
+        if (rule.keys.some(k => upperName.includes(k))) {
+          return rule.score;
         }
       }
-      return 99; // Si no està a la llista, va al final
+
+      return 99; // Si no coincideix amb cap, va al final
     }
 
     async function init() {
@@ -153,6 +171,7 @@
     }
 
     init();
-  </script>
+  </script> 
+
 </body>
 </html>
