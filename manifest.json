@@ -62,32 +62,28 @@
   "tasks": {
     "T02": [
       {
-        "name": "B_T02_Overall_V03_OFICIAL",
-        "path": "RESULTS/T02/B_T02_Overall_V03_OFICIAL.html"
+        "name": "A_T02_CLUB_V03_",
+        "path": "RESULTS/T02/A_T02_CLUB_V03_.html"
       },
       {
-        "name": "T02-CLUB",
-        "path": "RESULTS/T02/T02-CLUB.html"
+        "name": "A_T02_FEMINES_V03_",
+        "path": "RESULTS/T02/A_T02_FEMINES_V03_.html"
       },
       {
-        "name": "T02-FEMINES",
-        "path": "RESULTS/T02/T02-FEMINES.html"
+        "name": "A_T02_Overall_V03_",
+        "path": "RESULTS/T02/A_T02_Overall_V03_.html"
       },
       {
-        "name": "T02-GENERAL",
-        "path": "RESULTS/T02/T02-GENERAL.html"
+        "name": "A_T02_SERIAL_V03_",
+        "path": "RESULTS/T02/A_T02_SERIAL_V03_.html"
       },
       {
-        "name": "T02-LLIGAB",
-        "path": "RESULTS/T02/T02-LLIGAB.html"
+        "name": "A_T02_SPORT_V03_",
+        "path": "RESULTS/T02/A_T02_SPORT_V03_.html"
       },
       {
-        "name": "T02-SERIAL",
-        "path": "RESULTS/T02/T02-SERIAL.html"
-      },
-      {
-        "name": "T02-SPORT",
-        "path": "RESULTS/T02/T02-SPORT.html"
+        "name": "B_T02_Overall_V03",
+        "path": "RESULTS/T02/B_T02_Overall_V03.html"
       }
     ],
     "T04": [
@@ -110,36 +106,36 @@
       {
         "name": "A_T04_SPORT_V06",
         "path": "RESULTS/T04/A_T04_SPORT_V06.html"
+      },
+      {
+        "name": "B_T04_Overall_V08_",
+        "path": "RESULTS/T04/B_T04_Overall_V08_.html"
       }
     ],
     "T01": [
       {
-        "name": "B_T01_Overall_V11_OFICIAL",
-        "path": "RESULTS/T01/B_T01_Overall_V11_OFICIAL.html"
+        "name": "A_T01_CLUB_V05",
+        "path": "RESULTS/T01/A_T01_CLUB_V05.html"
       },
       {
-        "name": "T01-CLUB",
-        "path": "RESULTS/T01/T01-CLUB.html"
+        "name": "A_T01_FEMINES_V05",
+        "path": "RESULTS/T01/A_T01_FEMINES_V05.html"
       },
       {
-        "name": "T01-FEMINES",
-        "path": "RESULTS/T01/T01-FEMINES.html"
+        "name": "A_T01_Overall_V16",
+        "path": "RESULTS/T01/A_T01_Overall_V16.html"
       },
       {
-        "name": "T01-GENERAL",
-        "path": "RESULTS/T01/T01-GENERAL.html"
+        "name": "A_T01_SERIAL_V05",
+        "path": "RESULTS/T01/A_T01_SERIAL_V05.html"
       },
       {
-        "name": "T01-LLIGA-B",
-        "path": "RESULTS/T01/T01-LLIGA-B.html"
+        "name": "A_T01_SPORT_V05",
+        "path": "RESULTS/T01/A_T01_SPORT_V05.html"
       },
       {
-        "name": "T01-SERIAL",
-        "path": "RESULTS/T01/T01-SERIAL.html"
-      },
-      {
-        "name": "T01-SPORT",
-        "path": "RESULTS/T01/T01-SPORT.html"
+        "name": "B_T01_Overall_V11",
+        "path": "RESULTS/T01/B_T01_Overall_V11.html"
       }
     ],
     "T05": [
@@ -150,10 +146,6 @@
       {
         "name": "A_T05_FEMINES_V02",
         "path": "RESULTS/T05/A_T05_FEMINES_V02.html"
-      },
-      {
-        "name": "A_T05_Overall_V02",
-        "path": "RESULTS/T05/A_T05_Overall_V02.html"
       },
       {
         "name": "A_T05_SERIAL_V02",
@@ -170,32 +162,28 @@
     ],
     "T03": [
       {
-        "name": "B_T03_Overall_V08_OFICIAL",
-        "path": "RESULTS/T03/B_T03_Overall_V08_OFICIAL.html"
+        "name": "A_T03_CLUB_V08_",
+        "path": "RESULTS/T03/A_T03_CLUB_V08_.html"
       },
       {
-        "name": "T03-CLUB",
-        "path": "RESULTS/T03/T03-CLUB.html"
+        "name": "A_T03_FEMINES_V08_",
+        "path": "RESULTS/T03/A_T03_FEMINES_V08_.html"
       },
       {
-        "name": "T03-FEMINES",
-        "path": "RESULTS/T03/T03-FEMINES.html"
+        "name": "A_T03_Overall_V08_",
+        "path": "RESULTS/T03/A_T03_Overall_V08_.html"
       },
       {
-        "name": "T03-GENERAL",
-        "path": "RESULTS/T03/T03-GENERAL.html"
+        "name": "A_T03_SERIAL_V08_",
+        "path": "RESULTS/T03/A_T03_SERIAL_V08_.html"
       },
       {
-        "name": "T03-LLIGAB",
-        "path": "RESULTS/T03/T03-LLIGAB.html"
+        "name": "A_T03_SPORT_V08_",
+        "path": "RESULTS/T03/A_T03_SPORT_V08_.html"
       },
       {
-        "name": "T03-SERIAL",
-        "path": "RESULTS/T03/T03-SERIAL.html"
-      },
-      {
-        "name": "T03-SPORT",
-        "path": "RESULTS/T03/T03-SPORT.html"
+        "name": "B_T03_Overall_V08",
+        "path": "RESULTS/T03/B_T03_Overall_V08.html"
       }
     ]
   }
