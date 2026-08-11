@@ -1,1 +1,123 @@
 
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classificacions Parapent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800 min-h-screen flex flex-col">
+
+  <header class="bg-blue-900 text-white p-4 shadow-md flex flex-wrap justify-between items-center px-6">
+    <h1 class="text-xl font-bold">Classificacions Parapent</h1>
+    <a href="visor.html" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-3 py-1.5 rounded text-sm transition flex items-center gap-1">
+      🗺️ Obrir Visor de Maps General
+    </a>
+  </header>
+
+  <main class="max-w-7xl w-full mx-auto p-4 flex-grow">
+    <!-- Navegació Principal (Seccions / Mangues) -->
+    <div id="navigation" class="flex flex-wrap gap-2 mb-3 border-b border-gray-300 pb-3"></div>
+    
+    <!-- Sub-Navegació (Categories de la Manga / Campionat seleccionat) -->
+    <div class="flex flex-wrap justify-between items-center gap-2 mb-4 bg-white p-3 rounded shadow-sm">
+      <div id="sub-navigation" class="flex flex-wrap gap-2"></div>
+      
+      <!-- Botó dinàmic per anar al visor de la manga actual -->
+      <div id="map-button-container" class="hidden">
+        <a id="manga-map-btn" href="#" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-3 py-2 rounded flex items-center gap-1 shadow-sm transition">
+          📍 Veure Tracks d'aquesta Manga
+        </a>
+      </div>
+    </div>
+
+    <!-- Visor iframe per als HTML de FSCOMP -->
+    <div class="bg-white rounded-lg shadow-md p-2 min-h-[700px]">
+      <iframe id="viewer" class="w-full h-[800px] border-0 rounded" src="about:blank"></iframe>
+    </div>
+  </main>
+
+  <script>
+    async function init() {
+      try {
+        const res = await fetch('manifest.json');
+        if (!res.ok) throw new Error('manifest.json no trobat');
+        const data = await res.json();
+        
+        const nav = document.getElementById('navigation');
+        const subNav = document.getElementById('sub-navigation');
+        const iframe = document.getElementById('viewer');
+        const mapContainer = document.getElementById('map-button-container');
+        const mapBtn = document.getElementById('manga-map-btn');
+
+        function loadIframe(path) {
+          iframe.src = path;
+        }
+
+        function renderSubNav(items, isTask = false, taskName = '') {
+          subNav.innerHTML = '';
+          
+          if (isTask) {
+            mapContainer.classList.remove('hidden');
+            mapBtn.href = `visor.html?task=${taskName}`;
+          } else {
+            mapContainer.classList.add('hidden');
+          }
+
+          items.forEach((item, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'px-3 py-1.5 text-xs font-semibold uppercase bg-gray-200 hover:bg-gray-300 text-gray-700 rounded transition';
+            btn.textContent = item.name;
+            btn.onclick = () => {
+              Array.from(subNav.children).forEach(b => {
+                b.classList.remove('bg-blue-600', 'text-white');
+                b.classList.add('bg-gray-200', 'text-gray-700');
+              });
+              btn.classList.remove('bg-gray-200', 'text-gray-700');
+              btn.classList.add('bg-blue-600', 'text-white');
+              loadIframe(item.path);
+            };
+            subNav.appendChild(btn);
+            if (index === 0) btn.click();
+          });
+        }
+
+        // Definir seccions principals
+        const sections = [];
+
+        if (data.generals && data.generals.length > 0) {
+          sections.push({ label: 'Generals', items: data.generals, isTask: false });
+        }
+        if (data.campionat && data.campionat.length > 0) {
+          sections.push({ label: 'Campionat Cat', items: data.campionat, isTask: false });
+        }
+        
+        if (data.tasks) {
+          Object.keys(data.tasks).forEach(taskKey => {
+            sections.push({ label: taskKey, items: data.tasks[taskKey], isTask: true, taskName: taskKey });
+          });
+        }
+
+        sections.forEach((sec, index) => {
+          const btn = document.createElement('button');
+          btn.className = 'px-4 py-2 bg-blue-900 text-white text-sm font-bold rounded hover:bg-blue-800 transition shadow-sm';
+          btn.textContent = sec.label;
+          btn.onclick = () => {
+            Array.from(nav.children).forEach(b => b.classList.remove('ring-2', 'ring-yellow-400', 'bg-blue-700'));
+            btn.classList.add('ring-2', 'ring-yellow-400', 'bg-blue-700');
+            renderSubNav(sec.items, sec.isTask, sec.taskName);
+          };
+          nav.appendChild(btn);
+          if (index === 0) btn.click();
+        });
+
+      } catch (err) {
+        console.error('Error carregant el manifest:', err);
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>
