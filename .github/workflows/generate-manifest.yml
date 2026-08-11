@@ -1,1 +1,53 @@
 
+name: Generate Classification Manifest
+
+on:
+  push:
+    paths:
+      - 'RESULTS/**'
+
+permissions:
+  contents: write
+
+jobs:
+  build-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate manifest.json
+        run: |
+          python3 -c "
+          import os, json
+
+          results_dir = 'RESULTS'
+          data = {'generals': [], 'campionat': [], 'tasks': {}}
+
+          if os.path.exists(results_dir):
+              for root, dirs, files in os.walk(results_dir):
+                  for file in sorted(files):
+                      if file.endswith('.html'):
+                          rel_path = os.path.relpath(os.path.join(root, file)).replace('\\\\', '/')
+                          clean_name = file.replace('.html', '')
+                          
+                          if root == results_dir:
+                              data['generals'].append({'name': clean_name, 'path': rel_path})
+                          elif 'CAMPIONAT' in root:
+                              data['campionat'].append({'name': clean_name, 'path': rel_path})
+                          else:
+                              folder = os.path.basename(root)
+                              if folder not in data['tasks']:
+                                  data['tasks'][folder] = []
+                              data['tasks'][folder].append({'name': clean_name, 'path': rel_path})
+
+          with open('manifest.json', 'w', encoding='utf-8') as f:
+              json.dump(data, f, indent=2, ensure_ascii=False)
+          "
+
+      - name: Commit & Push updated manifest
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add manifest.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update manifest.json [skip ci]" && git push)
