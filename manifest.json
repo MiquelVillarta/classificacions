@@ -1,0 +1,202 @@
+{
+  "generals": [
+    {
+      "name": "GENERAL",
+      "path": "RESULTS/GENERAL.html"
+    },
+    {
+      "name": "GENERAL_CLUB",
+      "path": "RESULTS/GENERAL_CLUB.html"
+    },
+    {
+      "name": "GENERAL_CLUBS-LLICENCIA",
+      "path": "RESULTS/GENERAL_CLUBS-LLICENCIA.html"
+    },
+    {
+      "name": "GENERAL_FEMINES",
+      "path": "RESULTS/GENERAL_FEMINES.html"
+    },
+    {
+      "name": "GENERAL_LLIGA B",
+      "path": "RESULTS/GENERAL_LLIGA B.html"
+    },
+    {
+      "name": "GENERAL_SERIAL",
+      "path": "RESULTS/GENERAL_SERIAL.html"
+    },
+    {
+      "name": "GENERAL_SPORT",
+      "path": "RESULTS/GENERAL_SPORT.html"
+    }
+  ],
+  "campionat": [
+    {
+      "name": "CAMPIONAT A CLUB",
+      "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT A CLUB.html"
+    },
+    {
+      "name": "CAMPIONAT A CLUBS LLICENCIA",
+      "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT A CLUBS LLICENCIA.html"
+    },
+    {
+      "name": "CAMPIONAT A FEMINES",
+      "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT A FEMINES.html"
+    },
+    {
+      "name": "CAMPIONAT A SERIAL",
+      "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT A SERIAL.html"
+    },
+    {
+      "name": "CAMPIONAT A SPORT",
+      "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT A SPORT.html"
+    },
+    {
+      "name": "CAMPIONAT A",
+      "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT A.html"
+    },
+    {
+      "name": "CAMPIONAT B",
+      "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT B.html"
+    }
+  ],
+  "tasks": {
+    "T02": [
+      {
+        "name": "B_T02_Overall_V03_OFICIAL",
+        "path": "RESULTS/T02/B_T02_Overall_V03_OFICIAL.html"
+      },
+      {
+        "name": "T02-CLUB",
+        "path": "RESULTS/T02/T02-CLUB.html"
+      },
+      {
+        "name": "T02-FEMINES",
+        "path": "RESULTS/T02/T02-FEMINES.html"
+      },
+      {
+        "name": "T02-GENERAL",
+        "path": "RESULTS/T02/T02-GENERAL.html"
+      },
+      {
+        "name": "T02-LLIGAB",
+        "path": "RESULTS/T02/T02-LLIGAB.html"
+      },
+      {
+        "name": "T02-SERIAL",
+        "path": "RESULTS/T02/T02-SERIAL.html"
+      },
+      {
+        "name": "T02-SPORT",
+        "path": "RESULTS/T02/T02-SPORT.html"
+      }
+    ],
+    "T04": [
+      {
+        "name": "A_T04_CLUB_V06",
+        "path": "RESULTS/T04/A_T04_CLUB_V06.html"
+      },
+      {
+        "name": "A_T04_FEMINES_V06",
+        "path": "RESULTS/T04/A_T04_FEMINES_V06.html"
+      },
+      {
+        "name": "A_T04_Overall_V06",
+        "path": "RESULTS/T04/A_T04_Overall_V06.html"
+      },
+      {
+        "name": "A_T04_SERIAL_V06",
+        "path": "RESULTS/T04/A_T04_SERIAL_V06.html"
+      },
+      {
+        "name": "A_T04_SPORT_V06",
+        "path": "RESULTS/T04/A_T04_SPORT_V06.html"
+      }
+    ],
+    "T01": [
+      {
+        "name": "B_T01_Overall_V11_OFICIAL",
+        "path": "RESULTS/T01/B_T01_Overall_V11_OFICIAL.html"
+      },
+      {
+        "name": "T01-CLUB",
+        "path": "RESULTS/T01/T01-CLUB.html"
+      },
+      {
+        "name": "T01-FEMINES",
+        "path": "RESULTS/T01/T01-FEMINES.html"
+      },
+      {
+        "name": "T01-GENERAL",
+        "path": "RESULTS/T01/T01-GENERAL.html"
+      },
+      {
+        "name": "T01-LLIGA-B",
+        "path": "RESULTS/T01/T01-LLIGA-B.html"
+      },
+      {
+        "name": "T01-SERIAL",
+        "path": "RESULTS/T01/T01-SERIAL.html"
+      },
+      {
+        "name": "T01-SPORT",
+        "path": "RESULTS/T01/T01-SPORT.html"
+      }
+    ],
+    "T05": [
+      {
+        "name": "A_T05_CLUB_V02",
+        "path": "RESULTS/T05/A_T05_CLUB_V02.html"
+      },
+      {
+        "name": "A_T05_FEMINES_V02",
+        "path": "RESULTS/T05/A_T05_FEMINES_V02.html"
+      },
+      {
+        "name": "A_T05_Overall_V02",
+        "path": "RESULTS/T05/A_T05_Overall_V02.html"
+      },
+      {
+        "name": "A_T05_SERIAL_V02",
+        "path": "RESULTS/T05/A_T05_SERIAL_V02.html"
+      },
+      {
+        "name": "A_T05_SPORT_V02",
+        "path": "RESULTS/T05/A_T05_SPORT_V02.html"
+      },
+      {
+        "name": "B_T05_Overall_V04",
+        "path": "RESULTS/T05/B_T05_Overall_V04.html"
+      }
+    ],
+    "T03": [
+      {
+        "name": "B_T03_Overall_V08_OFICIAL",
+        "path": "RESULTS/T03/B_T03_Overall_V08_OFICIAL.html"
+      },
+      {
+        "name": "T03-CLUB",
+        "path": "RESULTS/T03/T03-CLUB.html"
+      },
+      {
+        "name": "T03-FEMINES",
+        "path": "RESULTS/T03/T03-FEMINES.html"
+      },
+      {
+        "name": "T03-GENERAL",
+        "path": "RESULTS/T03/T03-GENERAL.html"
+      },
+      {
+        "name": "T03-LLIGAB",
+        "path": "RESULTS/T03/T03-LLIGAB.html"
+      },
+      {
+        "name": "T03-SERIAL",
+        "path": "RESULTS/T03/T03-SERIAL.html"
+      },
+      {
+        "name": "T03-SPORT",
+        "path": "RESULTS/T03/T03-SPORT.html"
+      }
+    ]
+  }
+}
