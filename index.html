@@ -45,7 +45,6 @@
     function getCategoryScore(name) {
       const u = name.toUpperCase().trim();
 
-      // 1. General / Overall principal
       if (
         u === 'GENERAL' || 
         u.endsWith('-GENERAL') || 
@@ -56,25 +55,14 @@
         }
       }
 
-      // 2. Serial
       if (u.includes('SERIAL')) return 2;
-
-      // 3. Sport
       if (u.includes('SPORT')) return 3;
-
-      // 4. Club
-      if (u.includes('CLUBS-LLICENCIA') || u.includes('CLUBS_LLICENCIA')) return 6; // Excepció per no confondre amb CLUB
+      if (u.includes('CLUBS-LLICENCIA') || u.includes('CLUBS_LLICENCIA')) return 6;
       if (u.includes('CLUB')) return 4;
-
-      // 5. Fèmines
       if (u.includes('FEMINES') || u.includes('FEMENINA')) return 5;
-
-      // 6. Clubs Llicència (ja gestionat a la linia 24)
-
-      // 7. Lliga B
       if (u.includes('LLIGA B') || u.includes('LLIGA_B') || u.startsWith('B_') || u.includes('B_OVERALL')) return 7;
 
-      return 99; // Qualsevol altra categoria desconeguda va al final
+      return 99;
     }
 
     async function init() {
@@ -103,7 +91,6 @@
             mapContainer.classList.add('hidden');
           }
 
-          // Ordenar sub-categories
           const sortedItems = [...items].sort((a, b) => {
             const scoreA = getCategoryScore(a.name);
             const scoreB = getCategoryScore(b.name);
@@ -129,34 +116,63 @@
           });
         }
 
-        // Definir seccions principals
+        // Definir seccions principals amb colors diferents
         const sections = [];
 
         if (data.generals && data.generals.length > 0) {
-          sections.push({ label: 'Generals', items: data.generals, isTask: false });
+          sections.push({ 
+            label: 'Generals', 
+            items: data.generals, 
+            isTask: false, 
+            bgColor: 'bg-emerald-700 hover:bg-emerald-600', 
+            activeBg: 'bg-emerald-800' 
+          });
         }
         if (data.campionat && data.campionat.length > 0) {
-          sections.push({ label: 'Campionat Cat', items: data.campionat, isTask: false });
+          sections.push({ 
+            label: 'Campionat Cat', 
+            items: data.campionat, 
+            isTask: false, 
+            bgColor: 'bg-amber-600 hover:bg-amber-500', 
+            activeBg: 'bg-amber-700' 
+          });
         }
         
         if (data.tasks) {
-          // Ordenar mangues alfabèticament / numèricament (T01, T02, T03...)
           const sortedTasks = Object.keys(data.tasks).sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
           
           sortedTasks.forEach(taskKey => {
-            sections.push({ label: taskKey, items: data.tasks[taskKey], isTask: true, taskName: taskKey });
+            sections.push({ 
+              label: taskKey, 
+              items: data.tasks[taskKey], 
+              isTask: true, 
+              taskName: taskKey, 
+              bgColor: 'bg-blue-900 hover:bg-blue-800', 
+              activeBg: 'bg-blue-700' 
+            });
           });
         }
 
         sections.forEach((sec, index) => {
           const btn = document.createElement('button');
-          btn.className = 'px-4 py-2 bg-blue-900 text-white text-sm font-bold rounded hover:bg-blue-800 transition shadow-sm';
+          btn.className = `px-4 py-2 text-white text-sm font-bold rounded transition shadow-sm ${sec.bgColor}`;
           btn.textContent = sec.label;
+          
           btn.onclick = () => {
-            Array.from(nav.children).forEach(b => b.classList.remove('ring-2', 'ring-yellow-400', 'bg-blue-700'));
-            btn.classList.add('ring-2', 'ring-yellow-400', 'bg-blue-700');
+            Array.from(nav.children).forEach(b => {
+              b.classList.remove('ring-2', 'ring-yellow-400');
+              // Restaurar tots als seus colors base
+              sections.forEach(s => {
+                if (b.textContent === s.label) {
+                  b.className = `px-4 py-2 text-white text-sm font-bold rounded transition shadow-sm ${s.bgColor}`;
+                }
+              });
+            });
+            
+            btn.className = `px-4 py-2 text-white text-sm font-bold rounded transition shadow-sm ${sec.activeBg} ring-2 ring-yellow-400`;
             renderSubNav(sec.items, sec.isTask, sec.taskName);
           };
+          
           nav.appendChild(btn);
           if (index === 0) btn.click();
         });
