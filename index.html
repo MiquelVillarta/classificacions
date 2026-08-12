@@ -85,22 +85,35 @@
         const currentTitle = document.getElementById('current-title');
         const mapBtn = document.getElementById('map-btn');
 
-        // Función para abrir la clasificación
+// Función para abrir la clasificación
         function openClassification(item, isTask = false, taskName = '') {
           iframe.src = item.path;
           currentTitle.textContent = item.name;
           
           if (isTask) {
             mapBtn.classList.remove('hidden');
-            mapBtn.href = `visor.html?task=${taskName}`;
+
+            // Detectar automáticamente si es Liga A o Liga B
+            const uName = item.name.toUpperCase();
+            let compParam = 'A'; // Por defecto Liga A
+
+            if (uName.startsWith('B_') || uName.includes('LLIGA_B') || uName.includes('CAMPIONAT B')) {
+              compParam = 'B';
+            }
+
+            // Extraer solo los números de taskName (ej: "T01" -> "1", "T05" -> "5")
+            const mangaNum = taskName.replace(/\D/g, '').replace(/^0+/, '');
+
+            // Construir la URL completa que requiere visor.html
+            mapBtn.href = `visor.html?task=${encodeURIComponent(taskName)}&comp=${compParam}&manga=${mangaNum}`;
           } else {
             mapBtn.classList.add('hidden');
           }
 
           menuView.classList.add('hidden');
           viewerView.classList.remove('hidden');
-        }
-
+        }      
+        
         // Botón volver
         backBtn.onclick = () => {
           viewerView.classList.add('hidden');
