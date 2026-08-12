@@ -6,46 +6,50 @@
   <title>Classificacions Parapent</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans flex flex-col h-screen overflow-hidden">
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col">
 
-  <!-- Header -->
-  <header class="bg-blue-900 text-white px-6 py-4 flex justify-between items-center shadow-md flex-shrink-0">
-    <div class="flex items-center space-x-3">
-      <h1 class="text-2xl font-bold tracking-tight">Classificacions Parapent</h1>
-      <span class="bg-red-600 text-white text-sm font-extrabold px-2.5 py-1 rounded-md shadow">2026</span>
-    </div>
+  <!-- VISTA 1: MENÚ PRINCIPAL (Móvil First) -->
+  <div id="menu-view" class="flex-1 flex flex-col max-w-lg w-full mx-auto p-4">
+    
+    <!-- Header principal -->
+    <header class="bg-blue-900 text-white p-4 rounded-xl shadow-md mb-4 flex justify-between items-center">
+      <div>
+        <h1 class="text-xl font-bold tracking-tight">Classificacions</h1>
+        <p class="text-xs text-blue-200">Parapent 2026</p>
+      </div>
+      <span class="bg-red-600 text-white text-xs font-extrabold px-2.5 py-1 rounded-md shadow">2026</span>
+    </header>
 
-    <!-- Botó per obrir el mapa global/general (amagat per defecte si no hi ha mapa) -->
-    <div id="map-button-container" class="hidden">
-      <a id="manga-map-btn" href="#" target="_blank" 
-         class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded shadow transition inline-flex items-center space-x-2">
-        <span>🗺️ Abrir Visor de Maps Manga</span>
-      </a>
-    </div>
-  </header>
-
-  <!-- Navegació Principal (Seccions) -->
-  <nav class="bg-gray-200 border-b border-gray-300 px-6 py-3 flex flex-wrap gap-2 flex-shrink-0 shadow-inner" id="navigation">
-    <!-- Es generen dinàmicament els botons de Generals, Campionat Cat, T01, T02... -->
-  </nav>
-
-  <!-- Subnavegació (Sub-classificacions de la secció seleccionada) -->
-  <div class="bg-white border-b border-gray-200 px-6 py-2.5 flex flex-wrap gap-2 flex-shrink-0 min-h-[48px] items-center" id="sub-navigation">
-    <!-- Es generen dinàmicament els botons de cada sub-classificació -->
+    <!-- Listado de Secciones (Generals, Campionat, Tasks) -->
+    <main id="sections-container" class="space-y-3 flex-1">
+      <!-- Se generan dinámicamente -->
+    </main>
   </div>
 
-  <!-- Contenidor per al visualitzador (Iframe) -->
-  <main class="flex-grow w-full bg-white relative">
-    <iframe id="viewer" class="w-full h-full border-none" title="Visualitzador de Classificacions"></iframe>
-  </main>
+  <!-- VISTA 2: VISOR A PANTALLA COMPLETA -->
+  <div id="viewer-view" class="hidden fixed inset-0 bg-white flex flex-col z-50">
+    
+    <!-- Barra superior compacta para móvil -->
+    <header class="bg-blue-900 text-white px-3 py-2.5 flex items-center justify-between shadow flex-shrink-0">
+      <button id="back-btn" class="bg-blue-800 hover:bg-blue-700 text-white text-xs font-bold px-3 py-1.5 rounded flex items-center gap-1">
+        <span>⬅️ Tornar</span>
+      </button>
+      
+      <span id="current-title" class="text-xs font-bold truncate max-w-[180px] text-center"></span>
+      
+      <a id="map-btn" href="#" target="_blank" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-2.5 py-1.5 rounded flex items-center gap-1">
+        <span>🗺️ Mapa</span>
+      </a>
+    </header>
+
+    <!-- Contenido HTML de la clasificación (100% de pantalla) -->
+    <iframe id="viewer-iframe" class="w-full flex-grow border-none" title="Classificació"></iframe>
+  </div>
 
   <script>
-    // Prioritat d'ordenació única per a Generals, Campionat i Mangues
     function getCategoryScore(name) {
       const u = name.toUpperCase().trim();
-      // 6. Lliga B / Campionat B (al final)
-      if (u.includes(' B ') || u.includes('LLIGA_B') || u.includes('GENERAL B') || u.startsWith('B_') || u.includes('B_OVERALL') || u.includes('CAMPIONAT B')) return 7
-      // 1. Clasificaciones GENERAL / OVERALL (prioridad máxima)
+
       if (
         u === 'GENERAL' || 
         u.endsWith('-GENERAL') || 
@@ -57,17 +61,12 @@
         }
       }
 
-      // 2. Serial
       if (u.includes('SERIAL')) return 2;
-      // 3. Sport
       if (u.includes('SPORT')) return 3;
-      // 4. Club
       if (u.includes('CLUBS-LLICENCIA') || u.includes('CLUBS_LLICENCIA') || u.includes('CLUBS LLICENCIA')) return 5;
       if (u.includes('CLUB')) return 4;
-      // 5. Féminas / Fèmines
       if (u.includes('FEMINES') || u.includes('FEMENINA')) return 6;
-      // 6. Lliga B / Campionat B (al final)
-      if (u.includes(' B ') || u.includes('LLIGA_B') || u.includes('GENERAL B') || u.startsWith('B_') || u.includes('B_OVERALL') || u.includes('CAMPIONAT B')) return 7;
+      if (u.includes('LLIGA B') || u.includes('LLIGA_B') || u.startsWith('B_') || u.includes('B_OVERALL') || u.includes('CAMPIONAT B')) return 7;
 
       return 99;
     }
@@ -78,141 +77,111 @@
         if (!res.ok) throw new Error('manifest.json no trobat');
         const data = await res.json();
         
-        const nav = document.getElementById('navigation');
-        const subNav = document.getElementById('sub-navigation');
-        const iframe = document.getElementById('viewer');
-        const mapContainer = document.getElementById('map-button-container');
-        const mapBtn = document.getElementById('manga-map-btn');
+        const sectionsContainer = document.getElementById('sections-container');
+        const menuView = document.getElementById('menu-view');
+        const viewerView = document.getElementById('viewer-view');
+        const iframe = document.getElementById('viewer-iframe');
+        const backBtn = document.getElementById('back-btn');
+        const currentTitle = document.getElementById('current-title');
+        const mapBtn = document.getElementById('map-btn');
 
-        function loadIframe(path) {
-          iframe.src = path;
-        }
-
-function renderSubNav(items, isTask = false, taskName = '') {
-          subNav.innerHTML = '';
+        // Función para abrir la clasificación
+        function openClassification(item, isTask = false, taskName = '') {
+          iframe.src = item.path;
+          currentTitle.textContent = item.name;
           
           if (isTask) {
-            mapContainer.classList.remove('hidden');
+            mapBtn.classList.remove('hidden');
             mapBtn.href = `visor.html?task=${taskName}`;
           } else {
-            mapContainer.classList.add('hidden');
+            mapBtn.classList.add('hidden');
           }
 
-          const sortedItems = [...items].sort((a, b) => {
+          menuView.classList.add('hidden');
+          viewerView.classList.remove('hidden');
+        }
+
+        // Botón volver
+        backBtn.onclick = () => {
+          viewerView.classList.add('hidden');
+          menuView.classList.remove('hidden');
+          iframe.src = 'about:blank';
+        };
+
+        // Construir datos
+        const sections = [];
+
+        if (data.generals && data.generals.length > 0) {
+          sections.push({ label: 'GENERALS', items: data.generals, isTask: false, headerBg: 'bg-emerald-700' });
+        }
+        if (data.campionat && data.campionat.length > 0) {
+          sections.push({ label: 'CAMPIONAT CAT', items: data.campionat, isTask: false, headerBg: 'bg-amber-600' });
+        }
+        
+        if (data.tasks) {
+          const sortedTasks = Object.keys(data.tasks).sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+          sortedTasks.forEach(taskKey => {
+            sections.push({ label: taskKey.toUpperCase(), items: data.tasks[taskKey], isTask: true, taskName: taskKey, headerBg: 'bg-blue-900' });
+          });
+        }
+
+// Renderizar acordeones para móvil
+        sections.forEach(sec => {
+          const card = document.createElement('div');
+          card.className = 'bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden';
+
+          const cardHeader = document.createElement('button');
+          cardHeader.className = `w-full text-left px-4 py-3 text-white font-bold text-sm flex justify-between items-center ${sec.headerBg}`;
+          
+          // Flecha inicial hacia la derecha ▶ (indica que está plegado)
+          cardHeader.innerHTML = `<span>${sec.label}</span><span class="text-xs opacity-75 arrow-icon">▶</span>`;
+
+          const cardBody = document.createElement('div');
+          // Se añade la clase 'hidden' por defecto para que aparezca plegado
+          cardBody.className = 'p-3 grid grid-cols-1 gap-2 bg-gray-50 hidden';
+
+          const sortedItems = [...sec.items].sort((a, b) => {
             const scoreA = getCategoryScore(a.name);
             const scoreB = getCategoryScore(b.name);
             if (scoreA !== scoreB) return scoreA - scoreB;
             return a.name.localeCompare(b.name);
           });
 
-          sortedItems.forEach((item, index) => {
+          sortedItems.forEach(item => {
             const btn = document.createElement('button');
+            const uName = item.name.toUpperCase();
             
-            // Detectar si la clasificación pertenece a la categoría B
             const isCategoryB = getCategoryScore(item.name) === 7 || 
-                                item.name.toUpperCase().startsWith('B_') || 
-                                item.name.toUpperCase().includes('CAMPIONAT B') || 
-                                item.name.toUpperCase().includes('LLIGA B');
+                                uName.startsWith('B_') || 
+                                uName.includes('CAMPIONAT B') || 
+                                uName.includes('LLIGA B');
 
-            // Asignar colores por defecto según si es Categoría B o A/Normal
-            const baseBgClass = isCategoryB 
-              ? 'bg-red-100 hover:bg-red-200 text-red-800 border border-red-300' 
-              : 'bg-gray-200 hover:bg-gray-300 text-gray-700';
+            const btnStyle = isCategoryB 
+              ? 'bg-red-50 hover:bg-red-100 text-red-800 border-red-200' 
+              : 'bg-white hover:bg-gray-100 text-gray-800 border-gray-200';
 
-            const activeBgClass = isCategoryB 
-              ? 'bg-red-700 text-white border border-red-700' 
-              : 'bg-blue-600 text-white';
+            btn.className = `w-full text-left px-3 py-2.5 text-xs font-semibold uppercase rounded-lg border shadow-sm transition flex justify-between items-center ${btnStyle}`;
+            btn.innerHTML = `<span>${item.name}</span> <span class="text-gray-400 text-xs">➔</span>`;
 
-            btn.className = `px-3 py-1.5 text-xs font-semibold uppercase rounded transition ${baseBgClass}`;
-            btn.textContent = item.name;
-
-            btn.onclick = () => {
-              // Resetear el estilo de todos los botones de la subnavegación
-              Array.from(subNav.children).forEach((b, i) => {
-                const subItem = sortedItems[i];
-                const isSubB = getCategoryScore(subItem.name) === 7 || 
-                               subItem.name.toUpperCase().startsWith('B_') || 
-                               subItem.name.toUpperCase().includes('CAMPIONAT B') || 
-                               subItem.name.toUpperCase().includes('LLIGA B');
-
-                b.className = `px-3 py-1.5 text-xs font-semibold uppercase rounded transition ${
-                  isSubB 
-                    ? 'bg-red-100 hover:bg-red-200 text-red-800 border border-red-300' 
-                    : 'bg-gray-200 hover:bg-gray-300 text-gray-700'
-                }`;
-              });
-
-              // Aplicar estilo activo
-              btn.className = `px-3 py-1.5 text-xs font-semibold uppercase rounded transition ${activeBgClass}`;
-              loadIframe(item.path);
-            };
-
-            subNav.appendChild(btn);
-            if (index === 0) btn.click();
+            btn.onclick = () => openClassification(item, sec.isTask, sec.taskName);
+            cardBody.appendChild(btn);
           });
-        }
-        
-        // Definir seccions principals amb colors i etiquetes en majúscules
-        const sections = [];
 
-        if (data.generals && data.generals.length > 0) {
-          sections.push({ 
-            label: 'GENERALS', 
-            items: data.generals, 
-            isTask: false, 
-            bgColor: 'bg-emerald-700 hover:bg-emerald-600', 
-            activeBg: 'bg-emerald-800' 
-          });
-        }
-        if (data.campionat && data.campionat.length > 0) {
-          sections.push({ 
-            label: 'CAMPIONAT CAT', 
-            items: data.campionat, 
-            isTask: false, 
-            bgColor: 'bg-amber-600 hover:bg-amber-500', 
-            activeBg: 'bg-amber-700' 
-          });
-        }
-        
-        if (data.tasks) {
-          const sortedTasks = Object.keys(data.tasks).sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
-          
-          sortedTasks.forEach(taskKey => {
-            sections.push({ 
-              label: taskKey.toUpperCase(), 
-              items: data.tasks[taskKey], 
-              isTask: true, 
-              taskName: taskKey, 
-              bgColor: 'bg-blue-900 hover:bg-blue-800', 
-              activeBg: 'bg-blue-700' 
-            });
-          });
-        }
-
-        sections.forEach((sec, index) => {
-          const btn = document.createElement('button');
-          btn.className = `px-4 py-2 text-white text-sm font-bold rounded transition shadow-sm ${sec.bgColor}`;
-          btn.textContent = sec.label;
-          
-          btn.onclick = () => {
-            Array.from(nav.children).forEach(b => {
-              b.classList.remove('ring-2', 'ring-yellow-400');
-              // Restaurar tots als seus colors base
-              sections.forEach(s => {
-                if (b.textContent === s.label) {
-                  b.className = `px-4 py-2 text-white text-sm font-bold rounded transition shadow-sm ${s.bgColor}`;
-                }
-              });
-            });
-            
-            btn.className = `px-4 py-2 text-white text-sm font-bold rounded transition shadow-sm ${sec.activeBg} ring-2 ring-yellow-400`;
-            renderSubNav(sec.items, sec.isTask, sec.taskName);
+          // Plegar/desplegar acordeón y alternar la flecha (▶ / ▼)
+          cardHeader.onclick = () => {
+            const isHidden = cardBody.classList.toggle('hidden');
+            const arrow = cardHeader.querySelector('.arrow-icon');
+            if (arrow) {
+              arrow.textContent = isHidden ? '▶' : '▼';
+            }
           };
-          
-          nav.appendChild(btn);
-          if (index === 0) btn.click();
-        });
 
+          card.appendChild(cardHeader);
+          card.appendChild(cardBody);
+          sectionsContainer.appendChild(card);
+        });
+        
+        
       } catch (err) {
         console.error('Error carregant el manifest:', err);
       }
