@@ -177,7 +177,7 @@
   .crossing-marker{cursor:pointer;}
 
   @media (max-width:480px){
-    #panel{width:calc(100vw - 24px);}
+    #panel{width:calc(100vw - 24px);} 
     #time-control-container{width:calc(100vw - 24px);bottom: 12px;}
   }
 </style>
@@ -244,7 +244,7 @@
 
 <script>
 /**
- * Carga y parsea el archivo FSDB especificado ('LLIGA_A.fsdb' o 'LLIGA_B.fsdb')
+ * Carga y parsea el archivo FSDB especificado (LLIGA_A.fsdb / LLIGA_B.fsdb -- intenta también lliga_a/lliga_b en minúsculas)
  * para obtener el nombre del fichero IGC asignado a cada piloto en una manga determinada.
  * 
  * @param {string} liga - 'a' o 'b' para seleccionar LLIGA_A.fsdb o LLIGA_B.fsdb
@@ -252,16 +252,32 @@
  * @returns {Promise<Map<string, string>>} Mapa de civlId/pilotId -> nombre_fichero_IGC
  */
 async function obtenerTracksMangaDesdeFSDB(liga, taskId) {
-  // Determinar el fichero FSDB en la raíz del repositorio
-  const fsdbFile = (liga && liga.toLowerCase() === 'b') ? './LLIGA_B.fsdb' : './LLIGA_A.fsdb';
+  // Construir candidatos (intentar tanto mayúsculas como minúsculas por compatibilidad)
+  const base = (liga && liga.toLowerCase() === 'b') ? 'LLIGA_B' : 'LLIGA_A';
+  const candidates = [`./${base}.fsdb`, `./${base.toLowerCase()}.fsdb`];
+
+  let xmlText = null;
+  let fsdbFile = null;
+
+  for (const candidate of candidates) {
+    try {
+      const response = await fetch(candidate);
+      if (response.ok) {
+        xmlText = await response.text();
+        fsdbFile = candidate;
+        break;
+      }
+    } catch (err) {
+      // continuar a siguiente candidato
+    }
+  }
+
+  if (!xmlText) {
+    console.error(`No se pudo cargar ninguno de los archivos FSDB: ${candidates.join(', ')}`);
+    return new Map();
+  }
 
   try {
-    const response = await fetch(fsdbFile);
-    if (!response.ok) {
-      throw new Error(`No se pudo cargar el archivo ${fsdbFile}: ${response.statusText}`);
-    }
-    const xmlText = await response.text();
-
     // Parsear el contenido XML del FSDB
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlText, "text/xml");
@@ -326,7 +342,7 @@ async function obtenerTracksMangaDesdeFSDB(liga, taskId) {
  * Función para actualizar la UI del visor al cambiar de manga o de liga.
  */
 async function cargarMangaUI(liga, taskId) {
-  // 1. Obtener los nombres de fichero IGC desde LLIGA_A.fsdb o LLIGA_B.fsdb
+  // 1. Obtener los nombres de fichero IGC desde LLIGA_A.fsdb o LLIGA_B.fsdb (intenta también variantes en minúsculas)
   const tracksMap = await obtenerTracksMangaDesdeFSDB(liga, taskId);
 
   // 2. Recorrer la tabla o lista de pilotos en pantalla
@@ -358,3 +374,4 @@ async function cargarMangaUI(liga, taskId) {
 
 </body>
 </html>
+

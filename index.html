@@ -40,45 +40,41 @@
     </div>
   </main>
 
-  <script>
-    // Regles de prioritat per a qualsevol tipus de nom de fitxer
-    const categoryRules = [
-      { keys: ['OVERALL', 'GENERAL'], score: 1 },
-      { keys: ['SERIAL'], score: 2 },
-      { keys: ['SPORT'], score: 3 },
-      { keys: ['CLUB'], score: 4 },
-      { keys: ['FEMINES', 'FEMENINA'], score: 5 },
-      { keys: ['CLUBS-LLICENCIA', 'CLUBS_LLICENCIA'], score: 6 },
-      { keys: ['LLIGA B', 'LLIGA-B', 'LLIGA_B', 'B_T', 'B_OVERALL'], score: 7 }
-    ];
-
+<script>
+    // Prioritat d'ordenació única per a Generals, Campionat i Mangues
     function getCategoryScore(name) {
-      const upperName = name.toUpperCase().trim();
+      const u = name.toUpperCase().trim();
 
-      // Cas especial per a Lliga B (fitxers que comencen per B_ o contenen LLIGA B)
-      if (upperName.startsWith('B_') || upperName.includes('LLIGA B') || upperName.includes('LLIGA_B')) {
-        return 7;
-      }
-
-      // Si és la general/overall principal de la manga (A_..._OVERALL o GENERAL sola)
+      // 1. General / Overall principal
       if (
-        (upperName.includes('OVERALL') || upperName.endsWith('-GENERAL') || upperName === 'GENERAL') &&
-        !upperName.includes('SERIAL') &&
-        !upperName.includes('SPORT') &&
-        !upperName.includes('CLUB') &&
-        !upperName.includes('FEMINES')
+        u === 'GENERAL' || 
+        u.endsWith('-GENERAL') || 
+        (u.includes('OVERALL') && !u.startsWith('B_') && !u.includes('LLIGA'))
       ) {
-        return 1;
-      }
-
-      // Comprovar la resta de categories per ordre de prioritat
-      for (const rule of categoryRules) {
-        if (rule.keys.some(k => upperName.includes(k))) {
-          return rule.score;
+        if (!u.includes('SERIAL') && !u.includes('SPORT') && !u.includes('CLUB') && !u.includes('FEMINES')) {
+          return 1;
         }
       }
 
-      return 99; // Si no coincideix amb cap, va al final
+      // 2. Serial
+      if (u.includes('SERIAL')) return 2;
+
+      // 3. Sport
+      if (u.includes('SPORT')) return 3;
+
+      // 4. Club
+      if (u.includes('CLUBS-LLICENCIA') || u.includes('CLUBS_LLICENCIA')) return 6; // Excepció per no confondre amb CLUB
+      if (u.includes('CLUB')) return 4;
+
+      // 5. Fèmines
+      if (u.includes('FEMINES') || u.includes('FEMENINA')) return 5;
+
+      // 6. Clubs Llicència (ja gestionat a la linia 24)
+
+      // 7. Lliga B
+      if (u.includes('LLIGA B') || u.includes('LLIGA_B') || u.startsWith('B_') || u.includes('B_OVERALL')) return 7;
+
+      return 99; // Qualsevol altra categoria desconeguda va al final
     }
 
     async function init() {
@@ -107,7 +103,7 @@
             mapContainer.classList.add('hidden');
           }
 
-          // Ordenar sub-categories segons la prioritat definida
+          // Ordenar sub-categories
           const sortedItems = [...items].sort((a, b) => {
             const scoreA = getCategoryScore(a.name);
             const scoreB = getCategoryScore(b.name);
@@ -172,6 +168,6 @@
 
     init();
   </script>
-  
+ 
 </body>
 </html>
