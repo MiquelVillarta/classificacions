@@ -3,51 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Classificacions Parapent 2026</title>
+  <title>Classificacions Parapent</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 font-sans text-gray-800 min-h-screen flex flex-col">
+<body class="bg-gray-100 font-sans flex flex-col h-screen overflow-hidden">
 
-  <header class="bg-blue-900 text-white p-4 shadow-md flex flex-wrap justify-between items-center px-6">
-    <div class="flex items-center gap-3">
-      <h1 class="text-xl font-bold">Classificacions Parapent</h1>
-      <span class="text-2xl font-black text-red-500 bg-black/30 px-2 py-0.5 rounded shadow">2026</span>
+  <!-- Header -->
+  <header class="bg-blue-900 text-white px-6 py-4 flex justify-between items-center shadow-md flex-shrink-0">
+    <div class="flex items-center space-x-3">
+      <h1 class="text-2xl font-bold tracking-tight">Classificacions Parapent</h1>
+      <span class="bg-red-600 text-white text-sm font-extrabold px-2.5 py-1 rounded-md shadow">2026</span>
     </div>
-    <a href="visor.html" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-3 py-1.5 rounded text-sm transition flex items-center gap-1">
-      🗺️ Obrir Visor de Maps General
-    </a>
+
+    <!-- Botó per obrir el mapa global/general (amagat per defecte si no hi ha mapa) -->
+    <div id="map-button-container" class="hidden">
+      <a id="manga-map-btn" href="#" target="_blank" 
+         class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded shadow transition inline-flex items-center space-x-2">
+        <span>🗺️ Abrir Visor de Maps Manga</span>
+      </a>
+    </div>
   </header>
 
-  <main class="max-w-7xl w-full mx-auto p-4 flex-grow">
-    <!-- Navegació Principal (Seccions / Mangues) -->
-    <div id="navigation" class="flex flex-wrap gap-2 mb-3 border-b border-gray-300 pb-3"></div>
-    
-    <!-- Sub-Navegació (Categories) -->
-    <div class="flex flex-wrap justify-between items-center gap-2 mb-4 bg-white p-3 rounded shadow-sm">
-      <div id="sub-navigation" class="flex flex-wrap gap-2"></div>
-      
-      <!-- Botó dinàmic per anar al visor de la manga -->
-      <div id="map-button-container" class="hidden">
-        <a id="manga-map-btn" href="#" target="_blank" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-3 py-2 rounded flex items-center gap-1 shadow-sm transition">
-          📍 Veure Tracks d'aquesta Manga
-        </a>
-      </div>
-    </div>
+  <!-- Navegació Principal (Seccions) -->
+  <nav class="bg-gray-200 border-b border-gray-300 px-6 py-3 flex flex-wrap gap-2 flex-shrink-0 shadow-inner" id="navigation">
+    <!-- Es generen dinàmicament els botons de Generals, Campionat Cat, T01, T02... -->
+  </nav>
 
-    <!-- Visor iframe per als HTML de FSCOMP -->
-    <div class="bg-white rounded-lg shadow-md p-2 min-h-[700px]">
-      <iframe id="viewer" class="w-full h-[800px] border-0 rounded" src="about:blank"></iframe>
-    </div>
+  <!-- Subnavegació (Sub-classificacions de la secció seleccionada) -->
+  <div class="bg-white border-b border-gray-200 px-6 py-2.5 flex flex-wrap gap-2 flex-shrink-0 min-h-[48px] items-center" id="sub-navigation">
+    <!-- Es generen dinàmicament els botons de cada sub-classificació -->
+  </div>
+
+  <!-- Contenidor per al visualitzador (Iframe) -->
+  <main class="flex-grow w-full bg-white relative">
+    <iframe id="viewer" class="w-full h-full border-none" title="Visualitzador de Classificacions"></iframe>
   </main>
 
-<script>
+  <script>
     // Prioritat d'ordenació única per a Generals, Campionat i Mangues
     function getCategoryScore(name) {
       const u = name.toUpperCase().trim();
-
+      // 6. Lliga B / Campionat B (al final)
+      if (u.includes(' B ') || u.includes('LLIGA_B') || u.includes('GENERAL B') || u.startsWith('B_') || u.includes('B_OVERALL') || u.includes('CAMPIONAT B')) return 7
+      // 1. Clasificaciones GENERAL / OVERALL (prioridad máxima)
       if (
         u === 'GENERAL' || 
         u.endsWith('-GENERAL') || 
+        u.endsWith(' GENERAL') ||
         (u.includes('OVERALL') && !u.startsWith('B_') && !u.includes('LLIGA'))
       ) {
         if (!u.includes('SERIAL') && !u.includes('SPORT') && !u.includes('CLUB') && !u.includes('FEMINES')) {
@@ -55,12 +57,17 @@
         }
       }
 
+      // 2. Serial
       if (u.includes('SERIAL')) return 2;
+      // 3. Sport
       if (u.includes('SPORT')) return 3;
-      if (u.includes('CLUBS-LLICENCIA') || u.includes('CLUBS_LLICENCIA')) return 6;
+      // 4. Club
+      if (u.includes('CLUBS-LLICENCIA') || u.includes('CLUBS_LLICENCIA') || u.includes('CLUBS LLICENCIA')) return 5;
       if (u.includes('CLUB')) return 4;
-      if (u.includes('FEMINES') || u.includes('FEMENINA')) return 5;
-      if (u.includes('LLIGA B') || u.includes('LLIGA_B') || u.startsWith('B_') || u.includes('B_OVERALL')) return 7;
+      // 5. Féminas / Fèmines
+      if (u.includes('FEMINES') || u.includes('FEMENINA')) return 6;
+      // 6. Lliga B / Campionat B (al final)
+      if (u.includes(' B ') || u.includes('LLIGA_B') || u.includes('GENERAL B') || u.startsWith('B_') || u.includes('B_OVERALL') || u.includes('CAMPIONAT B')) return 7;
 
       return 99;
     }
@@ -116,12 +123,12 @@
           });
         }
 
-        // Definir seccions principals amb colors diferents
+        // Definir seccions principals amb colors i etiquetes en majúscules
         const sections = [];
 
         if (data.generals && data.generals.length > 0) {
           sections.push({ 
-            label: 'Generals', 
+            label: 'GENERALS', 
             items: data.generals, 
             isTask: false, 
             bgColor: 'bg-emerald-700 hover:bg-emerald-600', 
@@ -130,7 +137,7 @@
         }
         if (data.campionat && data.campionat.length > 0) {
           sections.push({ 
-            label: 'Campionat Cat', 
+            label: 'CAMPIONAT CAT', 
             items: data.campionat, 
             isTask: false, 
             bgColor: 'bg-amber-600 hover:bg-amber-500', 
@@ -143,7 +150,7 @@
           
           sortedTasks.forEach(taskKey => {
             sections.push({ 
-              label: taskKey, 
+              label: taskKey.toUpperCase(), 
               items: data.tasks[taskKey], 
               isTask: true, 
               taskName: taskKey, 
@@ -184,6 +191,5 @@
 
     init();
   </script>
- 
 </body>
 </html>
