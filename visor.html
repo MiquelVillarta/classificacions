@@ -243,819 +243,118 @@
 <div id="file-banner"></div>
 
 <script>
-(function(){
-  "use strict";
+/**
+ * Carga y parsea el archivo FSDB especificado ('lliga_a.fsdb' o 'lliga_b.fsdb')
+ * para obtener el nombre del fichero IGC asignado a cada piloto en una manga determinada.
+ * 
+ * @param {string} liga - 'a' o 'b' para seleccionar lliga_a.fsdb o lliga_b.fsdb
+ * @param {string|number} taskId - Número o ID de la manga (task)
+ * @returns {Promise<Map<string, string>>} Mapa de civlId/pilotId -> nombre_fichero_IGC
+ */
+async function obtenerTracksMangaDesdeFSDB(liga, taskId) {
+  // Determinar el fichero FSDB en la raíz del repositorio
+  const fsdbFile = (liga && liga.toLowerCase() === 'b') ? './lliga_b.fsdb' : './lliga_a.fsdb';
 
-  const params = new URLSearchParams(window.location.search);
-
-  // Parámetros URL para autoreproducción / configuración inicial
-  const urlComp = params.get('comp');
-  const urlManga = params.get('manga');
-  const urlPilot = params.get('pilot');
-
-  const COMPETITIONS = [
-    {id:'A', label:'Lliga A', fsdb:'LLIGA_A.fsdb'},
-    {id:'B', label:'Lliga B', fsdb:'LLIGA_B.fsdb'}
-  ];
-  const customFsdb = params.get('fsdb');
-  if (customFsdb && !COMPETITIONS.some(c => c.fsdb === customFsdb)) {
-    COMPETITIONS.unshift({id:'custom', label:'Personalitzat (' + customFsdb + ')', fsdb: customFsdb});
-  }
-
-  const PALETTE = ['#e6194b','#4363d8','#f58231','#42d4f4','#f032e6','#3cb44b',
-                    '#bfef45','#fabed4','#469990','#dcbeff','#9a6324','#800000',
-                    '#808000','#ffd8b1','#000075'];
-
-  let tasksById = {};
-  let rosterById = {};   
-  let currentTask = null;
-  let taskLayerGroup = null;
-  let activePilots = {}; 
-  let colorCursor = 0;
-
-  let minEpoch = Infinity;
-  let maxEpoch = -Infinity;
-  let currentEpoch = 0;
-  let isPlaying = false;
-  let playInterval = null;
-
-  const map = L.map('map', {zoomControl:true}).setView([41.85, 1.2], 8);
-
-  const BASEMAPS = {
-    esri: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 19,
-      attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
-    }),
-    otm: L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-      maxZoom: 17,
-      attribution: 'Map data: &copy; OpenStreetMap contributors, SRTM | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)'
-    })
-  };
-  let currentBasemap = 'esri';
-  BASEMAPS[currentBasemap].addTo(map);
-
-  function setBasemap(key){
-    if (key === currentBasemap || !BASEMAPS[key]) return;
-    map.removeLayer(BASEMAPS[currentBasemap]);
-    currentBasemap = key;
-    BASEMAPS[currentBasemap].addTo(map);
-  }
-
-  const competitionSelect = document.getElementById('competition-select');
-  const taskSelect = document.getElementById('task-select');
-  const pilotSelect = document.getElementById('pilot-select');
-  const addPilotBtn = document.getElementById('add-pilot-btn');
-  const pilotsListEl = document.getElementById('pilots-list');
-  const statusEl = document.getElementById('status');
-  const taskInfoEl = document.getElementById('task-info');
-  const legendEl = document.getElementById('legend');
-  const fileBanner = document.getElementById('file-banner');
-  const collapseBtn = document.getElementById('collapse-btn');
-  const panel = document.getElementById('panel');
-  const shareBtn = document.getElementById('share-btn');
-
-  const timeContainer = document.getElementById('time-control-container');
-  const timeSlider = document.getElementById('time-slider');
-  const timeDisplay = document.getElementById('time-display');
-  const playBtn = document.getElementById('play-btn');
-  const speedSelect = document.getElementById('speed-select');
-
-  collapseBtn.addEventListener('click', () => {
-    panel.classList.toggle('collapsed');
-    collapseBtn.textContent = panel.classList.contains('collapsed') ? '+' : '−';
-  });
-
-  // Generar enlace compartido de la configuración activa
-  shareBtn.addEventListener('click', () => {
-    const url = new URL(window.location.href);
-    url.searchParams.set('comp', competitionSelect.value);
-    if (taskSelect.value) url.searchParams.set('manga', taskSelect.value);
-    
-    const activePilotIds = Object.keys(activePilots);
-    if (activePilotIds.length > 0) {
-      url.searchParams.set('pilot', activePilotIds.join(','));
-    } else {
-      url.searchParams.delete('pilot');
+  try {
+    const response = await fetch(fsdbFile);
+    if (!response.ok) {
+      throw new Error(`No se pudo cargar el archivo ${fsdbFile}: ${response.statusText}`);
     }
+    const xmlText = await response.text();
 
-    navigator.clipboard.writeText(url.toString()).then(() => {
-      setStatus('¡Enllaç copiat al portapapers!', 'ok');
-      setTimeout(() => setStatus(''), 3000);
-    }).catch(() => {
-      setStatus('Error al copiar l\'enllaç', 'error');
-    });
-  });
+    // Parsear el contenido XML del FSDB
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlText, "text/xml");
 
-  function setStatus(msg, kind){
-    statusEl.textContent = msg || '';
-    statusEl.className = kind || '';
-  }
+    // Buscar la manga (FsTask) por su id o número
+    const tasks = xmlDoc.getElementsByTagName("FsTask");
+    let targetTask = null;
 
-  function normPath(p){
-    return (p || '').replace(/\\/g, '/').replace(/\/+$/,'');
-  }
-
-  function fmtDuration(msDiff){
-    if (!isFinite(msDiff) || msDiff < 0) return '—';
-    const s = Math.round(msDiff/1000);
-    const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), ss = s%60;
-    return (h>0? h+'h ':'') + String(m).padStart(2,'0')+'m '+String(ss).padStart(2,'0')+'s';
-  }
-
-  function distMeters(lat1, lon1, lat2, lon2){
-    const R = 6371000, toRad = d => d * Math.PI / 180;
-    const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
-    const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
-    return 2 * R * Math.asin(Math.sqrt(a));
-  }
-
-  function detectTakeoffIndex(points) {
-    if (!points || points.length < 5) return 0;
-
-    const MIN_SPEED_KMH = 12;
-    const SUSTAINED_SECONDS = 12;
-
-    for (let i = 0; i < points.length - 1; i++) {
-      const p1 = points[i];
-      if (!p1.epoch) continue;
-
-      let sustainedFlight = true;
-      let checkIdx = i;
-
-      while (checkIdx < points.length - 1) {
-        const pCurrent = points[checkIdx];
-        const pNext = points[checkIdx + 1];
-        if (!pCurrent.epoch || !pNext.epoch) break;
-
-        const timeDiffSec = (pNext.epoch - pCurrent.epoch) / 1000;
-        const totalElapsedSec = (pNext.epoch - p1.epoch) / 1000;
-
-        if (timeDiffSec > 0) {
-          const distM = distMeters(pCurrent.lat, pCurrent.lon, pNext.lat, pNext.lon);
-          const speedKmh = (distM / timeDiffSec) * 3.6;
-
-          if (speedKmh < MIN_SPEED_KMH) {
-            sustainedFlight = false;
-            break;
-          }
-        }
-
-        if (totalElapsedSec >= SUSTAINED_SECONDS) break;
-        checkIdx++;
-      }
-
-      if (sustainedFlight && checkIdx > i) {
-        return i;
+    for (let task of tasks) {
+      const id = task.getAttribute("id");
+      const num = task.getAttribute("number") || task.getAttribute("task_number");
+      if (id == taskId || num == taskId) {
+        targetTask = task;
+        break;
       }
     }
 
-    return 0;
-  }
-
-  function taskDateFromXml(taskEl, turnpoints){
-    if (turnpoints.length && turnpoints[0].open) {
-      return turnpoints[0].open.substring(0,10);
-    }
-    const folder = taskEl.getAttribute('tracklog_folder') || '';
-    const m = folder.match(/(\d{8})/);
-    if (m) {
-      const d = m[1];
-      return d.substring(0,4)+'-'+d.substring(4,6)+'-'+d.substring(6,8);
-    }
-    return '';
-  }
-
-  function resetForNewCompetition(){
-    if (taskLayerGroup) { map.removeLayer(taskLayerGroup); taskLayerGroup = null; }
-    resetPilots();
-    currentTask = null;
-    tasksById = {};
-    rosterById = {};
-    taskSelect.innerHTML = '<option value="">Carregant fsdb…</option>';
-    taskInfoEl.style.display = 'none';
-    legendEl.innerHTML = '';
-    pilotSelect.innerHTML = '<option value="">—</option>';
-    pilotSelect.disabled = true;
-    addPilotBtn.disabled = true;
-    fileBanner.style.display = 'none';
-  }
-
-  function loadFsdb(url, onComplete){
-    resetForNewCompetition();
-    setStatus('Carregant ' + url + '…');
-    fetch(url).then(r => {
-      if (!r.ok) throw new Error('HTTP ' + r.status);
-      return r.text();
-    }).then(text => {
-      parseFsdb(text);
-      setStatus('Fsdb carregat: ' + Object.keys(tasksById).length + ' mangues.', 'ok');
-      if (onComplete) onComplete();
-    }).catch(err => {
-      setStatus('Error carregant el fsdb: ' + err.message, 'error');
-      if (location.protocol === 'file:') {
-        fileBanner.style.display = 'block';
-        fileBanner.innerHTML = '<b>Cal servir aquesta pàgina per HTTP.</b><br/>' +
-          'Obrir el fitxer directament amb doble clic (file://) bloqueja la lectura del .fsdb i dels .igc per seguretat del navegador.';
-      } else {
-        fileBanner.style.display = 'block';
-        fileBanner.innerHTML = '<b>No s\'ha pogut carregar ' + url + '.</b><br/>' +
-          'Comprova que el fitxer és al mateix directori que aquesta pàgina.';
-      }
-    });
-  }
-
-  function parseFsdb(xmlText){
-    const xml = new DOMParser().parseFromString(xmlText, 'application/xml');
-    const perr = xml.querySelector('parsererror');
-    if (perr) throw new Error('XML invàlid');
-
-    rosterById = {};
-    xml.querySelectorAll('FsCompetition > FsParticipants > FsParticipant').forEach(p => {
-      rosterById[p.getAttribute('id')] = {
-        name: p.getAttribute('name') || ('Pilot ' + p.getAttribute('id')),
-        glider: p.getAttribute('glider') || ''
-      };
-    });
-
-    tasksById = {};
-    xml.querySelectorAll('FsTasks > FsTask').forEach(taskEl => {
-      const id = taskEl.getAttribute('id');
-      const def = taskEl.querySelector('FsTaskDefinition');
-      if (!def) return;
-
-      const turnpoints = Array.from(def.querySelectorAll('FsTurnpoint')).map(tp => ({
-        id: tp.getAttribute('id'),
-        lat: parseFloat(tp.getAttribute('lat')),
-        lon: parseFloat(tp.getAttribute('lon')),
-        radius: parseFloat(tp.getAttribute('radius')),
-        altitude: tp.getAttribute('altitude'),
-        open: tp.getAttribute('open'),
-        close: tp.getAttribute('close')
-      }));
-
-      const shortestPath = Array.from(def.querySelectorAll('FsTaskShortestPath > FsPathVertex')).map(v => ([
-        parseFloat(v.getAttribute('lat')), parseFloat(v.getAttribute('lon'))
-      ]));
-
-      const startGates = Array.from(def.querySelectorAll('FsStartGate')).map(g => g.getAttribute('open'));
-
-      const ssRaw = def.getAttribute('ss') !== null ? parseInt(def.getAttribute('ss'), 10) : null;
-      const esRaw = def.getAttribute('es') !== null ? parseInt(def.getAttribute('es'), 10) : null;
-      const ss = ssRaw !== null ? ssRaw - 1 : null;
-      const es = esRaw !== null ? esRaw - 1 : null;
-
-      const participants = {};
-      const partsRoot = taskEl.querySelector(':scope > FsParticipants');
-      if (partsRoot) {
-        Array.from(partsRoot.children).forEach(p => {
-          const pid = p.getAttribute('id');
-          const fd = p.querySelector('FsFlightData');
-          participants[pid] = fd ? {
-            distance: fd.getAttribute('distance'),
-            flownSsDistance: fd.getAttribute('flown_ss_distance'),
-            startedSs: fd.getAttribute('started_ss'),
-            finishedSs: fd.getAttribute('finished_ss'),
-            finishedTask: fd.getAttribute('finished_task'),
-            lastPointTime: fd.getAttribute('last_tracklog_point_time'),
-            maxAlt: fd.getAttribute('max_alt'),
-            reachedGoal: fd.getAttribute('reachedGoal') === '1',
-            landedBeforeDeadline: fd.getAttribute('landed_before_deadline') === '1',
-            trackFile: fd.getAttribute('tracklog_filename')
-          } : null;
-        });
-      }
-
-      tasksById[id] = {
-        id, name: taskEl.getAttribute('name') || ('T'+id),
-        folder: normPath(taskEl.getAttribute('tracklog_folder')),
-        goal: def.getAttribute('goal') || '',
-        ss, es,
-        turnpoints, shortestPath, startGates,
-        participants,
-        date: taskDateFromXml(taskEl, turnpoints)
-      };
-    });
-
-    buildTaskSelect();
-  }
-
-  function buildTaskSelect(){
-    const ids = Object.keys(tasksById).sort((a,b) => parseInt(a)-parseInt(b));
-    taskSelect.innerHTML = '<option value="">Selecciona una manga…</option>';
-    ids.forEach(id => {
-      const t = tasksById[id];
-      const flownCount = Object.values(t.participants).filter(p => p && p.trackFile).length;
-      const opt = document.createElement('option');
-      opt.value = id;
-      opt.textContent = 'T' + id + ' · ' + t.name + (t.date ? ' · ' + t.date : '') +
-        ' (' + flownCount + ' tracks)';
-      taskSelect.appendChild(opt);
-    });
-  }
-
-  taskSelect.addEventListener('change', () => {
-    const id = taskSelect.value;
-    if (!id) return;
-    selectTask(tasksById[id]);
-  });
-
-  const basemapSelect = document.getElementById('basemap-select');
-  basemapSelect.addEventListener('change', () => setBasemap(basemapSelect.value));
-
-  function roleOfIndex(idx, n, ss, es){
-    if (idx === 0 && ss !== null && idx === ss) return 'takeoff_ss';
-    if (idx === 0) return 'takeoff';
-    if (ss !== null && idx === ss && es !== null && idx === es) return 'ss_ess';
-    if (ss !== null && idx === ss) return 'ss';
-    if (es !== null && idx === es && idx === n-1) return 'ess_goal';
-    if (es !== null && idx === es) return 'ess';
-    if (idx === n-1) return 'goal';
-    return 'tp';
-  }
-
-  const ROLE_STYLE = {
-    takeoff:    {color:'#e9f5ff', label:'Enlairament'},
-    tp:         {color:'#2e9bff', label:'Baliza'},
-    ss:         {color:'#00ff00', label:'Sortida (SS)'},
-    ess:        {color:'#ff2d55', label:'Fi de manga (ESS)'},
-    goal:       {color:'#c04dff', label:'Meta'},
-    ess_goal:   {color:'#ff2db3', label:'ESS / Meta'},
-    ss_ess:     {color:'#ff2d55', label:'Sortida i ESS'},
-    takeoff_ss: {color:'#2e9bff', label:'Enlairament / Sortida'}
-  };
-
-  function selectTask(task, onComplete){
-    currentTask = task;
-    resetPilots();
-
-    if (taskLayerGroup) { map.removeLayer(taskLayerGroup); }
-    taskLayerGroup = L.layerGroup().addTo(map);
-
-    const n = task.turnpoints.length;
-    const bounds = [];
-    const seenRoles = new Set();
-
-    task.turnpoints.forEach((tp, idx) => {
-      const role = roleOfIndex(idx, n, task.ss, task.es);
-      const style = ROLE_STYLE[role];
-      seenRoles.add(role);
-      L.circle([tp.lat, tp.lon], {
-        radius: tp.radius, color:'#ffffff', weight:5, opacity:0.65, fill:false
-      }).addTo(taskLayerGroup);
-      const circle = L.circle([tp.lat, tp.lon], {
-        radius: tp.radius, color: style.color, weight: 3, fillColor: style.color, fillOpacity: 0.16
-      }).addTo(taskLayerGroup);
-      const gatesTxt = (role === 'ss' || role === 'ss_ess' || role === 'takeoff_ss') && task.startGates.length
-        ? '<br/>Sortides: ' + task.startGates.map(g => g ? g.substring(11,16) : '?').join(', ')
-        : '';
-      circle.bindPopup(
-        '<b>' + tp.id + ' · ' + style.label + '</b>' +
-        'Radi: ' + Math.round(tp.radius) + ' m<br/>' +
-        'Altitud: ' + tp.altitude + ' m' + gatesTxt
-      );
-      L.circleMarker([tp.lat, tp.lon], {radius:6, color:'#ffffff', weight:2, fillColor: style.color, fillOpacity:1})
-        .addTo(taskLayerGroup)
-        .bindTooltip(tp.id, {permanent:true, direction:'top', offset:[0,-8], className:'tp-label'});
-      bounds.push([tp.lat, tp.lon]);
-    });
-
-    if (task.shortestPath.length > 1) {
-      L.polyline(task.shortestPath, {color:'#ffffff', weight:5, opacity:0.7})
-        .addTo(taskLayerGroup);
-      L.polyline(task.shortestPath, {color:'#1a2340', weight:2.5, dashArray:'7,6', opacity:0.95})
-        .addTo(taskLayerGroup)
-        .bindPopup('Ruta òptima calculada (FsTaskShortestPath)');
+    // Si no coincide exactamente, seleccionar la tarea por índice (si taskId es numérico)
+    if (!targetTask && tasks[taskId - 1]) {
+      targetTask = tasks[taskId - 1];
+    } else if (!targetTask && tasks.length > 0) {
+      targetTask = tasks[0];
     }
 
-    if (bounds.length) map.fitBounds(bounds, {padding:[40,40]});
+    const mapaTracks = new Map();
 
-    legendEl.innerHTML = '';
-    ['takeoff','tp','ss','ess','goal','ss_ess','ess_goal'].forEach(role => {
-      if (!seenRoles.has(role)) return;
-      const s = ROLE_STYLE[role];
-      const span = document.createElement('span');
-      span.innerHTML = '<span class="dot" style="background:'+s.color+'"></span>'+s.label;
-      legendEl.appendChild(span);
-    });
+    if (targetTask) {
+      const pilots = targetTask.getElementsByTagName("FsPilot");
+      for (let pilot of pilots) {
+        // Identificador del piloto (civlId, id, o idInComp)
+        const pilotId = pilot.getAttribute("civlId") || pilot.getAttribute("id") || pilot.getAttribute("idInComp");
 
-    const flown = Object.values(task.participants).filter(p => p && p.trackFile).length;
-    taskInfoEl.style.display = 'block';
-    taskInfoEl.innerHTML =
-      '<b>' + task.name + '</b> · T' + task.id + (task.date ? ' · ' + task.date : '') + '<br/>' +
-      task.turnpoints.length + ' balizes · ' + flown + ' tracks disponibles<br/>' +
-      'Carpeta: ' + (task.folder || '—');
+        // Buscar el nodo <FsTracklog>
+        const tracklogNode = pilot.getElementsByTagName("FsTracklog")[0];
+        let igcFilename = "";
 
-    buildPilotSelect(task);
-    if (onComplete) onComplete();
-  }
-
-  function buildPilotSelect(task){
-    const entries = Object.entries(task.participants)
-      .filter(([id, fd]) => fd && fd.trackFile)
-      .map(([id, fd]) => ({id, fd, name: (rosterById[id] || {}).name || ('Pilot ' + id)}))
-      .sort((a,b) => a.name.localeCompare(b.name));
-
-    pilotSelect.innerHTML = '';
-    if (!entries.length) {
-      pilotSelect.innerHTML = '<option value="">Cap track disponible</option>';
-      pilotSelect.disabled = true;
-      addPilotBtn.disabled = true;
-      return;
-    }
-    pilotSelect.innerHTML = '<option value="">Selecciona un pilot…</option>' +
-      entries.map(e => '<option value="'+e.id+'">'+e.name+'</option>').join('');
-    pilotSelect.disabled = false;
-    addPilotBtn.disabled = false;
-  }
-
-  addPilotBtn.addEventListener('click', () => {
-    const id = pilotSelect.value;
-    if (!id || !currentTask) return;
-    addPilotTrack(id);
-  });
-
-  function resetPilots(){
-    stopTime();
-    Object.values(activePilots).forEach(p => { 
-      if (p.layerGroup) map.removeLayer(p.layerGroup); 
-      if (p.marker) map.removeLayer(p.marker);
-    });
-    activePilots = {};
-    colorCursor = 0;
-    minEpoch = Infinity;
-    maxEpoch = -Infinity;
-    timeContainer.style.display = 'none';
-    renderPilotsList();
-  }
-
-  function nextColor(){
-    const c = PALETTE[colorCursor % PALETTE.length];
-    colorCursor++;
-    return c;
-  }
-
-  function addPilotTrack(pilotId){
-    if (activePilots[pilotId]) return;
-    const task = currentTask;
-    
-    // Si pilotId no es un ID directo, buscar por nombre
-    let resolvedId = pilotId;
-    if (!task.participants[resolvedId]) {
-      const match = Object.entries(rosterById).find(([id, r]) => r.name.toLowerCase() === pilotId.toLowerCase());
-      if (match) resolvedId = match[0];
-    }
-
-    const fd = task.participants[resolvedId];
-    const name = (rosterById[resolvedId] || {}).name || ('Pilot ' + resolvedId);
-    if (!fd || !fd.trackFile) return;
-
-    const matchId = fd.trackFile.trim().match(/\.(\d+)\.igc$/i);
-    const trackId = matchId ? matchId[1] : null;
-
-    const leaguePrefix = competitionSelect.value; 
-    const dateMatch = task.folder.match(/(\d{8})/);
-    const dateStr = dateMatch ? dateMatch[1] : '';
-
-    const cleanFileName = trackId 
-      ? `${leaguePrefix}_${name}_${dateStr}.${trackId}.igc` 
-      : fd.trackFile.trim();
-    
-    const originalFileName = fd.trackFile.trim();
-
-    const primaryUrl = task.folder + '/' + cleanFileName;
-    const fallbackUrl = task.folder + '/' + originalFileName;
-
-    setStatus('Carregant track de ' + name + '…');
-
-    const color = nextColor();
-    activePilots[resolvedId] = {layerGroup:null, marker:null, color, name, loading:true};
-    renderPilotsList();
-
-    fetch(primaryUrl)
-      .then(r => {
-        if (r.ok) return r.text();
-        if (primaryUrl !== fallbackUrl) {
-          return fetch(fallbackUrl).then(r2 => {
-            if (!r2.ok) throw new Error('HTTP ' + r2.status);
-            return r2.text();
-          });
-        }
-        throw new Error('HTTP ' + r.status);
-      })
-      .then(igcText => {
-      let points = parseIgc(igcText);
-      if (!points.length) throw new Error('sense punts B vàlids');
-
-      const takeoffIdx = detectTakeoffIndex(points);
-      if (takeoffIdx > 0) {
-        const takeoffEpoch = points[takeoffIdx].epoch;
-        if (takeoffEpoch) {
-          const marginMs = 2 * 60 * 1000;
-          const trimmedStart = points.filter(p => p.epoch === null || p.epoch >= (takeoffEpoch - marginMs));
-          if (trimmedStart.length) points = trimmedStart;
+        if (tracklogNode) {
+          igcFilename = tracklogNode.getAttribute("filename") || 
+                        tracklogNode.getAttribute("file") || 
+                        tracklogNode.textContent.trim();
         } else {
-          points = points.slice(Math.max(0, takeoffIdx - 10));
+          igcFilename = pilot.getAttribute("tracklog") || pilot.getAttribute("igc") || "";
+        }
+
+        if (pilotId && igcFilename) {
+          // Si el nombre viene con ruta relativa/absoluta, nos quedamos solo con el nombre del fichero
+          const cleanFilename = igcFilename.split(/[/\\]/).pop();
+          mapaTracks.set(String(pilotId), cleanFilename);
         }
       }
+    }
 
-      if (fd.lastPointTime) {
-        const landingEpoch = new Date(fd.lastPointTime).getTime();
-        if (!isNaN(landingEpoch)) {
-          const trimmedEnd = points.filter(p => p.epoch === null || p.epoch <= landingEpoch + 5000);
-          if (trimmedEnd.length) points = trimmedEnd;
-        }
-      }
+    return mapaTracks;
 
-      const layerGroup = L.layerGroup().addTo(map);
-      const latlngs = points.map(p => [p.lat, p.lon]);
-      L.polyline(latlngs, {color, weight: 3, opacity: 0.85}).addTo(layerGroup);
+  } catch (error) {
+    console.error("Error al procesar el FSDB:", error);
+    return new Map();
+  }
+}
 
-      const start = points[0], end = points[points.length-1];
-      L.circleMarker([start.lat, start.lon], {radius:5, color:'#2e7d32', fillColor:'#2e7d32', fillOpacity:1})
-        .addTo(layerGroup).bindPopup('<b>'+name+'</b>Enlairament ' + (start.time||''));
+/**
+ * Función para actualizar la UI del visor al cambiar de manga o de liga.
+ */
+async function cargarMangaUI(liga, taskId) {
+  // 1. Obtener los nombres de fichero IGC desde lliga_a.fsdb o lliga_b.fsdb
+  const tracksMap = await obtenerTracksMangaDesdeFSDB(liga, taskId);
 
-      const landingLabel = fd.reachedGoal
-        ? fmtDuration(fd.startedSs && fd.finishedSs ? new Date(fd.finishedSs) - new Date(fd.startedSs) : NaN)
-        : (fd.distance ? fd.distance + ' km' : '—');
-      const landingClass = fd.reachedGoal ? 'landing-label goal' : 'landing-label nogoal';
-      L.circleMarker([end.lat, end.lon], {radius:5, color:'#d9534a', fillColor:'#d9534a', fillOpacity:1})
-        .addTo(layerGroup)
-        .bindPopup(buildPilotPopup(name, fd))
-        .bindTooltip(landingLabel, {permanent:true, direction:'right', offset:[6,0], className:landingClass});
+  // 2. Recorrer la tabla o lista de pilotos en pantalla
+  const filasPilotos = document.querySelectorAll('.fila-piloto'); // Asegúrate de ajustar este selector a tu HTML
 
-      if (currentTask) {
-        currentTask.turnpoints.forEach(tp => {
-          const hit = points.find(p => distMeters(p.lat, p.lon, tp.lat, tp.lon) <= tp.radius);
-          if (hit) {
-            L.circleMarker([hit.lat, hit.lon], {
-              radius:4, weight:2, color:'#ffffff', fillColor:color, fillOpacity:1, className:'crossing-marker'
-            }).addTo(layerGroup).bindPopup('<b>'+name+'</b>Pas per ' + tp.id + (hit.time ? ' · ' + hit.time : ''));
-          }
-        });
-      }
+  filasPilotos.forEach(row => {
+    const civlId = row.dataset.civlId; // ID del piloto asignado a la fila HTML
+    const filenameIGC = tracksMap.get(String(civlId));
 
-      const initialLetter = name.trim().charAt(0).toUpperCase();
-      const customIcon = L.divIcon({
-        className: '',
-        html: `<div class="pilot-live-marker" style="background-color: ${color}; width:20px; height:20px;">${initialLetter}</div>`,
-        iconSize: [20, 20],
-        iconAnchor: [10, 10]
-      });
+    const btnTrack = row.querySelector('.btn-igc'); // Selector de tu botón/enlace IGC
 
-      const liveMarker = L.marker([start.lat, start.lon], {icon: customIcon, zIndexOffset: 1000});
-      liveMarker.bindPopup(`<b>${name}</b><div id="pop-${resolvedId}"></div>`);
-
-      activePilots[resolvedId] = {layerGroup, marker: liveMarker, color, name, latlngs, points, fd};
+    if (filenameIGC) {
+      // Ajusta la ruta a donde tengas guardados físicamente los .igc (ej: ./tracks/ o la raíz)
+      const urlIGC = `./tracks/${filenameIGC}`; 
       
-      recalcTimeBounds();
-      renderPilotsList();
-      setStatus('Track de ' + name + ' carregat.', 'ok');
-      map.fitBounds(latlngs, {padding:[40,40]});
-    }).catch(err => {
-      delete activePilots[resolvedId];
-      renderPilotsList();
-      setStatus('No s\'ha pogut carregar el track de ' + name + ': ' + err.message + ' — URL intentada: ' + primaryUrl, 'error');
-    });
-  }
-
-  function buildPilotPopup(name, fd){
-    let ssTime = '—';
-    if (fd.startedSs && fd.finishedSs) {
-      ssTime = fmtDuration(new Date(fd.finishedSs) - new Date(fd.startedSs));
-    }
-    return '<b>' + name + '</b>' +
-      'Distància: ' + (fd.distance || '—') + ' km<br/>' +
-      'Temps de mànega: ' + ssTime + '<br/>' +
-      'Meta: ' + (fd.reachedGoal ? 'Sí' : 'No') + '<br/>' +
-      'Alt. màx.: ' + (fd.maxAlt || '—') + ' m';
-  }
-
-  function removePilotTrack(pilotId){
-    const p = activePilots[pilotId];
-    if (!p) return;
-    if (p.layerGroup) map.removeLayer(p.layerGroup);
-    if (p.marker) map.removeLayer(p.marker);
-    delete activePilots[pilotId];
-    recalcTimeBounds();
-    renderPilotsList();
-  }
-
-  function renderPilotsList(){
-    pilotsListEl.innerHTML = '';
-    Object.entries(activePilots).forEach(([id, p]) => {
-      const div = document.createElement('div');
-      div.className = 'pilot-item';
-      div.style.borderLeftColor = p.color;
-      const stats = p.loading ? 'carregant…' :
-        (p.fd ? (p.fd.distance||'—') + ' km · ' + (p.fd.reachedGoal ? 'meta' : 'no meta') : '');
-      div.innerHTML =
-        '<span class="pilot-swatch" style="background:'+p.color+'"></span>' +
-        '<span class="pilot-main"><span class="pilot-name">'+p.name+'</span>' +
-        '<div class="pilot-stats">'+stats+'</div></span>' +
-        '<button class="pilot-remove" title="Treure">×</button>';
-      div.querySelector('.pilot-remove').addEventListener('click', (e) => {
-        e.stopPropagation();
-        removePilotTrack(id);
-      });
-      div.addEventListener('click', () => {
-        if (p.latlngs) map.fitBounds(p.latlngs, {padding:[40,40]});
-      });
-      pilotsListEl.appendChild(div);
-    });
-  }
-
-  function recalcTimeBounds(){
-    minEpoch = Infinity;
-    maxEpoch = -Infinity;
-    let hasValidPoints = false;
-
-    Object.values(activePilots).forEach(p => {
-      if (p.points && p.points.length) {
-        p.points.forEach(pt => {
-          if (pt.epoch) {
-            if (pt.epoch < minEpoch) minEpoch = pt.epoch;
-            if (pt.epoch > maxEpoch) maxEpoch = pt.epoch;
-            hasValidPoints = true;
-          }
-        });
+      if (btnTrack) {
+        btnTrack.href = urlIGC;
+        btnTrack.textContent = "Ver / Descargar IGC";
+        btnTrack.style.display = "inline-block";
       }
-    });
-
-    if (hasValidPoints && minEpoch < maxEpoch) {
-      timeContainer.style.display = 'block';
-      timeSlider.min = minEpoch;
-      timeSlider.max = maxEpoch;
-      if (!currentEpoch || currentEpoch < minEpoch || currentEpoch > maxEpoch) {
-        currentEpoch = minEpoch;
-      }
-      timeSlider.value = currentEpoch;
-      updateTimePosition(currentEpoch);
     } else {
-      timeContainer.style.display = 'none';
-      stopTime();
-    }
-  }
-
-  function interpolatePosition(points, targetEpoch) {
-    if (!points || !points.length) return null;
-    if (targetEpoch <= points[0].epoch) return points[0];
-    if (targetEpoch >= points[points.length - 1].epoch) return points[points.length - 1];
-
-    for (let i = 0; i < points.length - 1; i++) {
-      const p1 = points[i];
-      const p2 = points[i + 1];
-      if (p1.epoch <= targetEpoch && p2.epoch >= targetEpoch) {
-        const factor = (targetEpoch - p1.epoch) / (p2.epoch - p1.epoch);
-        const lat = p1.lat + (p2.lat - p1.lat) * factor;
-        const lon = p1.lon + (p2.lon - p1.lon) * factor;
-        const alt = p1.alt !== null && p2.alt !== null ? Math.round(p1.alt + (p2.alt - p1.alt) * factor) : p1.alt;
-        return { lat, lon, alt, epoch: targetEpoch };
+      if (btnTrack) {
+        btnTrack.style.display = "none";
       }
-    }
-    return null;
-  }
-
-  function updateTimePosition(epoch) {
-    currentEpoch = epoch;
-    const d = new Date(epoch);
-    timeDisplay.textContent = String(d.getUTCHours()).padStart(2,'0') + ':' +
-                              String(d.getUTCMinutes()).padStart(2,'0') + ':' +
-                              String(d.getUTCSeconds()).padStart(2,'0') + ' UTC';
-
-    Object.entries(activePilots).forEach(([id, p]) => {
-      if (!p.points) return;
-      const pos = interpolatePosition(p.points, epoch);
-      const firstPt = p.points[0];
-      const lastPt = p.points[p.points.length - 1];
-
-      if (pos && epoch >= firstPt.epoch && epoch <= lastPt.epoch) {
-        if (!map.hasLayer(p.marker)) p.marker.addTo(map);
-        p.marker.setLatLng([pos.lat, pos.lon]);
-        
-        const popEl = document.getElementById('pop-' + id);
-        if (popEl) {
-          popEl.innerHTML = `Altitud: ${pos.alt !== null ? pos.alt + ' m' : '—'}`;
-        }
-      } else {
-        if (map.hasLayer(p.marker)) map.removeLayer(p.marker);
-      }
-    });
-  }
-
-  function startTime() {
-    if (isPlaying) return;
-    isPlaying = true;
-    playBtn.textContent = '⏸';
-    const intervalMs = 100;
-    playInterval = setInterval(() => {
-      const speed = parseFloat(speedSelect.value) || 10;
-      let nextEpoch = currentEpoch + (intervalMs * speed);
-      if (nextEpoch >= maxEpoch) {
-        nextEpoch = maxEpoch;
-        stopTime();
-      }
-      timeSlider.value = nextEpoch;
-      updateTimePosition(nextEpoch);
-    }, intervalMs);
-  }
-
-  function stopTime() {
-    isPlaying = false;
-    playBtn.textContent = '▶';
-    if (playInterval) {
-      clearInterval(playInterval);
-      playInterval = null;
-    }
-  }
-
-  playBtn.addEventListener('click', () => {
-    if (isPlaying) stopTime();
-    else {
-      if (currentEpoch >= maxEpoch) {
-        currentEpoch = minEpoch;
-        timeSlider.value = currentEpoch;
-      }
-      startTime();
     }
   });
-
-  timeSlider.addEventListener('input', () => {
-    updateTimePosition(parseFloat(timeSlider.value));
-  });
-
-  function parseIgc(text){
-    const lines = text.split(/\r?\n/);
-    let dateSeconds = null;
-    const points = [];
-    for (const line of lines) {
-      if (line.length >= 11 && line.startsWith('HFDTE')) {
-        if (line.startsWith('HFDTEDATE:')) {
-          dateSeconds = Date.UTC(+('20'+line.substring(14,16)), +line.substring(12,14)-1, +line.substring(10,12));
-        } else {
-          dateSeconds = Date.UTC(+('20'+line.substring(9,11)), +line.substring(7,9)-1, +line.substring(5,7));
-        }
-        continue;
-      }
-      if (line.length > 30 && line.charAt(0) === 'B') {
-        const hh = +line.substring(1,3), mm = +line.substring(3,5), ss = +line.substring(5,7);
-        const la1 = +line.substring(7,9), la2 = +line.substring(9,14);
-        const lat = line.charAt(14) === 'N' ? la1 + la2/60000 : -(la1 + la2/60000);
-        const lo1 = +line.substring(15,18), lo2 = +line.substring(18,23);
-        const lon = line.charAt(23) === 'E' ? lo1 + lo2/60000 : -(lo1 + lo2/60000);
-        if (isNaN(lat) || isNaN(lon)) continue;
-        let alt = null;
-        if (line.length >= 35) {
-          const gnssAlt = parseInt(line.substring(30,35), 10);
-          alt = isNaN(gnssAlt) ? null : gnssAlt;
-        }
-        let timeStr = '';
-        let epoch = null;
-        if (dateSeconds !== null) {
-          epoch = dateSeconds + (hh*3600+mm*60+ss)*1000;
-          const t = new Date(epoch);
-          timeStr = String(t.getUTCHours()).padStart(2,'0')+':'+String(t.getUTCMinutes()).padStart(2,'0')+' UTC';
-        }
-        points.push({lat, lon, alt, time: timeStr, epoch});
-      }
-    }
-    return points;
-  }
-
-  function buildCompetitionSelect(){
-    competitionSelect.innerHTML = COMPETITIONS.map(c => '<option value="'+c.id+'">'+c.label+'</option>').join('');
-    let initial = COMPETITIONS[0];
-    
-    // Si viene por URL la competición, seleccionarla
-    if (urlComp) {
-      const matchComp = COMPETITIONS.find(c => c.id.toLowerCase() === urlComp.toLowerCase());
-      if (matchComp) initial = matchComp;
-    } else if (customFsdb) {
-      const match = COMPETITIONS.find(c => c.fsdb === customFsdb);
-      if (match) initial = match;
-    }
-    competitionSelect.value = initial.id;
-  }
-
-  competitionSelect.addEventListener('change', () => {
-    const comp = COMPETITIONS.find(c => c.id === competitionSelect.value);
-    if (comp) loadFsdb(comp.fsdb);
-  });
-
-  // Carga inicial y lectura de parámetros URL
-  buildCompetitionSelect();
-  const initialComp = COMPETITIONS.find(c => c.id === competitionSelect.value);
-  loadFsdb(initialComp.fsdb, () => {
-    if (urlManga && tasksById[urlManga]) {
-      taskSelect.value = urlManga;
-      selectTask(tasksById[urlManga], () => {
-        if (urlPilot) {
-          const pilots = urlPilot.split(',');
-          pilots.forEach(pId => addPilotTrack(pId.trim()));
-        }
-      });
-    }
-  });
-})();
+}
 </script>
+
 </body>
 </html>
