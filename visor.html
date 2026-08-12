@@ -743,7 +743,7 @@
       if (fd.lastPointTime) {
         const landingEpoch = new Date(fd.lastPointTime).getTime();
         if (!isNaN(landingEpoch)) {
-          const trimmedEnd = points.filter(p => p.epoch === null || p.epoch <= landingEpoch + 5 * 60 * 1000);
+          const trimmedEnd = points.filter(p => p.epoch === null || p.epoch <= landingEpoch + 1 * 60 * 1000);
           if (trimmedEnd.length) points = trimmedEnd;
         }
       }
