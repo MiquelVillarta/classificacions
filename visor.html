@@ -709,21 +709,9 @@
     const name = (rosterById[resolvedId] || {}).name || ('Pilot ' + resolvedId);
     if (!fd || !fd.trackFile) return;
 
-    const matchId = fd.trackFile.trim().match(/\.(\d+)\.igc$/i);
-    const trackId = matchId ? matchId[1] : null;
-
-    const leaguePrefix = competitionSelect.value; 
-    const dateMatch = task.folder.match(/(\d{8})/);
-    const dateStr = dateMatch ? dateMatch[1] : '';
-
-    const cleanFileName = trackId 
-      ? `${leaguePrefix}_${name}_${dateStr}.${trackId}.igc` 
-      : fd.trackFile.trim();
-    
-    const originalFileName = fd.trackFile.trim();
-
-    const primaryUrl = task.folder + '/' + cleanFileName;
-    const fallbackUrl = task.folder + '/' + originalFileName;
+    // Nombre de fichero tal cual figura en el FSDB (tracklog_filename), sin inventar variantes
+    const trackFileName = fd.trackFile.trim();
+    const trackUrl = task.folder + '/' + trackFileName;
 
     setStatus('Carregant track de ' + name + '…');
 
@@ -731,16 +719,10 @@
     activePilots[resolvedId] = {layerGroup:null, marker:null, color, name, loading:true};
     renderPilotsList();
 
-    fetch(primaryUrl)
+    fetch(trackUrl)
       .then(r => {
-        if (r.ok) return r.text();
-        if (primaryUrl !== fallbackUrl) {
-          return fetch(fallbackUrl).then(r2 => {
-            if (!r2.ok) throw new Error('HTTP ' + r2.status);
-            return r2.text();
-          });
-        }
-        throw new Error('HTTP ' + r.status);
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
       })
       .then(igcText => {
       let points = parseIgc(igcText);
@@ -814,7 +796,7 @@
     }).catch(err => {
       delete activePilots[resolvedId];
       renderPilotsList();
-      setStatus('No s\'ha pogut carregar el track de ' + name + ': ' + err.message + ' — URL intentada: ' + primaryUrl, 'error');
+      setStatus('No s\'ha pogut carregar el track de ' + name + ': ' + err.message + ' — URL intentada: ' + trackUrl, 'error');
     });
   }
 
