@@ -88,7 +88,7 @@
           iframe.src = path;
         }
 
-        function renderSubNav(items, isTask = false, taskName = '') {
+function renderSubNav(items, isTask = false, taskName = '') {
           subNav.innerHTML = '';
           
           if (isTask) {
@@ -107,22 +107,51 @@
 
           sortedItems.forEach((item, index) => {
             const btn = document.createElement('button');
-            btn.className = 'px-3 py-1.5 text-xs font-semibold uppercase bg-gray-200 hover:bg-gray-300 text-gray-700 rounded transition';
+            
+            // Detectar si la clasificación pertenece a la categoría B
+            const isCategoryB = getCategoryScore(item.name) === 7 || 
+                                item.name.toUpperCase().startsWith('B_') || 
+                                item.name.toUpperCase().includes('CAMPIONAT B') || 
+                                item.name.toUpperCase().includes('LLIGA B');
+
+            // Asignar colores por defecto según si es Categoría B o A/Normal
+            const baseBgClass = isCategoryB 
+              ? 'bg-red-100 hover:bg-red-200 text-red-800 border border-red-300' 
+              : 'bg-gray-200 hover:bg-gray-300 text-gray-700';
+
+            const activeBgClass = isCategoryB 
+              ? 'bg-red-700 text-white border border-red-700' 
+              : 'bg-blue-600 text-white';
+
+            btn.className = `px-3 py-1.5 text-xs font-semibold uppercase rounded transition ${baseBgClass}`;
             btn.textContent = item.name;
+
             btn.onclick = () => {
-              Array.from(subNav.children).forEach(b => {
-                b.classList.remove('bg-blue-600', 'text-white');
-                b.classList.add('bg-gray-200', 'text-gray-700');
+              // Resetear el estilo de todos los botones de la subnavegación
+              Array.from(subNav.children).forEach((b, i) => {
+                const subItem = sortedItems[i];
+                const isSubB = getCategoryScore(subItem.name) === 7 || 
+                               subItem.name.toUpperCase().startsWith('B_') || 
+                               subItem.name.toUpperCase().includes('CAMPIONAT B') || 
+                               subItem.name.toUpperCase().includes('LLIGA B');
+
+                b.className = `px-3 py-1.5 text-xs font-semibold uppercase rounded transition ${
+                  isSubB 
+                    ? 'bg-red-100 hover:bg-red-200 text-red-800 border border-red-300' 
+                    : 'bg-gray-200 hover:bg-gray-300 text-gray-700'
+                }`;
               });
-              btn.classList.remove('bg-gray-200', 'text-gray-700');
-              btn.classList.add('bg-blue-600', 'text-white');
+
+              // Aplicar estilo activo
+              btn.className = `px-3 py-1.5 text-xs font-semibold uppercase rounded transition ${activeBgClass}`;
               loadIframe(item.path);
             };
+
             subNav.appendChild(btn);
             if (index === 0) btn.click();
           });
         }
-
+        
         // Definir seccions principals amb colors i etiquetes en majúscules
         const sections = [];
 
