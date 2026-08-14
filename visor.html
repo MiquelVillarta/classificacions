@@ -579,8 +579,8 @@
     tp:         {color:'#2e9bff', label:'Baliza'},
     ss:         {color:'#00ff00', label:'Sortida (SS)'},
     ess:        {color:'#ff2d55', label:'Fi de manga (ESS)'},
-    goal:       {color:'#c04dff', label:'Meta'},
-    ess_goal:   {color:'#ff2db3', label:'ESS / Meta'},
+    goal:       {color:'#c04dff', label:'Gol'},
+    ess_goal:   {color:'#ff2db3', label:'ESS / Gol'},
     ss_ess:     {color:'#ff2d55', label:'Sortida i ESS'},
     takeoff_ss: {color:'#2e9bff', label:'Enlairament / Sortida'}
   };
@@ -758,7 +758,9 @@
         .addTo(layerGroup).bindPopup('<b>'+name+'</b>Enlairament ' + (start.time||''));
 
       const landingLabel = fd.reachedGoal
-        ? fmtDuration(fd.startedSs && fd.finishedSs ? new Date(fd.finishedSs) - new Date(fd.startedSs) : NaN)
+        ? (fd.startedSs && fd.finishedSs 
+            ? fmtDuration(new Date(fd.finishedSs) - new Date(fd.startedSs)) 
+            : (fd.lastPointTime ? new Date(fd.lastPointTime).toLocaleTimeString('es-ES', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : 'Gol'))
         : (fd.distance ? fd.distance + ' km' : '—');
       const landingClass = fd.reachedGoal ? 'landing-label goal' : 'landing-label nogoal';
       L.circleMarker([end.lat, end.lon], {radius:5, color:'#d9534a', fillColor:'#d9534a', fillOpacity:1})
@@ -809,7 +811,7 @@
     return '<b>' + name + '</b>' +
       'Distància: ' + (fd.distance || '—') + ' km<br/>' +
       'Temps de mànega: ' + ssTime + '<br/>' +
-      'Meta: ' + (fd.reachedGoal ? 'Sí' : 'No') + '<br/>' +
+      'Gol: ' + (fd.reachedGoal ? 'Sí' : 'No') + '<br/>' +
       'Alt. màx.: ' + (fd.maxAlt || '—') + ' m';
   }
 
@@ -830,7 +832,7 @@
       div.className = 'pilot-item';
       div.style.borderLeftColor = p.color;
       const stats = p.loading ? 'carregant…' :
-        (p.fd ? (p.fd.distance||'—') + ' km · ' + (p.fd.reachedGoal ? 'meta' : 'no meta') : '');
+        (p.fd ? (p.fd.distance||'—') + ' km · ' + (p.fd.reachedGoal ? 'Gol' : 'No Gol') : '');
       div.innerHTML =
         '<span class="pilot-swatch" style="background:'+p.color+'"></span>' +
         '<span class="pilot-main"><span class="pilot-name">'+p.name+'</span>' +
@@ -901,9 +903,13 @@
   function updateTimePosition(epoch) {
     currentEpoch = epoch;
     const d = new Date(epoch);
-    timeDisplay.textContent = String(d.getUTCHours()).padStart(2,'0') + ':' +
-                              String(d.getUTCMinutes()).padStart(2,'0') + ':' +
-                              String(d.getUTCSeconds()).padStart(2,'0') + ' UTC';
+    timeDisplay.textContent = d.toLocaleTimeString('es-ES', { 
+      timeZone: 'Europe/Madrid', 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit', 
+      hour12: false 
+    });
 
     Object.entries(activePilots).forEach(([id, p]) => {
       if (!p.points) return;
@@ -996,7 +1002,7 @@
         if (dateSeconds !== null) {
           epoch = dateSeconds + (hh*3600+mm*60+ss)*1000;
           const t = new Date(epoch);
-          timeStr = String(t.getUTCHours()).padStart(2,'0')+':'+String(t.getUTCMinutes()).padStart(2,'0')+' UTC';
+          timeStr = t.toLocaleTimeString('es-ES', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
         }
         points.push({lat, lon, alt, time: timeStr, epoch});
       }
