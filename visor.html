@@ -280,6 +280,11 @@
   let isPlaying = false;
   let playInterval = null;
 
+  let ssCircles = [];       // círculos de la baliza de Sortida (SSS), para cambiar color al llegar la hora
+  let ssOpenEpoch = null;   // hora (epoch) de apertura de la Sortida
+  let ssReached = null;     // estado actual (true/false) para no repintar en cada frame
+  const SS_HIGHLIGHT_COLOR = '#ffe100';
+
   const map = L.map('map', {zoomControl:true}).setView([41.85, 1.2], 8);
 
   const BASEMAPS = {
@@ -596,9 +601,17 @@
     const bounds = [];
     const seenRoles = new Set();
 
+    ssCircles = [];
+    ssReached = null;
+    ssOpenEpoch = task.startGates.length
+      ? Math.min(...task.startGates.filter(Boolean).map(g => new Date(g).getTime()))
+      : null;
+    if (!isFinite(ssOpenEpoch)) ssOpenEpoch = null;
+
     task.turnpoints.forEach((tp, idx) => {
       const role = roleOfIndex(idx, n, task.ss, task.es);
       const style = ROLE_STYLE[role];
+      const isSsRole = (role === 'ss' || role === 'ss_ess' || role === 'takeoff_ss');
       seenRoles.add(role);
       L.circle([tp.lat, tp.lon], {
         radius: tp.radius, color:'#ffffff', weight:5, opacity:0.65, fill:false
@@ -606,6 +619,11 @@
       const circle = L.circle([tp.lat, tp.lon], {
         radius: tp.radius, color: style.color, weight: 3, fillColor: style.color, fillOpacity: 0.16
       }).addTo(taskLayerGroup);
+      if (isSsRole) {
+        // Si no hay FsStartGate explícito, usamos la apertura de la propia baliza SS como referencia
+        if (ssOpenEpoch === null && tp.open) ssOpenEpoch = new Date(tp.open).getTime();
+        ssCircles.push({ layer: circle, originalColor: style.color });
+      }
       const gatesTxt = (role === 'ss' || role === 'ss_ess' || role === 'takeoff_ss') && task.startGates.length
         ? '<br/>Sortides: ' + task.startGates.map(g => g ? g.substring(11,16) : '?').join(', ')
         : '';
@@ -902,6 +920,18 @@
 
   function updateTimePosition(epoch) {
     currentEpoch = epoch;
+
+    if (ssOpenEpoch !== null && ssCircles.length) {
+      const reached = epoch >= ssOpenEpoch;
+      if (reached !== ssReached) {
+        ssReached = reached;
+        ssCircles.forEach(({layer, originalColor}) => {
+          const color = reached ? SS_HIGHLIGHT_COLOR : originalColor;
+          layer.setStyle({ color, fillColor: color, fillOpacity: reached ? 0.35 : 0.16 });
+        });
+      }
+    }
+
     const d = new Date(epoch);
     timeDisplay.textContent = d.toLocaleTimeString('es-ES', { 
       timeZone: 'Europe/Madrid', 
