@@ -4,8 +4,6 @@ on:
   push:
     paths:
       - 'RESULTS/**'
-      workflow_dispatch:
-
 permissions:
   contents: write
 
