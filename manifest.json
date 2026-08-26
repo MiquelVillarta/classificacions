@@ -1,28 +1,32 @@
 {
   "generals": [
     {
-      "name": "A_CLUB_V84_OFICIAL",
-      "path": "RESULTS/A_CLUB_V84_OFICIAL.html"
+      "name": "GENERAL",
+      "path": "RESULTS/GENERAL.html"
     },
     {
-      "name": "A_FEMINES_V84_OFICIAL",
-      "path": "RESULTS/A_FEMINES_V84_OFICIAL.html"
+      "name": "GENERAL_CLUB",
+      "path": "RESULTS/GENERAL_CLUB.html"
     },
     {
-      "name": "A_GENERAL_V15_OFICIAL",
-      "path": "RESULTS/A_GENERAL_V15_OFICIAL.html"
+      "name": "GENERAL_CLUBS-LLICENCIA",
+      "path": "RESULTS/GENERAL_CLUBS-LLICENCIA.html"
     },
     {
-      "name": "A_SERIAL_V84_OFICIAL",
-      "path": "RESULTS/A_SERIAL_V84_OFICIAL.html"
+      "name": "GENERAL_FEMINES",
+      "path": "RESULTS/GENERAL_FEMINES.html"
     },
     {
-      "name": "A_SPORT_V84_OFICIAL",
-      "path": "RESULTS/A_SPORT_V84_OFICIAL.html"
+      "name": "GENERAL_LLIGA B",
+      "path": "RESULTS/GENERAL_LLIGA B.html"
     },
     {
-      "name": "B_GENERAL_V20_OFICIAL",
-      "path": "RESULTS/B_GENERAL_V20_OFICIAL.html"
+      "name": "GENERAL_SERIAL",
+      "path": "RESULTS/GENERAL_SERIAL.html"
+    },
+    {
+      "name": "GENERAL_SPORT",
+      "path": "RESULTS/GENERAL_SPORT.html"
     }
   ],
   "campionat": [
