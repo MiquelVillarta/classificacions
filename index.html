@@ -155,7 +155,10 @@
 
           const cardBody = document.createElement('div');
           // Se añade la clase 'hidden' por defecto para que aparezca plegado
-          cardBody.className = 'p-3 grid grid-cols-1 gap-2 bg-gray-50 hidden';
+          cardBody.className = 'p-3 grid grid-cols-1 gap-2 bg-red-900 hidden';
+
+
+          
 
           const sortedItems = [...sec.items].sort((a, b) => {
             const scoreA = getCategoryScore(a.name);
