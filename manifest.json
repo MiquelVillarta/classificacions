@@ -70,8 +70,8 @@
         "path": "RESULTS/T03/A_T03_FEMINES_V08_.html"
       },
       {
-        "name": "A_T03_OVERALL_V08",
-        "path": "RESULTS/T03/A_T03_Overall_V08_.html"
+        "name": "A_T03_GENERAL",
+        "path": "RESULTS/T03/A_T03_GENERAL.html"
       },
       {
         "name": "A_T03_SERIAL_V08",
@@ -82,8 +82,8 @@
         "path": "RESULTS/T03/A_T03_SPORT_V08_.html"
       },
       {
-        "name": "B_T03_OVERALL_V08",
-        "path": "RESULTS/T03/B_T03_Overall_V08.html"
+        "name": "B_T03_GENERAL",
+        "path": "RESULTS/T03/B_T03_GENERAL.html"
       }
     ],
     "T07": [
@@ -140,8 +140,8 @@
         "path": "RESULTS/T01/A_T01_FEMINES_V05_.html"
       },
       {
-        "name": "A_T01_OVERALL_V16",
-        "path": "RESULTS/T01/A_T01_Overall_V16_.html"
+        "name": "A_T01_GENERAL",
+        "path": "RESULTS/T01/A_T01_GENERAL.html"
       },
       {
         "name": "A_T01_SERIAL_V05",
@@ -152,8 +152,8 @@
         "path": "RESULTS/T01/A_T01_SPORT_V05_.html"
       },
       {
-        "name": "B_T01_OVERALL_V11",
-        "path": "RESULTS/T01/B_T01_Overall_V11.html"
+        "name": "B_T01_GENERAL",
+        "path": "RESULTS/T01/B_T01_GENERAL.html"
       }
     ],
     "T08": [
@@ -188,8 +188,8 @@
         "path": "RESULTS/T02/A_T02_FEMINES_V03_.html"
       },
       {
-        "name": "A_T02_OVERALL_V03",
-        "path": "RESULTS/T02/A_T02_Overall_V03_.html"
+        "name": "A_T02_GENERAL",
+        "path": "RESULTS/T02/A_T02_GENERAL.html"
       },
       {
         "name": "A_T02_SERIAL_V03",
@@ -200,8 +200,8 @@
         "path": "RESULTS/T02/A_T02_SPORT_V03_.html"
       },
       {
-        "name": "B_T02_OVERALL_V03",
-        "path": "RESULTS/T02/B_T02_Overall_V03.html"
+        "name": "B_T02_GENERAL",
+        "path": "RESULTS/T02/B_T02_GENERAL.html"
       }
     ],
     "T04": [
@@ -214,8 +214,8 @@
         "path": "RESULTS/T04/A_T04_FEMINES_V06_.html"
       },
       {
-        "name": "A_T04_OVERALL_V06",
-        "path": "RESULTS/T04/A_T04_Overall_V06_.html"
+        "name": "A_T04_GENERAL",
+        "path": "RESULTS/T04/A_T04_GENERAL.html"
       },
       {
         "name": "A_T04_SERIAL_V06",
@@ -226,8 +226,8 @@
         "path": "RESULTS/T04/A_T04_SPORT_V06_.html"
       },
       {
-        "name": "B_T04_OVERALL_V08",
-        "path": "RESULTS/T04/B_T04_Overall_V08_.html"
+        "name": "B_T04_GENERAL",
+        "path": "RESULTS/T04/B_T04_GENERAL.html"
       }
     ],
     "T05": [
@@ -240,8 +240,8 @@
         "path": "RESULTS/T05/A_T05_FEMINES_V02_.html"
       },
       {
-        "name": "A_T05_OVERALL_V02",
-        "path": "RESULTS/T05/A_T05_Overall_V02_.html"
+        "name": "A_T05_GENERAL",
+        "path": "RESULTS/T05/A_T05_GENERAL.html"
       },
       {
         "name": "A_T05_SERIAL_V02",
