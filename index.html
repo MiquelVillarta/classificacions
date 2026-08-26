@@ -49,29 +49,31 @@
   </div>
 
   <script>
-    function getCategoryScore(name) {
-      const u = name.toUpperCase().trim();
+  function getCategoryScore(name) {
+  const u = name.toUpperCase().trim();
 
-      if (
-        u === 'GENERAL' || 
-        u.endsWith('-GENERAL') || 
-        u.endsWith(' GENERAL') ||
-        (u.includes('OVERALL') && !u.startsWith('B_') && !u.includes('LLIGA'))
-      ) {
-        if (!u.includes('SERIAL') && !u.includes('SPORT') && !u.includes('CLUB') && !u.includes('FEMINES')) {
-          return 1;
-        }
-      }
-
-      if (u.includes('SERIAL')) return 2;
-      if (u.includes('SPORT')) return 3;
-      if (u.includes('CLUBS-LLICENCIA') || u.includes('CLUBS_LLICENCIA') || u.includes('CLUBS LLICENCIA')) return 5;
-      if (u.includes('CLUB')) return 4;
-      if (u.includes('FEMINES') || u.includes('FEMENINA')) return 6;
-      if (u.includes('LLIGA B') || u.includes('LLIGA_B') || u.startsWith('B_') || u.includes('B_OVERALL') || u.includes('CAMPIONAT B')) return 7;
-
-      return 99;
+  // 1º GENERAL de Liga A
+  if (
+    (u === 'GENERAL' || u.endsWith('-GENERAL') || u.endsWith('_GENERAL') || u.endsWith(' GENERAL') || u.includes('OVERALL')) &&
+    !u.startsWith('B_') && !u.includes('LLIGA B') && !u.includes('CAMPIONAT B')
+  ) {
+    if (!u.includes('SERIAL') && !u.includes('SPORT') && !u.includes('CLUB') && !u.includes('FEMINES')) {
+      return 1;
     }
+  }
+
+  // 2º SERIAL, 3º SPORT, 4º CLUB
+  if (u.includes('SERIAL')) return 2;
+  if (u.includes('SPORT')) return 3;
+  if (u.includes('CLUBS-LLICENCIA') || u.includes('CLUBS_LLICENCIA') || u.includes('CLUBS LLICENCIA')) return 4;
+  if (u.includes('CLUB')) return 5;
+  if (u.includes('FEMINES') || u.includes('FEMENINA')) return 6;
+
+  // 5º Liga B al final
+  if (u.includes('LLIGA B') || u.includes('LLIGA_B') || u.startsWith('B_') || u.includes('B_GENERAL') || u.includes('CAMPIONAT B')) return 7;
+
+  return 99;
+}
 
     async function init() {
       try {

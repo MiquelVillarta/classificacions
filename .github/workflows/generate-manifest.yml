@@ -24,15 +24,15 @@ jobs:
               name = name.rstrip('_').rstrip()
               return name.upper()
 
-          # Palabras clave para ordenar las listas internas de cada manga (T01, T02...)
+          # Orden de prioridad exacto para las clasificaciones de cada manga (T01, T02...)
           KEYWORD_PRIORITY = [
-              '_GENERAL',   # 1. A_T01_GENERAL
-              '_SERIAL',    # 2. A_T01_SERIAL
-              '_SPORT',     # 3. A_T01_SPORT
-              '_CLUB',      # 4. A_T01_CLUB
+              '_GENERAL',   # 1º A_T01_GENERAL
+              '_SERIAL',    # 2º A_T01_SERIAL
+              '_SPORT',     # 3º A_T01_SPORT
+              '_CLUB',      # 4º A_T01_CLUB
               'CLUBS',      # Intermedio si existe
-              '_FEMINES',   # 5. A_T01_FEMINES
-              'B_'          # 6. B_T01_GENERAL (Liga B al final)
+              '_FEMINES',   # Clasificación Femenina
+              'B_'          # 5º B_T01_GENERAL (Liga B al final)
           ]
 
           # Prioridad explícita para el bloque de GENERALES de la raíz
@@ -71,13 +71,11 @@ jobs:
           def get_task_priority(item):
               name = item['name']
               
-              # Si es de Liga B (ej. B_T01_GENERAL), va al final
-              if name.startswith('B_'):
-                  return 99
-              
-              # Busca la prioridad por palabras clave
               for index, key in enumerate(KEYWORD_PRIORITY):
                   if key in name:
+                      # Si coincide con _GENERAL pero es de Liga B (ej. B_T01_GENERAL), ignora '_GENERAL' para asignarle la prioridad de 'B_' (al final)
+                      if key == '_GENERAL' and name.startswith('B_'):
+                          continue
                       return index
               return 50 # Archivos no contemplados quedan en medio
 
