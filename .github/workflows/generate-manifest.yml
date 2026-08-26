@@ -25,6 +25,28 @@ jobs:
               name = name.rstrip('_').rstrip()
               return name.upper()
 
+          # Palabras clave para ordenar las listas internas de cada manga (T01, T02...)
+          KEYWORD_PRIORITY = [
+              '_GENERAL',   # 1. A_T01_GENERAL
+              '_SERIAL',    # 2. A_T01_SERIAL
+              '_SPORT',     # 3. A_T01_SPORT
+              '_CLUB',      # 4. A_T01_CLUB
+              'CLUBS',      # Intermedio si existe
+              '_FEMINES',   # 5. A_T01_FEMINES
+              'B_'          # 6. B_T01_GENERAL (Liga B al final)
+          ]
+
+          # Prioridad explícita para el bloque de GENERALES de la raíz
+          GENERAL_PRIORITY = [
+              'GENERAL',
+              'GENERAL_SERIAL',
+              'GENERAL_SPORT',
+              'GENERAL_CLUB',
+              'GENERAL_CLUBS-LLICENCIA',
+              'GENERAL_FEMINES',
+              'GENERAL_LLIGA-B'
+          ]
+
           results_dir = 'RESULTS'
           manifest = {'generals': [], 'campionat': [], 'tasks': {}}
 
@@ -36,9 +58,7 @@ jobs:
                           display_name = clean_display_name(file)
                           rel_path = os.path.relpath(root, results_dir)
                           
-                          if rel_path in ['.', '']:
-                              manifest['generals'].append({'name': display_name, 'path': full_path})
-                          elif rel_path.upper() == 'GENERALS':
+                          if rel_path in ['.', ''] or rel_path.upper() == 'GENERALS':
                               manifest['generals'].append({'name': display_name, 'path': full_path})
                           elif rel_path.upper().startswith('CAMPIONAT'):
                               manifest['campionat'].append({'name': display_name, 'path': full_path})
@@ -47,6 +67,27 @@ jobs:
                               if task_key not in manifest['tasks']:
                                   manifest['tasks'][task_key] = []
                               manifest['tasks'][task_key].append({'name': display_name, 'path': full_path})
+
+          # Función de ordenación para los ficheros de las pruebas/mangas
+          def get_task_priority(item):
+              name = item['name']
+              
+              # Si es de Liga B (ej. B_T01_GENERAL), va al final
+              if name.startswith('B_'):
+                  return 99
+              
+              # Busca la prioridad por palabras clave
+              for index, key in enumerate(KEYWORD_PRIORITY):
+                  if key in name:
+                      return index
+              return 50 # Archivos no contemplados quedan en medio
+
+          # 1. Ordenar bloque 'generals'
+          manifest['generals'].sort(key=lambda x: GENERAL_PRIORITY.index(x['name']) if x['name'] in GENERAL_PRIORITY else 99)
+
+          # 2. Ordenar bloques de cada manga 'tasks' (T01, T02...)
+          for task_key in manifest['tasks']:
+              manifest['tasks'][task_key].sort(key=get_task_priority)
 
           with open('manifest.json', 'w', encoding='utf-8') as f:
               json.dump(manifest, f, indent=2, ensure_ascii=False)
