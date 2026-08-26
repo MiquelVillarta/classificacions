@@ -1123,7 +1123,7 @@
           <FsTaskDistToTp tp_no="5" distance="28.258" />
         </FsTaskScoreParams>
       </FsTask>
-      <FsTask Dirty="1" id="6" name="FIGUERASSA" waypoints_file="" tracklog_folder="tracks\T06B">
+      <FsTask Dirty="1" id="6" name="LLOC" waypoints_file="" tracklog_folder="tracks\T06B">
         <FsScoreFormula id="GAP2026" is_pg_comp="1" fai_sanctioning="0" ftv_factor="0.33" day_quality_override="0" bonus_gr="4" jump_the_gun_factor="0" jump_the_gun_max="0" min_dist="5" nom_dist="10" nom_goal="0.3" nom_launch="0.96" nom_time="0.5" normalize_1000_before_day_quality="0" time_points_if_not_in_goal="0" use_arrival_position_points="0" use_arrival_time_points="0" use_departure_points="0" use_difficulty_for_distance_points="0" use_distance_points="1" use_leading_points="1" use_semi_circle_control_zone_for_goal_line="1" use_time_points="1" scoring_altitude="GPS" final_glide_decelerator="none" no_final_glide_decelerator_reason="" min_time_span_for_valid_task="0" score_back_time="5" use_proportional_leading_weight_if_nobody_in_goal="0" leading_weight_factor="0" turnpoint_radius_tolerance="0.001" turnpoint_radius_minimum_absolute_tolerance="5" number_of_decimals_task_results="1" number_of_decimals_competition_results="1" redistribute_removed_time_points_as_distance_points="1" use_best_score_for_ftv_validity="1" use_constant_leading_weight="0" use_flat_decline_of_timepoints="1" use_leading_time_ratio="1" optimize_ss_alone="0" minimum_validity_to_count_stopped_task="0.05" />
         <FsTaskDefinition ss="2" es="4" goal="CIRCLE" qnh_setting="1013.25" leading_time_ratio="0.26">
           <FsTurnpoint id="D03C" lat="42.12145" lon="1.82398" altitude="1453" radius="100" open="2026-09-05T09:00:00+02:00" close="2026-09-05T17:30:00+02:00" />
@@ -1141,6 +1141,44 @@
           </FsTaskShortestPath>
         </FsTaskDefinition>
         <FsTaskState task_state="REGULAR" score_back_time="5" cancel_reason="" stop_time="2026-09-05T21:48:00+02:00" stop_score_time="2026-09-05T21:43:00+02:00" />
+      </FsTask>
+      <FsTask Dirty="1" id="7" name="LLOC" waypoints_file="" tracklog_folder="tracks\T07B">
+        <FsScoreFormula id="GAP2026" is_pg_comp="1" fai_sanctioning="0" ftv_factor="0.33" day_quality_override="0" bonus_gr="4" jump_the_gun_factor="0" jump_the_gun_max="0" min_dist="5" nom_dist="10" nom_goal="0.3" nom_launch="0.96" nom_time="0.5" normalize_1000_before_day_quality="0" time_points_if_not_in_goal="0" use_arrival_position_points="0" use_arrival_time_points="0" use_departure_points="0" use_difficulty_for_distance_points="0" use_distance_points="1" use_leading_points="1" use_semi_circle_control_zone_for_goal_line="1" use_time_points="1" scoring_altitude="GPS" final_glide_decelerator="none" no_final_glide_decelerator_reason="" min_time_span_for_valid_task="0" score_back_time="5" use_proportional_leading_weight_if_nobody_in_goal="0" leading_weight_factor="0" turnpoint_radius_tolerance="0.001" turnpoint_radius_minimum_absolute_tolerance="5" number_of_decimals_task_results="1" number_of_decimals_competition_results="1" redistribute_removed_time_points_as_distance_points="1" use_best_score_for_ftv_validity="1" use_constant_leading_weight="0" use_flat_decline_of_timepoints="1" use_leading_time_ratio="1" optimize_ss_alone="0" minimum_validity_to_count_stopped_task="0.05" />
+        <FsTaskDefinition ss="2" es="4" goal="CIRCLE" qnh_setting="1013.25" leading_time_ratio="0.26">
+          <FsTurnpoint id="D03C" lat="42.12145" lon="1.82398" altitude="1453" radius="100" open="2026-09-06T09:00:00+02:00" close="2026-09-06T17:30:00+02:00" />
+          <FsTurnpoint id="D04C" lat="42.08881" lon="1.81407" altitude="986" radius="1300" open="2026-09-06T13:00:00+02:00" close="2026-09-06T17:30:00+02:00" />
+          <FsTurnpoint id="B32C" lat="41.91207" lon="1.6817" altitude="467" radius="11600" open="2026-09-06T13:00:00+02:00" close="2026-09-06T17:30:00+02:00" />
+          <FsTurnpoint id="G10C" lat="41.99222" lon="1.53478" altitude="671" radius="1000" open="2026-09-06T13:00:00+02:00" close="2026-09-06T17:30:00+02:00" />
+          <FsTurnpoint id="G10C" lat="41.99222" lon="1.53478" altitude="671" radius="400" open="2026-09-06T13:00:00+02:00" close="2026-09-06T17:30:00+02:00" />
+          <FsStartGate open="2026-09-06T13:00:00+02:00" />
+          <FsTaskShortestPath>
+            <FsPathVertex lat="42.12145" lon="1.82398" altitude="0" />
+            <FsPathVertex lat="42.09701" lon="1.80285" altitude="0" />
+            <FsPathVertex lat="42.00829" lon="1.62731" altitude="0" />
+            <FsPathVertex lat="41.99428" lon="1.54653" altitude="0" />
+            <FsPathVertex lat="41.99304" lon="1.53948" altitude="0" />
+          </FsTaskShortestPath>
+        </FsTaskDefinition>
+        <FsTaskState task_state="REGULAR" score_back_time="5" cancel_reason="" stop_time="2026-09-06T21:48:00+02:00" stop_score_time="2026-09-06T21:43:00+02:00" />
+      </FsTask>
+      <FsTask Dirty="1" id="8" name="LLOC" waypoints_file="" tracklog_folder="tracks\T08">
+        <FsScoreFormula id="GAP2026" is_pg_comp="1" fai_sanctioning="0" ftv_factor="0.33" day_quality_override="0" bonus_gr="4" jump_the_gun_factor="0" jump_the_gun_max="0" min_dist="5" nom_dist="10" nom_goal="0.3" nom_launch="0.96" nom_time="0.5" normalize_1000_before_day_quality="0" time_points_if_not_in_goal="0" use_arrival_position_points="0" use_arrival_time_points="0" use_departure_points="0" use_difficulty_for_distance_points="0" use_distance_points="1" use_leading_points="1" use_semi_circle_control_zone_for_goal_line="1" use_time_points="1" scoring_altitude="GPS" final_glide_decelerator="none" no_final_glide_decelerator_reason="" min_time_span_for_valid_task="0" score_back_time="5" use_proportional_leading_weight_if_nobody_in_goal="0" leading_weight_factor="0" turnpoint_radius_tolerance="0.001" turnpoint_radius_minimum_absolute_tolerance="5" number_of_decimals_task_results="1" number_of_decimals_competition_results="1" redistribute_removed_time_points_as_distance_points="1" use_best_score_for_ftv_validity="1" use_constant_leading_weight="0" use_flat_decline_of_timepoints="1" use_leading_time_ratio="1" optimize_ss_alone="0" minimum_validity_to_count_stopped_task="0.05" />
+        <FsTaskDefinition ss="2" es="4" goal="CIRCLE" qnh_setting="1013.25" leading_time_ratio="0.26">
+          <FsTurnpoint id="D03C" lat="42.12145" lon="1.82398" altitude="1453" radius="100" open="2026-10-03T09:00:00+02:00" close="2026-10-03T17:30:00+02:00" />
+          <FsTurnpoint id="D04C" lat="42.08881" lon="1.81407" altitude="986" radius="1300" open="2026-10-03T13:00:00+02:00" close="2026-10-03T17:30:00+02:00" />
+          <FsTurnpoint id="B32C" lat="41.91207" lon="1.6817" altitude="467" radius="11600" open="2026-10-03T13:00:00+02:00" close="2026-10-03T17:30:00+02:00" />
+          <FsTurnpoint id="G10C" lat="41.99222" lon="1.53478" altitude="671" radius="1000" open="2026-10-03T13:00:00+02:00" close="2026-10-03T17:30:00+02:00" />
+          <FsTurnpoint id="G10C" lat="41.99222" lon="1.53478" altitude="671" radius="400" open="2026-10-03T13:00:00+02:00" close="2026-10-03T17:30:00+02:00" />
+          <FsStartGate open="2026-10-03T13:00:00+02:00" />
+          <FsTaskShortestPath>
+            <FsPathVertex lat="42.12145" lon="1.82398" altitude="0" />
+            <FsPathVertex lat="42.09701" lon="1.80285" altitude="0" />
+            <FsPathVertex lat="42.00829" lon="1.62731" altitude="0" />
+            <FsPathVertex lat="41.99428" lon="1.54653" altitude="0" />
+            <FsPathVertex lat="41.99304" lon="1.53948" altitude="0" />
+          </FsTaskShortestPath>
+        </FsTaskDefinition>
+        <FsTaskState task_state="REGULAR" score_back_time="5" cancel_reason="" stop_time="2026-10-03T21:48:00+02:00" stop_score_time="2026-10-03T21:43:00+02:00" />
       </FsTask>
     </FsTasks>
     <FsCompetitionResults H2250966595="119" H116625695="20">
