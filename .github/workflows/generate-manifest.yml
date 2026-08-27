@@ -30,9 +30,9 @@ jobs:
               '_SERIAL',    # 2º A_T01_SERIAL
               '_SPORT',     # 3º A_T01_SPORT
               '_CLUB',      # 4º A_T01_CLUB
-              'CLUBS',      # Intermedio si existe
-              '_FEMINES',   # Clasificación Femenina
-              'B_'          # 5º B_T01_GENERAL (Liga B al final)
+              'EQUIPS',     # 5ºIntermedio si existe
+              '_FEMINES',   # 6ºClasificación Femenina
+              'B_'          # 7º B_T01_GENERAL (Liga B al final)
           ]
 
           # Prioridad explícita para el bloque de GENERALES de la raíz
@@ -41,7 +41,7 @@ jobs:
               'GENERAL_SERIAL',
               'GENERAL_SPORT',
               'GENERAL_CLUB',
-              'GENERAL_CLUBS-LLICENCIA',
+              'GENERAL_EQUIPS-CLUBS',
               'GENERAL_FEMINES',
               'GENERAL_LLIGA-B'
           ]
