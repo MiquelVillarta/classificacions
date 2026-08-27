@@ -17,7 +17,7 @@
     <header class="bg-blue-900 text-white p-4 rounded-xl shadow-md mb-4 flex justify-between items-center">
       <div>
         <h1 class="text-xl font-bold tracking-tight">Classificacions</h1>
-        <p class="text-xs text-blue-200">Parapent 2026</p>
+        <p class="text-xs text-blue-200">Lliga Catalana 2026</p>
       </div>
       <span class="bg-red-600 text-white text-xs font-extrabold px-2.5 py-1 rounded-md shadow">2026</span>
     </header>
@@ -155,7 +155,7 @@
 
           const cardBody = document.createElement('div');
           // Se añade la clase 'hidden' por defecto para que aparezca plegado
-          cardBody.className = 'p-3 grid grid-cols-1 gap-2 bg-red-900 hidden';
+          cardBody.className = 'p-3 grid grid-cols-1 gap-2 bg-red-100 hidden';
 
 
           
@@ -178,11 +178,11 @@
 
             // ESTILOS DE BOTONES MEJORADOS (Mayor contraste + efecto Hover)
             const btnStyle = isCategoryB 
-              ? 'bg-red-50 hover:bg-red-600 text-red-900 hover:text-white border-red-300' 
-              : 'bg-blue-50 hover:bg-blue-600 text-blue-950 hover:text-white border-blue-200';
+              ? 'bg-blue-200 hover:bg-blue-600 text-blue-950 hover:text-white border-blue-600' 
+              : 'bg-red-300 hover:bg-red-600 text-red-900 hover:text-white border-red-800';
 
             btn.className = `group w-full text-left px-3 py-2.5 text-xs font-bold uppercase rounded-lg border shadow-sm hover:shadow-md transition-all duration-200 flex justify-between items-center ${btnStyle}`;
-            btn.innerHTML = `<span>${item.name}</span> <span class="text-blue-400 group-hover:text-white transition-colors duration-200 text-xs">➔</span>`;
+            btn.innerHTML = `<span>${item.name}</span> <span class="text-blue-950 group-hover:text-white transition-colors duration-200 text-xs">➔</span>`;
 
             btn.onclick = () => openClassification(item, sec.isTask, sec.taskName);
             cardBody.appendChild(btn);
