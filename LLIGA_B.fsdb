@@ -1398,5 +1398,922 @@
         </FsParticipant>
       </FsCompetitionResult>
     </FsCompetitionResults>
+    <FsTeamResults H897159893="5">
+      <FsTeamResult id="LLICENCIA-CLUB-3-1" title="Teams by LLICENCIA-CLUB" report_title="Competition: Teams by LLICENCIA-CLUB V1" tasks="1" ts="2026-08-27T16:03:27+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0" version="1">
+        <FsTeam rank="1" name="BCNPARAPENT" points="324.8">
+          <FsParticipant id="95813">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93180">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="2" name="BELLTALL i FORÉS" points="187.2">
+          <FsParticipant id="96090">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93529">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93234">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93439">
+            <FsTask id="1" counts="0" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="3" name="VOL LLIURE BELLMUNT" points="67.9">
+          <FsParticipant id="79319">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96060">
+            <FsTask id="1" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96881">
+            <FsTask id="1" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="93485">
+            <FsTask id="1" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96093">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="89003">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="4" name="No hi ha el meu" points="58.5">
+          <FsParticipant id="96939">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="97342">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="4" name="XTREME PARAGLIDING TEAM" points="58.5">
+          <FsParticipant id="93282">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93178">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93275">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="4" name="AGER AVENTURA'T" points="58.5">
+          <FsParticipant id="93414">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="4" name="ENTRENÚVOLS" points="58.5">
+          <FsParticipant id="96695">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="4" name="PARABIRRES" points="58.5">
+          <FsParticipant id="93242">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93272">
+            <FsTask id="1" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96110">
+            <FsTask id="1" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="94478">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="95564">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="VOL FACTORY" points="0">
+          <FsParticipant id="95539">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="APPA VOLEM" points="0">
+          <FsParticipant id="93229">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="PUIG D'AFROU" points="0">
+          <FsParticipant id="96909">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="PUNTXAT" points="0">
+          <FsParticipant id="93744">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="MALLOLES" points="0">
+          <FsParticipant id="93185">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96962">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="97261">
+            <FsTask id="1" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+      </FsTeamResult>
+      <FsTeamResult id="LLICENCIA-CLUB-3-1" title="Teams by LLICENCIA-CLUB" report_title="Competition: Teams by LLICENCIA-CLUB V2" tasks="1;2" ts="2026-08-27T16:03:27+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0" version="2">
+        <FsTeam rank="1" name="No hi ha el meu" points="1538">
+          <FsParticipant id="97342">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96939">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="2" name="BCNPARAPENT" points="1324.8">
+          <FsParticipant id="93180">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="95813">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="3" name="PARABIRRES" points="1287">
+          <FsParticipant id="94478">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96110">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93272">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93242">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="95564">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="4" name="VOL LLIURE BELLMUNT" points="971">
+          <FsParticipant id="79319">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93485">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96093">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="89003">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96881">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96060">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="0" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="5" name="AGER AVENTURA'T" points="969.8">
+          <FsParticipant id="93414">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="6" name="ENTRENÚVOLS" points="464.7">
+          <FsParticipant id="96695">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="7" name="BELLTALL i FORÉS" points="428.2">
+          <FsParticipant id="93529">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96090">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93234">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="93439">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="8" name="XTREME PARAGLIDING TEAM" points="58.5">
+          <FsParticipant id="93282">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93178">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93275">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="VOL FACTORY" points="0">
+          <FsParticipant id="95539">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="APPA VOLEM" points="0">
+          <FsParticipant id="93229">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="PUIG D'AFROU" points="0">
+          <FsParticipant id="96909">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="PUNTXAT" points="0">
+          <FsParticipant id="93744">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="MALLOLES" points="0">
+          <FsParticipant id="97261">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96962">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93185">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+      </FsTeamResult>
+      <FsTeamResult id="LLICENCIA-CLUB-3-1" title="Teams by LLICENCIA-CLUB" report_title="Competition: Teams by LLICENCIA-CLUB V3" tasks="1;2;3" ts="2026-08-27T16:03:27+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0" version="3">
+        <FsTeam rank="1" name="PARABIRRES" points="2525.4">
+          <FsParticipant id="94478">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96110">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93272">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="93242">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="95564">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="2" name="BELLTALL i FORÉS" points="1955.1">
+          <FsParticipant id="93234">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93529">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93439">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96090">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="0" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="3" name="BCNPARAPENT" points="1827.4">
+          <FsParticipant id="93180">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="95813">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="4" name="No hi ha el meu" points="1664.6">
+          <FsParticipant id="97342">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96939">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="5" name="ENTRENÚVOLS" points="1418.4">
+          <FsParticipant id="96695">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="6" name="VOL LLIURE BELLMUNT" points="1364.3">
+          <FsParticipant id="93485">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="79319">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96881">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96060">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96093">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="89003">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="0" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="7" name="AGER AVENTURA'T" points="1236.6">
+          <FsParticipant id="93414">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="8" name="XTREME PARAGLIDING TEAM" points="58.5">
+          <FsParticipant id="93282">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93178">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93275">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="VOL FACTORY" points="0">
+          <FsParticipant id="95539">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="APPA VOLEM" points="0">
+          <FsParticipant id="93229">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="PUIG D'AFROU" points="0">
+          <FsParticipant id="96909">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="PUNTXAT" points="0">
+          <FsParticipant id="93744">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="MALLOLES" points="0">
+          <FsParticipant id="93185">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96962">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="97261">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+      </FsTeamResult>
+      <FsTeamResult id="LLICENCIA-CLUB-3-1" title="Teams by LLICENCIA-CLUB" report_title="Competition: Teams by LLICENCIA-CLUB V4" tasks="1;2;3;4" ts="2026-08-27T16:03:28+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0" version="4">
+        <FsTeam rank="1" name="PARABIRRES" points="3692">
+          <FsParticipant id="94478">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96110">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93272">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93242">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="95564">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="0" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="2" name="BELLTALL i FORÉS" points="2099.5">
+          <FsParticipant id="93439">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93234">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="93529">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96090">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="3" name="BCNPARAPENT" points="1827.4">
+          <FsParticipant id="93180">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="95813">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="4" name="No hi ha el meu" points="1814">
+          <FsParticipant id="97342">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96939">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="5" name="AGER AVENTURA'T" points="1791.8">
+          <FsParticipant id="93414">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="6" name="VOL LLIURE BELLMUNT" points="1776.2">
+          <FsParticipant id="79319">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93485">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96093">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="89003">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96881">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96060">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="7" name="ENTRENÚVOLS" points="1418.4">
+          <FsParticipant id="96695">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="8" name="MALLOLES" points="147.2">
+          <FsParticipant id="93185">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96962">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="97261">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="XTREME PARAGLIDING TEAM" points="58.5">
+          <FsParticipant id="93282">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93178">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93275">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="10" name="PUIG D'AFROU" points="0">
+          <FsParticipant id="96909">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="10" name="VOL FACTORY" points="0">
+          <FsParticipant id="95539">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="10" name="PUNTXAT" points="0">
+          <FsParticipant id="93744">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="10" name="APPA VOLEM" points="0">
+          <FsParticipant id="93229">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+      </FsTeamResult>
+      <FsTeamResult id="LLICENCIA-CLUB-3-1" title="Teams by LLICENCIA-CLUB" report_title="Competition: Teams by LLICENCIA-CLUB V5" tasks="1;2;3;4;5" ts="2026-08-27T16:03:28+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0" version="5">
+        <FsTeam rank="1" name="PARABIRRES" points="4807.1">
+          <FsParticipant id="94478">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96110">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93272">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="93242">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="0" />
+            <FsTask id="5" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="95564">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="0" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="2" name="VOL LLIURE BELLMUNT" points="2726.6">
+          <FsParticipant id="79319">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93485">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="0" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96881">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="89003">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="0" />
+            <FsTask id="5" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96060">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96093">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="0" />
+            <FsTask id="5" counts="0" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="3" name="BELLTALL i FORÉS" points="2611">
+          <FsParticipant id="93439">
+            <FsTask id="1" counts="0" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93234">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="0" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="0" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93529">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="0" />
+          </FsParticipant>
+          <FsParticipant id="96090">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="0" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="4" name="AGER AVENTURA'T" points="2156.3">
+          <FsParticipant id="93414">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="5" name="BCNPARAPENT" points="2144.7">
+          <FsParticipant id="93180">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="95813">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="6" name="ENTRENÚVOLS" points="2088.8">
+          <FsParticipant id="96695">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="7" name="No hi ha el meu" points="1929.1">
+          <FsParticipant id="97342">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96939">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="8" name="MALLOLES" points="429.6">
+          <FsParticipant id="93185">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="97261">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="96962">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="9" name="XTREME PARAGLIDING TEAM" points="58.5">
+          <FsParticipant id="93282">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93178">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+          <FsParticipant id="93275">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="10" name="PUIG D'AFROU" points="0">
+          <FsParticipant id="96909">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="10" name="VOL FACTORY" points="0">
+          <FsParticipant id="95539">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="10" name="PUNTXAT" points="0">
+          <FsParticipant id="93744">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+        <FsTeam rank="10" name="APPA VOLEM" points="0">
+          <FsParticipant id="93229">
+            <FsTask id="1" counts="1" />
+            <FsTask id="2" counts="1" />
+            <FsTask id="3" counts="1" />
+            <FsTask id="4" counts="1" />
+            <FsTask id="5" counts="1" />
+          </FsParticipant>
+        </FsTeam>
+      </FsTeamResult>
+    </FsTeamResults>
   </FsCompetition>
 </Fs>
