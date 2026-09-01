@@ -123,6 +123,19 @@
     box-shadow: 0 0 6px rgba(0,0,0,0.6);
   }
 
+  .alt-live-label{
+    background: rgba(20,24,22,0.92) !important;
+    border: 2px solid #ffffff !important;
+    color: var(--text) !important;
+    font-size: 8px !important;
+    font-weight: 700;
+    padding: 1px 3px !important;
+    border-radius: 3px !important;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+    white-space: nowrap;
+  }
+  .alt-live-label::before{ display:none; }
+
   #task-info{
     margin-top:10px;padding:8px 10px;background:#171c18;border-radius:8px;font-size:11.5px;color:var(--text-dim);
     line-height:1.5;
@@ -807,6 +820,7 @@
 
       const liveMarker = L.marker([start.lat, start.lon], {icon: customIcon, zIndexOffset: 1000});
       liveMarker.bindPopup(`<b>${name}</b><div id="pop-${resolvedId}"></div>`);
+      liveMarker.bindTooltip('—', {permanent:true, direction:'top', offset:[6,-7], className:'alt-live-label', opacity:1});
 
       activePilots[resolvedId] = {layerGroup, marker: liveMarker, color, name, latlngs, points, fd};
       
@@ -954,6 +968,9 @@
         const popEl = document.getElementById('pop-' + id);
         if (popEl) {
           popEl.innerHTML = `Altitud: ${pos.alt !== null ? pos.alt + ' m' : '—'}`;
+        }
+        if (p.marker.setTooltipContent) {
+          p.marker.setTooltipContent(pos.alt !== null ? pos.alt + ' m' : '—');
         }
       } else {
         if (map.hasLayer(p.marker)) map.removeLayer(p.marker);
