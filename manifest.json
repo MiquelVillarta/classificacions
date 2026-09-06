@@ -88,8 +88,28 @@
     ],
     "T07": [
       {
+        "name": "A_T07_GENERAL",
+        "path": "RESULTS/T07/A_T07_GENERAL.html"
+      },
+      {
+        "name": "A_T07_SERIAL",
+        "path": "RESULTS/T07/A_T07_SERIAL.html"
+      },
+      {
+        "name": "A_T07_SPORT",
+        "path": "RESULTS/T07/A_T07_SPORT.html"
+      },
+      {
         "name": "A_T07_CLUB",
         "path": "RESULTS/T07/A_T07_CLUB.html"
+      },
+      {
+        "name": "A_T07_FEMINES",
+        "path": "RESULTS/T07/A_T07_FEMINES.html"
+      },
+      {
+        "name": "B_T07_GENERAL",
+        "path": "RESULTS/T07/B_T07_GENERAL.html"
       }
     ],
     "T06": [
