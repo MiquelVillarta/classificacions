@@ -27,10 +27,6 @@
     {
       "name": "GENERAL_LLIGA-B",
       "path": "RESULTS/GENERAL_LLIGA-B.html"
-    },
-    {
-      "name": "A_T07_CLUB",
-      "path": "RESULTS/A_T07_CLUB.html"
     }
   ],
   "campionat": [
@@ -88,6 +84,12 @@
       {
         "name": "B_T03_GENERAL",
         "path": "RESULTS/T03/B_T03_GENERAL.html"
+      }
+    ],
+    "T07": [
+      {
+        "name": "A_T07_CLUB",
+        "path": "RESULTS/T07/A_T07_CLUB.html"
       }
     ],
     "T06": [
