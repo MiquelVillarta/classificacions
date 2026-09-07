@@ -1,124 +1,84 @@
-name: Generate Classification Manifest
+name: Generate Manifest JSON
 
 on:
   push:
-    paths:
-      - 'RESULTS/**'
-      - '**/*.fsdb'
-permissions:
-  contents: write
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
-  build-manifest:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Generate manifest.json
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Execute Python script to update manifest
         run: |
-          python3 -c "
-          import os, json, glob
-          import xml.etree.ElementTree as ET
+          python -c "
+          import os, json, sqlite3
           from datetime import datetime
-          import zoneinfo
 
-          MESOS = ['gen', 'feb', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'oct', 'nov', 'des']
-
-          # Obtenir la data i hora actual d'actualització
-          tz = zoneinfo.ZoneInfo('Europe/Madrid')
-          now = datetime.now(tz)
-          updated_at_str = f'{now.day:02d}/{MESOS[now.month - 1]}/{now.year} {now.strftime(\"%H:%M\")}'
-
-          def clean_display_name(filename):
-              name = os.path.splitext(filename)[0]
-              name = name.rstrip('_').rstrip()
-              return name.upper()
-
-          def get_task_dates():
-              dates = {}
-              fsdb_files = glob.glob('**/*.fsdb', recursive=True)
-              if not fsdb_files:
-                  return dates
-
-              for fsdb_path in fsdb_files:
-                  try:
-                      tree = ET.parse(fsdb_path)
-                      root = tree.getroot()
-                      for task in root.findall('.//FsTask'):
-                          task_id = task.get('id')
-                          if task_id:
-                              task_key = f'T{int(task_id):02d}'
-                              tp = task.find('.//FsTurnpoint')
-                              if tp is not None and tp.get('open'):
-                                  raw_date = tp.get('open').split('T')[0]
-                                  dt = datetime.strptime(raw_date, '%Y-%m-%d')
-                                  dates[task_key] = f'{dt.day:02d}/{MESOS[dt.month - 1]}/{dt.year}'
-                  except Exception as e:
-                      print(f'Error processant {fsdb_path}: {e}')
-              return dates
-
-          task_dates = get_task_dates()
-
-          KEYWORD_PRIORITY = [
-              '_GENERAL', '_SERIAL', '_SPORT', '_CLUB', 'EQUIPS', '_FEMINES', 'B_'
-          ]
-
-          GENERAL_PRIORITY = [
-              'GENERAL', 'GENERAL_SERIAL', 'GENERAL_SPORT', 'GENERAL_CLUB', 
-              'GENERAL_EQUIPS-CLUBS', 'GENERAL_FEMINES', 'GENERAL_LLIGA-B'
-          ]
-
-          results_dir = 'RESULTS'
           manifest = {
-              'updated_at': updated_at_str,
-              'generals': [], 
-              'campionat': [], 
+              'updated_at': datetime.now().strftime('%d/%m/%Y %H:%M'),
+              'generals': [],
+              'campionat': [],
               'tasks': {}
           }
 
+          results_dir = 'RESULTS'
+
           if os.path.exists(results_dir):
               for root, dirs, files in os.walk(results_dir):
-                  for file in sorted(files):
+                  for file in files:
                       if file.endswith('.html'):
                           full_path = os.path.join(root, file).replace('\\\\', '/')
-                          display_name = clean_display_name(file)
-                          rel_path = os.path.relpath(root, results_dir)
+                          rel_path = full_path
+                          name = os.path.splitext(file)[0]
                           
-                          if rel_path in ['.', ''] or rel_path.upper() == 'GENERALS':
-                              manifest['generals'].append({'name': display_name, 'path': full_path})
-                          elif rel_path.upper().startswith('CAMPIONAT'):
-                              manifest['campionat'].append({'name': display_name, 'path': full_path})
-                          else:
-                              task_key = rel_path.upper()
+                          folder_name = os.path.basename(root)
+
+                          if folder_name == 'RESULTS':
+                              manifest['generals'].append({'name': name, 'path': rel_path})
+                          elif folder_name == 'CAMPIONAT CAT':
+                              manifest['campionat'].append({'name': name, 'path': rel_path})
+                          elif folder_name.startswith('T'):
+                              task_key = folder_name
                               if task_key not in manifest['tasks']:
-                                  manifest['tasks'][task_key] = {
-                                      'date': task_dates.get(task_key, ''),
-                                      'items': []
-                                  }
-                              manifest['tasks'][task_key]['items'].append({'name': display_name, 'path': full_path})
+                                  manifest['tasks'][task_key] = {'date': '', 'items': []}
+                              manifest['tasks'][task_key]['items'].append({'name': name, 'path': rel_path})
 
-          def get_task_priority(item):
-              name = item['name']
-              for index, key in enumerate(KEYWORD_PRIORITY):
-                  if key in name:
-                      if key == '_GENERAL' and name.startswith('B_'):
-                          continue
-                      return index
-              return 50
-
-          manifest['generals'].sort(key=lambda x: GENERAL_PRIORITY.index(x['name']) if x['name'] in GENERAL_PRIORITY else 99)
-
-          for task_key in manifest['tasks']:
-              manifest['tasks'][task_key]['items'].sort(key=get_task_priority)
+          # Intentar extreure dates dels fitxers .fsdb si existeixen
+          for db_file in ['LLIGA_A.fsdb', 'LLIGA_B.fsdb']:
+              if os.path.exists(db_file):
+                  try:
+                      conn = sqlite3.connect(db_file)
+                      cursor = conn.cursor()
+                      cursor.execute('SELECT task_id, task_date FROM tasks')
+                      for row in cursor.fetchall():
+                          t_id, t_date = row[0], row[1]
+                          t_key = f'T{int(t_id):02d}'
+                          if t_key in manifest['tasks']:
+                              manifest['tasks'][t_key]['date'] = t_date
+                      conn.close()
+                  except Exception as e:
+                      print(f'Error llegint {db_file}: {e}')
 
           with open('manifest.json', 'w', encoding='utf-8') as f:
-              json.dump(manifest, f, indent=2, ensure_ascii=False)
+              json.dump(manifest, f, ensure_ascii=False, indent=2)
           "
 
-      - name: Commit and push manifest.json
+      - name: Commit and Push changes
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add manifest.json
-          git diff --staged --quiet || (git commit -m "Auto-update manifest.json with updated_at" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update manifest.json with task dates" && git push)
