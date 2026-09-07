@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'RESULTS/**'
+      - '**/*.fsdb'
 permissions:
   contents: write
 
@@ -17,37 +18,64 @@ jobs:
       - name: Generate manifest.json
         run: |
           python3 -c "
-          import os, json
+          import os, json, glob
+          import xml.etree.ElementTree as ET
+          from datetime import datetime
+          import zoneinfo
+
+          MESOS = ['gen', 'feb', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'oct', 'nov', 'des']
+
+          # Obtenir la data i hora actual d'actualització
+          tz = zoneinfo.ZoneInfo('Europe/Madrid')
+          now = datetime.now(tz)
+          updated_at_str = f'{now.day:02d}/{MESOS[now.month - 1]}/{now.year} {now.strftime(\"%H:%M\")}'
 
           def clean_display_name(filename):
               name = os.path.splitext(filename)[0]
               name = name.rstrip('_').rstrip()
               return name.upper()
 
-          # Orden de prioridad exacto para las clasificaciones de cada manga (T01, T02...)
+          def get_task_dates():
+              dates = {}
+              fsdb_files = glob.glob('**/*.fsdb', recursive=True)
+              if not fsdb_files:
+                  return dates
+
+              for fsdb_path in fsdb_files:
+                  try:
+                      tree = ET.parse(fsdb_path)
+                      root = tree.getroot()
+                      for task in root.findall('.//FsTask'):
+                          task_id = task.get('id')
+                          if task_id:
+                              task_key = f'T{int(task_id):02d}'
+                              tp = task.find('.//FsTurnpoint')
+                              if tp is not None and tp.get('open'):
+                                  raw_date = tp.get('open').split('T')[0]
+                                  dt = datetime.strptime(raw_date, '%Y-%m-%d')
+                                  dates[task_key] = f'{dt.day:02d}/{MESOS[dt.month - 1]}/{dt.year}'
+                  except Exception as e:
+                      print(f'Error processant {fsdb_path}: {e}')
+              return dates
+
+          task_dates = get_task_dates()
+
           KEYWORD_PRIORITY = [
-              '_GENERAL',   # 1º A_T01_GENERAL
-              '_SERIAL',    # 2º A_T01_SERIAL
-              '_SPORT',     # 3º A_T01_SPORT
-              '_CLUB',      # 4º A_T01_CLUB
-              'EQUIPS',     # 5ºIntermedio si existe
-              '_FEMINES',   # 6ºClasificación Femenina
-              'B_'          # 7º B_T01_GENERAL (Liga B al final)
+              '_GENERAL', '_SERIAL', '_SPORT', '_CLUB', 'EQUIPS', '_FEMINES', 'B_'
           ]
 
-          # Prioridad explícita para el bloque de GENERALES de la raíz
           GENERAL_PRIORITY = [
-              'GENERAL',
-              'GENERAL_SERIAL',
-              'GENERAL_SPORT',
-              'GENERAL_CLUB',
-              'GENERAL_EQUIPS-CLUBS',
-              'GENERAL_FEMINES',
-              'GENERAL_LLIGA-B'
+              'GENERAL', 'GENERAL_SERIAL', 'GENERAL_SPORT', 'GENERAL_CLUB', 
+              'GENERAL_EQUIPS-CLUBS', 'GENERAL_FEMINES', 'GENERAL_LLIGA-B'
           ]
 
           results_dir = 'RESULTS'
-          manifest = {'generals': [], 'campionat': [], 'tasks': {}}
+          manifest = {
+              'updated_at': updated_at_str,
+              'generals': [], 
+              'campionat': [], 
+              'tasks': {}
+          }
 
           if os.path.exists(results_dir):
               for root, dirs, files in os.walk(results_dir):
@@ -64,27 +92,25 @@ jobs:
                           else:
                               task_key = rel_path.upper()
                               if task_key not in manifest['tasks']:
-                                  manifest['tasks'][task_key] = []
-                              manifest['tasks'][task_key].append({'name': display_name, 'path': full_path})
+                                  manifest['tasks'][task_key] = {
+                                      'date': task_dates.get(task_key, ''),
+                                      'items': []
+                                  }
+                              manifest['tasks'][task_key]['items'].append({'name': display_name, 'path': full_path})
 
-          # Función de ordenación para los ficheros de las pruebas/mangas
           def get_task_priority(item):
               name = item['name']
-              
               for index, key in enumerate(KEYWORD_PRIORITY):
                   if key in name:
-                      # Si coincide con _GENERAL pero es de Liga B (ej. B_T01_GENERAL), ignora '_GENERAL' para asignarle la prioridad de 'B_' (al final)
                       if key == '_GENERAL' and name.startswith('B_'):
                           continue
                       return index
-              return 50 # Archivos no contemplados quedan en medio
+              return 50
 
-          # 1. Ordenar bloque 'generals'
           manifest['generals'].sort(key=lambda x: GENERAL_PRIORITY.index(x['name']) if x['name'] in GENERAL_PRIORITY else 99)
 
-          # 2. Ordenar bloques de cada manga 'tasks' (T01, T02...)
           for task_key in manifest['tasks']:
-              manifest['tasks'][task_key].sort(key=get_task_priority)
+              manifest['tasks'][task_key]['items'].sort(key=get_task_priority)
 
           with open('manifest.json', 'w', encoding='utf-8') as f:
               json.dump(manifest, f, indent=2, ensure_ascii=False)
@@ -93,6 +119,6 @@ jobs:
       - name: Commit and push manifest.json
         run: |
           git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.email "github-actions[bot]"
           git add manifest.json
-          git diff --staged --quiet || (git commit -m "Auto-update manifest.json" && git push)
+          git diff --staged --quiet || (git commit -m "Auto-update manifest.json with updated_at" && git push)
