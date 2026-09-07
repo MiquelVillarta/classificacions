@@ -1,9 +1,17 @@
 {
-  "updated_at": "07/09/2026 23:34",
+  "updated_at": "07/09/2026 23:49",
   "generals": [
     {
       "name": "GENERAL",
       "path": "RESULTS/GENERAL.html"
+    },
+    {
+      "name": "GENERAL_SERIAL",
+      "path": "RESULTS/GENERAL_SERIAL.html"
+    },
+    {
+      "name": "GENERAL_SPORT",
+      "path": "RESULTS/GENERAL_SPORT.html"
     },
     {
       "name": "GENERAL_CLUB",
@@ -20,24 +28,12 @@
     {
       "name": "GENERAL_LLIGA-B",
       "path": "RESULTS/GENERAL_LLIGA-B.html"
-    },
-    {
-      "name": "GENERAL_SERIAL",
-      "path": "RESULTS/GENERAL_SERIAL.html"
-    },
-    {
-      "name": "GENERAL_SPORT",
-      "path": "RESULTS/GENERAL_SPORT.html"
     }
   ],
   "campionat": [
     {
       "name": "CAMPIONAT A GENERAL",
       "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT A GENERAL.html"
-    },
-    {
-      "name": "CAMPIONAT B GENERAL",
-      "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT B GENERAL.html"
     },
     {
       "name": "CAMPIONAT A SERIAL",
@@ -58,6 +54,10 @@
     {
       "name": "CAMPIONAT A FEMINES",
       "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT A FEMINES.html"
+    },
+    {
+      "name": "CAMPIONAT B GENERAL",
+      "path": "RESULTS/CAMPIONAT CAT/CAMPIONAT B GENERAL.html"
     }
   ],
   "tasks": {
@@ -67,10 +67,6 @@
         {
           "name": "A_T01_GENERAL",
           "path": "RESULTS/T01/A_T01_GENERAL.html"
-        },
-        {
-          "name": "B_T01_GENERAL",
-          "path": "RESULTS/T01/B_T01_GENERAL.html"
         },
         {
           "name": "A_T01_SERIAL",
@@ -87,6 +83,10 @@
         {
           "name": "A_T01_FEMINES",
           "path": "RESULTS/T01/A_T01_FEMINES.html"
+        },
+        {
+          "name": "B_T01_GENERAL",
+          "path": "RESULTS/T01/B_T01_GENERAL.html"
         }
       ]
     },
@@ -96,10 +96,6 @@
         {
           "name": "A_T02_GENERAL",
           "path": "RESULTS/T02/A_T02_GENERAL.html"
-        },
-        {
-          "name": "B_T02_GENERAL",
-          "path": "RESULTS/T02/B_T02_GENERAL.html"
         },
         {
           "name": "A_T02_SERIAL",
@@ -116,6 +112,10 @@
         {
           "name": "A_T02_FEMINES",
           "path": "RESULTS/T02/A_T02_FEMINES.html"
+        },
+        {
+          "name": "B_T02_GENERAL",
+          "path": "RESULTS/T02/B_T02_GENERAL.html"
         }
       ]
     },
@@ -125,10 +125,6 @@
         {
           "name": "A_T03_GENERAL",
           "path": "RESULTS/T03/A_T03_GENERAL.html"
-        },
-        {
-          "name": "B_T03_GENERAL",
-          "path": "RESULTS/T03/B_T03_GENERAL.html"
         },
         {
           "name": "A_T03_SERIAL",
@@ -145,6 +141,10 @@
         {
           "name": "A_T03_FEMINES",
           "path": "RESULTS/T03/A_T03_FEMINES.html"
+        },
+        {
+          "name": "B_T03_GENERAL",
+          "path": "RESULTS/T03/B_T03_GENERAL.html"
         }
       ]
     },
@@ -154,10 +154,6 @@
         {
           "name": "A_T04_GENERAL",
           "path": "RESULTS/T04/A_T04_GENERAL.html"
-        },
-        {
-          "name": "B_T04_GENERAL",
-          "path": "RESULTS/T04/B_T04_GENERAL.html"
         },
         {
           "name": "A_T04_SERIAL",
@@ -174,6 +170,10 @@
         {
           "name": "A_T04_FEMINES",
           "path": "RESULTS/T04/A_T04_FEMINES.html"
+        },
+        {
+          "name": "B_T04_GENERAL",
+          "path": "RESULTS/T04/B_T04_GENERAL.html"
         }
       ]
     },
@@ -183,10 +183,6 @@
         {
           "name": "A_T05_GENERAL",
           "path": "RESULTS/T05/A_T05_GENERAL.html"
-        },
-        {
-          "name": "B_T05_GENERAL",
-          "path": "RESULTS/T05/B_T05_GENERAL.html"
         },
         {
           "name": "A_T05_SERIAL",
@@ -203,6 +199,10 @@
         {
           "name": "A_T05_FEMINES",
           "path": "RESULTS/T05/A_T05_FEMINES.html"
+        },
+        {
+          "name": "B_T05_GENERAL",
+          "path": "RESULTS/T05/B_T05_GENERAL.html"
         }
       ]
     },
@@ -212,10 +212,6 @@
         {
           "name": "A_T06_GENERAL",
           "path": "RESULTS/T06/A_T06_GENERAL.html"
-        },
-        {
-          "name": "B_T06_GENERAL",
-          "path": "RESULTS/T06/B_T06_GENERAL.html"
         },
         {
           "name": "A_T06_SERIAL",
@@ -232,6 +228,10 @@
         {
           "name": "A_T06_FEMINES",
           "path": "RESULTS/T06/A_T06_FEMINES.html"
+        },
+        {
+          "name": "B_T06_GENERAL",
+          "path": "RESULTS/T06/B_T06_GENERAL.html"
         }
       ]
     },
@@ -241,10 +241,6 @@
         {
           "name": "A_T07_GENERAL",
           "path": "RESULTS/T07/A_T07_GENERAL.html"
-        },
-        {
-          "name": "B_T07_GENERAL",
-          "path": "RESULTS/T07/B_T07_GENERAL.html"
         },
         {
           "name": "A_T07_SERIAL",
@@ -261,6 +257,10 @@
         {
           "name": "A_T07_FEMINES",
           "path": "RESULTS/T07/A_T07_FEMINES.html"
+        },
+        {
+          "name": "B_T07_GENERAL",
+          "path": "RESULTS/T07/B_T07_GENERAL.html"
         }
       ]
     }
