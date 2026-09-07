@@ -83,16 +83,14 @@
             </a>`;
         });
 
-        // 4. Renderitzar Tasks amb la data de la FSDB
+        // 4. Renderitzar Tasks amb data
         const tasksContainer = document.getElementById('tasks-container');
         tasksContainer.innerHTML = '';
 
         Object.keys(data.tasks).sort().forEach(taskKey => {
           const taskData = data.tasks[taskKey];
-          
-          // Comprovar si tenim l'estructura nova (amb date i items) o l'antiga
           const items = Array.isArray(taskData) ? taskData : taskData.items;
-          const taskDate = (!Array.isArray(taskData) && taskData.date) ? ` (${taskData.date})` : '';
+          const taskDate = (!Array.isArray(taskData) && taskData.date) ? ` - ${taskData.date}` : '';
 
           const taskBlock = document.createElement('div');
           taskBlock.className = 'border-2 border-white/20 rounded-2xl overflow-hidden bg-blue-900 shadow-md';
