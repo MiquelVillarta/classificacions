@@ -55,35 +55,33 @@
       }
     }
 
+    function renderLink(item) {
+      const isBlue = item.name.startsWith('B_') || item.name.includes('LLIGA-B') || item.name.includes('CAMPIONAT B');
+      const bgClass = isBlue ? 'bg-blue-200 hover:bg-blue-300' : 'bg-red-200 hover:bg-red-300';
+      return `
+        <a href="${item.path}" class="flex justify-between items-center p-3 ${bgClass} rounded-xl font-bold text-blue-950 transition mb-2 last:mb-0">
+          <span>${item.name}</span>
+          <i class="fa-solid fa-arrow-right text-sm"></i>
+        </a>`;
+    }
+
     fetch('manifest.json')
       .then(res => res.json())
       .then(data => {
-        // 1. Mostrar data d'actualització global
+        // 1. Data d'actualització global
         if (data.updated_at) {
           document.getElementById('updated-at').textContent = `Modificat: ${data.updated_at}`;
         }
 
         // 2. Renderitzar Generals
         const genDiv = document.getElementById('content-generals');
-        data.generals.forEach(item => {
-          genDiv.innerHTML += `
-            <a href="${item.path}" class="flex justify-between items-center p-3 bg-red-200 hover:bg-red-300 rounded-xl font-bold text-blue-950 transition">
-              <span>${item.name}</span>
-              <i class="fa-solid fa-arrow-right text-sm"></i>
-            </a>`;
-        });
+        data.generals.forEach(item => { genDiv.innerHTML += renderLink(item); });
 
         // 3. Renderitzar Campionat
         const campDiv = document.getElementById('content-campionat');
-        data.campionat.forEach(item => {
-          campDiv.innerHTML += `
-            <a href="${item.path}" class="flex justify-between items-center p-3 bg-red-200 hover:bg-red-300 rounded-xl font-bold text-blue-950 transition">
-              <span>${item.name}</span>
-              <i class="fa-solid fa-arrow-right text-sm"></i>
-            </a>`;
-        });
+        data.campionat.forEach(item => { campDiv.innerHTML += renderLink(item); });
 
-        // 4. Renderitzar Tasks amb data
+        // 4. Renderitzar Tasks amb la data extreta
         const tasksContainer = document.getElementById('tasks-container');
         tasksContainer.innerHTML = '';
 
@@ -95,15 +93,7 @@
           const taskBlock = document.createElement('div');
           taskBlock.className = 'border-2 border-white/20 rounded-2xl overflow-hidden bg-blue-900 shadow-md';
           
-          let linksHTML = items.map(item => {
-            const isBlue = item.name.startsWith('B_');
-            const bgClass = isBlue ? 'bg-blue-200 hover:bg-blue-300' : 'bg-red-200 hover:bg-red-300';
-            return `
-              <a href="${item.path}" class="flex justify-between items-center p-3 ${bgClass} rounded-xl font-bold text-blue-950 transition mb-2 last:mb-0">
-                <span>${item.name}</span>
-                <i class="fa-solid fa-arrow-right text-sm"></i>
-              </a>`;
-          }).join('');
+          let linksHTML = items.map(item => renderLink(item)).join('');
 
           taskBlock.innerHTML = `
             <button onclick="toggleSection('${taskKey}')" class="w-full p-4 text-left text-white font-bold text-lg flex justify-between items-center">
