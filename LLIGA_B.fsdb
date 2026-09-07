@@ -397,44 +397,52 @@
           <FsParticipant id="93242" />
           <FsParticipant id="93529">
             <FsFlightData distance="16.588" bonus_distance="0.000" flown_ss_distance="15.600" started_ss="2026-07-11T13:24:23+02:00" finished_ss="" altitude_at_ess="0" finished_task="2026-07-11T14:25:24+02:00" tracklog_filename="XContest Abdelhadi Bouiri - 1783768320000.93529.igc" iv0="34159" d_iv_1s="12.20058" ts="2026-09-06T17:18:26+02:00" alt="1198" bonus_alt="1494" max_alt="2268" last_tracklog_point_distance="15.698" bonus_last_tracklog_point_distance="0.000" last_tracklog_point_time="2026-07-11T14:29:08+02:00" last_tracklog_point_alt="820" landed_before_deadline="1" reachedGoal="0" />
-            <FsResult rank="8" pointswithoutpenalty="263.2372" points="263.2" distance="16.588" ss_time="00:00:00" finished_ss_rank="5" distance_points="252.7" linear_distance_points="252.74" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="10.5" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-06T17:18:27+02:00" real_distance="16.588" last_distance="15.698" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="90721" lc="1.8436" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+            <FsResult rank="10" pointswithoutpenalty="240.9714" points="241" distance="16.588" ss_time="00:00:00" finished_ss_rank="7" distance_points="229.8" linear_distance_points="229.77" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="11.2" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-07T12:07:38+02:00" real_distance="16.588" last_distance="15.698" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="90721" lc="1.8436" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
           </FsParticipant>
           <FsParticipant id="96939">
             <FsFlightData distance="29.326" bonus_distance="29.326" flown_ss_distance="27.338" started_ss="2026-07-11T13:40:55+02:00" finished_ss="2026-07-11T15:27:45+02:00" altitude_at_ess="1663" finished_task="2026-07-11T15:29:24+02:00" tracklog_filename="LiveTrack 44-Adam Puig Tolosa..20260711-083139.96939.96939.igc" iv0="101871" d_iv_1s="18.40597" ts="2026-09-06T17:18:26+02:00" alt="1573" bonus_alt="1573" max_alt="3541" last_tracklog_point_distance="29.326" bonus_last_tracklog_point_distance="29.326" last_tracklog_point_time="2026-07-11T15:29:24+02:00" last_tracklog_point_alt="1573" landed_before_deadline="1" reachedGoal="1" />
-            <FsResult rank="3" pointswithoutpenalty="536.4" points="536.4" distance="29.325" ss_time="02:07:45" finished_ss_rank="3" distance_points="446.8" linear_distance_points="446.8" difficulty_distance_points="0" time_points="89.6" arrival_points="0" departure_points="0" leading_points="0" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T15:27:45+02:00" ss_time_dec_hours="2.1292" ts="2026-09-06T17:18:27+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="994" scored_ss_time="02:07:45" landed_before_stop="False" iv="101871" lc="2.0702" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+            <FsResult rank="5" pointswithoutpenalty="502.4" points="502.4" distance="29.325" ss_time="02:07:45" finished_ss_rank="5" distance_points="406.2" linear_distance_points="406.2" difficulty_distance_points="0" time_points="96.2" arrival_points="0" departure_points="0" leading_points="0" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T15:27:45+02:00" ss_time_dec_hours="2.1292" ts="2026-09-07T12:07:38+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="994" scored_ss_time="02:07:45" landed_before_stop="False" iv="101871" lc="2.0702" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
           </FsParticipant>
           <FsParticipant id="96695">
             <FsFlightData distance="29.326" bonus_distance="29.326" flown_ss_distance="27.338" started_ss="2026-07-11T13:22:44+02:00" finished_ss="2026-07-11T15:51:55+02:00" altitude_at_ess="2082" finished_task="2026-07-11T15:53:52+02:00" tracklog_filename="LiveTrack 37-Roger Vinyoles..20260711-083444.96695.96695.igc" iv0="103059" d_iv_1s="18.40597" ts="2026-09-06T17:18:26+02:00" alt="1950" bonus_alt="1950" max_alt="3707" last_tracklog_point_distance="29.326" bonus_last_tracklog_point_distance="29.326" last_tracklog_point_time="2026-07-11T15:53:52+02:00" last_tracklog_point_alt="1950" landed_before_deadline="1" reachedGoal="1" />
-            <FsResult rank="6" pointswithoutpenalty="446.8" points="446.8" distance="29.325" ss_time="02:31:55" finished_ss_rank="4" distance_points="446.8" linear_distance_points="446.8" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="0" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T15:51:55+02:00" ss_time_dec_hours="2.5319" ts="2026-09-06T17:18:27+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="1413" scored_ss_time="02:31:55" landed_before_stop="False" iv="103059" lc="2.0944" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+            <FsResult rank="8" pointswithoutpenalty="406.2" points="406.2" distance="29.325" ss_time="02:31:55" finished_ss_rank="6" distance_points="406.2" linear_distance_points="406.2" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="0" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T15:51:55+02:00" ss_time_dec_hours="2.5319" ts="2026-09-07T12:07:38+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="1413" scored_ss_time="02:31:55" landed_before_stop="False" iv="103059" lc="2.0944" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
           </FsParticipant>
           <FsParticipant id="93180">
             <FsFlightData distance="29.326" bonus_distance="29.326" flown_ss_distance="27.338" started_ss="2026-07-11T13:21:09+02:00" finished_ss="2026-07-11T14:37:10+02:00" altitude_at_ess="1357" finished_task="2026-07-11T14:39:03+02:00" tracklog_filename="LiveTrack 18-Laia Luz..20260711-082926.93180.93180.igc" iv0="47534" d_iv_1s="18.40597" ts="2026-09-06T17:18:26+02:00" alt="1065" bonus_alt="1065" max_alt="2585" last_tracklog_point_distance="29.326" bonus_last_tracklog_point_distance="29.326" last_tracklog_point_time="2026-07-11T14:39:03+02:00" last_tracklog_point_alt="1065" landed_before_deadline="1" reachedGoal="1" />
-            <FsResult rank="1" pointswithoutpenalty="1000" points="1000" distance="29.325" ss_time="01:17:10" finished_ss_rank="1" distance_points="446.8" linear_distance_points="446.8" difficulty_distance_points="0" time_points="409.4" arrival_points="0" departure_points="0" leading_points="143.8" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T14:37:10+02:00" ss_time_dec_hours="1.2861" ts="2026-09-06T17:18:27+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="688" scored_ss_time="01:17:10" landed_before_stop="False" iv="47534" lc="0.966" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+            <FsResult rank="1" pointswithoutpenalty="1000" points="1000" distance="29.325" ss_time="01:17:10" finished_ss_rank="1" distance_points="406.2" linear_distance_points="406.2" difficulty_distance_points="0" time_points="439.4" arrival_points="0" departure_points="0" leading_points="154.4" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T14:37:10+02:00" ss_time_dec_hours="1.2861" ts="2026-09-07T12:07:38+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="688" scored_ss_time="01:17:10" landed_before_stop="False" iv="47534" lc="0.966" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
           </FsParticipant>
           <FsParticipant id="93414">
             <FsFlightData distance="29.326" bonus_distance="29.326" flown_ss_distance="27.338" started_ss="2026-07-11T13:21:29+02:00" finished_ss="2026-07-11T14:42:50+02:00" altitude_at_ess="987" finished_task="2026-07-11T14:44:22+02:00" tracklog_filename="LiveTrack 21-Jesica Cubo Rodriguez..20260711-084953.93414.93414.igc" iv0="52387" d_iv_1s="18.40597" ts="2026-09-06T17:18:26+02:00" alt="908" bonus_alt="908" max_alt="2387" last_tracklog_point_distance="29.326" bonus_last_tracklog_point_distance="29.326" last_tracklog_point_time="2026-07-11T14:44:22+02:00" last_tracklog_point_alt="908" landed_before_deadline="1" reachedGoal="1" />
-            <FsResult rank="2" pointswithoutpenalty="917.3" points="917.3" distance="29.325" ss_time="01:22:50" finished_ss_rank="2" distance_points="446.8" linear_distance_points="446.8" difficulty_distance_points="0" time_points="357.8" arrival_points="0" departure_points="0" leading_points="112.7" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T14:42:50+02:00" ss_time_dec_hours="1.3806" ts="2026-09-06T17:18:27+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="318" scored_ss_time="01:22:50" landed_before_stop="False" iv="52387" lc="1.0646" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+            <FsResult rank="3" pointswithoutpenalty="911.3" points="911.3" distance="29.325" ss_time="01:22:50" finished_ss_rank="3" distance_points="406.2" linear_distance_points="406.2" difficulty_distance_points="0" time_points="384" arrival_points="0" departure_points="0" leading_points="121.1" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T14:42:50+02:00" ss_time_dec_hours="1.3806" ts="2026-09-07T12:07:38+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="318" scored_ss_time="01:22:50" landed_before_stop="False" iv="52387" lc="1.0646" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
           </FsParticipant>
           <FsParticipant id="96110">
             <FsFlightData distance="16.674" bonus_distance="0.000" flown_ss_distance="15.686" started_ss="2026-07-11T13:21:41+02:00" finished_ss="" altitude_at_ess="0" finished_task="2026-07-11T14:06:05+02:00" tracklog_filename="LiveTrack 05-Brunno Rodrigues Guimaraes..20260711-082906.96110.96110.igc" iv0="22754" d_iv_1s="12.27918" ts="2026-09-06T17:18:27+02:00" alt="786" bonus_alt="1513" max_alt="2485" last_tracklog_point_distance="16.674" bonus_last_tracklog_point_distance="0.000" last_tracklog_point_time="2026-07-11T14:06:05+02:00" last_tracklog_point_alt="786" landed_before_deadline="1" reachedGoal="0" />
-            <FsResult rank="7" pointswithoutpenalty="290.7475" points="290.7" distance="16.674" ss_time="00:00:00" finished_ss_rank="5" distance_points="254" linear_distance_points="254.05" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="36.7" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-06T17:18:27+02:00" real_distance="16.674" last_distance="16.674" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="78600" lc="1.5973" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+            <FsResult rank="9" pointswithoutpenalty="270.4626" points="270.5" distance="16.674" ss_time="00:00:00" finished_ss_rank="7" distance_points="231" linear_distance_points="230.96" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="39.5" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-07T12:07:38+02:00" real_distance="16.674" last_distance="16.674" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="78600" lc="1.5973" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
           </FsParticipant>
           <FsParticipant id="93272">
             <FsFlightData distance="3.591" bonus_distance="0.000" flown_ss_distance="2.603" started_ss="2026-07-11T13:23:56+02:00" finished_ss="" altitude_at_ess="0" finished_task="2026-07-11T13:52:19+02:00" tracklog_filename="LiveTrack 47-Aleix Carbajal..20260711-083125.93272.93272.igc" iv0="373" d_iv_1s="0.38932" ts="2026-09-06T17:18:27+02:00" alt="927" bonus_alt="1494" max_alt="1765" last_tracklog_point_distance="3.318" bonus_last_tracklog_point_distance="0.000" last_tracklog_point_time="2026-07-11T13:53:29+02:00" last_tracklog_point_alt="840" landed_before_deadline="1" reachedGoal="0" />
-            <FsResult rank="9" pointswithoutpenalty="76.1807" points="76.2" distance="5" ss_time="00:00:00" finished_ss_rank="5" distance_points="76.2" linear_distance_points="76.18" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="0" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-06T17:18:27+02:00" real_distance="5" last_distance="3.318" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="164595" lc="3.3449" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+            <FsResult rank="11" pointswithoutpenalty="69.2583" points="69.3" distance="5" ss_time="00:00:00" finished_ss_rank="7" distance_points="69.3" linear_distance_points="69.26" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="0" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-07T12:07:38+02:00" real_distance="5" last_distance="3.318" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="164595" lc="3.3449" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
           </FsParticipant>
           <FsParticipant id="93485">
             <FsFlightData distance="23.915" bonus_distance="0.000" flown_ss_distance="22.927" started_ss="2026-07-11T13:23:21+02:00" finished_ss="" altitude_at_ess="0" finished_task="2026-07-11T14:58:16+02:00" tracklog_filename="LiveTrack 25-Mar Martinez..20260711-085536.93485.93485.igc" iv0="51590" d_iv_1s="17.54655" ts="2026-09-06T17:18:27+02:00" alt="1165" bonus_alt="1496" max_alt="2554" last_tracklog_point_distance="23.336" bonus_last_tracklog_point_distance="0.000" last_tracklog_point_time="2026-07-11T15:03:45+02:00" last_tracklog_point_alt="627" landed_before_deadline="1" reachedGoal="0" />
-            <FsResult rank="5" pointswithoutpenalty="451.7724" points="451.8" distance="23.915" ss_time="00:00:00" finished_ss_rank="5" distance_points="364.4" linear_distance_points="364.37" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="87.4" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-06T17:18:27+02:00" real_distance="23.915" last_distance="23.336" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="59412" lc="1.2074" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+            <FsResult rank="7" pointswithoutpenalty="425.0625" points="425.1" distance="23.915" ss_time="00:00:00" finished_ss_rank="7" distance_points="331.3" linear_distance_points="331.26" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="93.8" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-07T12:07:38+02:00" real_distance="23.915" last_distance="23.336" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="59412" lc="1.2074" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
           </FsParticipant>
           <FsParticipant id="79319">
             <FsFlightData distance="28.081" bonus_distance="0.000" flown_ss_distance="27.093" started_ss="2026-07-11T13:20:45+02:00" finished_ss="" altitude_at_ess="0" finished_task="2026-07-11T14:47:03+02:00" tracklog_filename="LiveTrack 26-Grzegorz Krason..20260711-082314.79319.79319.igc" iv0="60857" d_iv_1s="18.40566" ts="2026-09-06T17:18:27+02:00" alt="631" bonus_alt="1508" max_alt="3129" last_tracklog_point_distance="28.050" bonus_last_tracklog_point_distance="0.000" last_tracklog_point_time="2026-07-11T14:47:16+02:00" last_tracklog_point_alt="622" landed_before_deadline="1" reachedGoal="0" />
-            <FsResult rank="4" pointswithoutpenalty="510.7462" points="510.7" distance="28.081" ss_time="00:00:00" finished_ss_rank="5" distance_points="427.8" linear_distance_points="427.85" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="82.9" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-06T17:18:27+02:00" real_distance="28.081" last_distance="28.05" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="60860" lc="1.2368" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+            <FsResult rank="6" pointswithoutpenalty="477.9685" points="478" distance="28.081" ss_time="00:00:00" finished_ss_rank="7" distance_points="389" linear_distance_points="388.97" difficulty_distance_points="0" time_points="0" arrival_points="0" departure_points="0" leading_points="89" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" ss_time_dec_hours="0" ts="2026-09-07T12:07:38+02:00" real_distance="28.081" last_distance="28.05" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="0" scored_ss_time="00:00:00" landed_before_stop="False" iv="60860" lc="1.2368" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+          </FsParticipant>
+          <FsParticipant id="97342">
+            <FsFlightData distance="29.326" bonus_distance="29.326" flown_ss_distance="27.338" started_ss="2026-07-11T13:21:23+02:00" finished_ss="2026-07-11T14:38:08+02:00" altitude_at_ess="1420" finished_task="2026-07-11T14:39:53+02:00" tracklog_filename="B_Pau Torres_20260711.97342.igc" iv0="48361" d_iv_1s="18.40597" ts="2026-09-07T12:07:33+02:00" alt="1300" bonus_alt="1300" max_alt="2963" last_tracklog_point_distance="29.326" bonus_last_tracklog_point_distance="29.326" last_tracklog_point_time="2026-07-11T14:39:53+02:00" last_tracklog_point_alt="1300" landed_before_deadline="1" reachedGoal="1" />
+            <FsResult rank="2" pointswithoutpenalty="977.1" points="977.1" distance="29.325" ss_time="01:18:08" finished_ss_rank="2" distance_points="406.2" linear_distance_points="406.2" difficulty_distance_points="0" time_points="426.7" arrival_points="0" departure_points="0" leading_points="144.2" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T14:38:08+02:00" ss_time_dec_hours="1.3022" ts="2026-09-07T12:07:38+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="751" scored_ss_time="01:18:08" landed_before_stop="False" iv="48361" lc="0.9828" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
+          </FsParticipant>
+          <FsParticipant id="94478">
+            <FsFlightData distance="29.326" bonus_distance="29.326" flown_ss_distance="27.338" started_ss="2026-07-11T13:22:14+02:00" finished_ss="2026-07-11T14:45:19+02:00" altitude_at_ess="1804" finished_task="2026-07-11T14:46:27+02:00" tracklog_filename="B_Xavi Lison_20260711.94478.igc" iv0="53050" d_iv_1s="18.40597" ts="2026-09-07T12:07:33+02:00" alt="1674" bonus_alt="1674" max_alt="3427" last_tracklog_point_distance="29.326" bonus_last_tracklog_point_distance="29.326" last_tracklog_point_time="2026-07-11T14:46:27+02:00" last_tracklog_point_alt="1674" landed_before_deadline="1" reachedGoal="1" />
+            <FsResult rank="4" pointswithoutpenalty="888.7" points="888.7" distance="29.325" ss_time="01:25:19" finished_ss_rank="4" distance_points="406.2" linear_distance_points="406.2" difficulty_distance_points="0" time_points="364.4" arrival_points="0" departure_points="0" leading_points="118.1" penalty="0" penalty_points="0" penalty_reason="" penalty_points_auto="0" penalty_reason_auto="" penalty_min_dist_points="0" got_time_but_not_goal_penalty="False" started_ss="2026-07-11T13:20:00+02:00" finished_ss="2026-07-11T14:45:19+02:00" ss_time_dec_hours="1.4219" ts="2026-09-07T12:07:38+02:00" real_distance="29.325" last_distance="29.325" last_altitude_above_goal="0" altitude_bonus_seconds="0" altitude_bonus_time="00:00:00" alt_above_goal_at_ess="1135" scored_ss_time="01:25:19" landed_before_stop="False" iv="53050" lc="1.0781" goal_altitude_factor="1" elevated_goal_tp_reduction="0" />
           </FsParticipant>
         </FsParticipants>
-        <FsTaskResults H116625695="1" H2250966595="6">
-          <FsTaskResult id="overall" title="Overall" filter_from_category="" report_title="Task 2: Overall V6" ts="2026-09-06T17:18:28+02:00" result_pattern="#0.0" version="6">
-            <FsTaskScoreParams task_distance="29.325" ss_distance="27.337" launch_to_ess_distance="28.325" qnh_setting="1013.25" no_of_pilots_in_competition="31" max_time_en_route="00:00:00" max_time_en_route_tp="0" no_of_pilots_present="9" no_of_pilots_flying="9" no_of_pilots_lo="5" no_of_pilots_landed_before_stop="0" sum_dist_over_min="162.562" sum_real_dist_over_min="162.562" sum_flown_distances="206.153" best_dist="29.325" best_real_dist="29.325" best_time="1.2861" last_finisher_start_time="2026-07-11T13:20:00+02:00" last_start_time="2026-07-11T13:20:00+02:00" first_start_time="2026-07-11T13:20:45+02:00" first_finish_time="2026-07-11T14:37:10+02:00" last_ss_finish_time="2026-07-11T15:51:55+02:00" last_landed_before_ess_finish_time="2026-07-11T14:58:16+02:00" no_of_pilots_reaching_es="4" no_of_pilots_reaching_goal="4" max_time_to_get_time_points="2.4202" goalratio="0.4444" arrival_weight="0" departure_weight="0" leading_weight="0.1438" time_weight="0.4093" distance_weight="0.4468" smallest_leading_coefficient="0.966" available_points_distance="446.8" available_points_time="409.4" available_points_departure="0" available_points_leading="143.8" available_points_arrival="0" time_validity="1" launch_validity="1" distance_validity="1" stop_validity="1" day_quality="1" ftv_day_validity="1" time_points_stop_correction="0" counts_for_competition="True" validity_below_minimum_to_count_for_competition="False">
+        <FsTaskResults H116625695="1" H2250966595="7">
+          <FsTaskResult id="overall" title="Overall" filter_from_category="" report_title="Task 2: Overall V7" ts="2026-09-07T12:07:38+02:00" result_pattern="#0.0" version="7">
+            <FsTaskScoreParams task_distance="29.325" ss_distance="27.337" launch_to_ess_distance="28.325" qnh_setting="1013.25" no_of_pilots_in_competition="31" max_time_en_route="00:00:00" max_time_en_route_tp="0" no_of_pilots_present="11" no_of_pilots_flying="11" no_of_pilots_lo="5" no_of_pilots_landed_before_stop="0" sum_dist_over_min="211.214" sum_real_dist_over_min="211.214" sum_flown_distances="264.805" best_dist="29.325" best_real_dist="29.325" best_time="1.2861" last_finisher_start_time="2026-07-11T13:20:00+02:00" last_start_time="2026-07-11T13:20:00+02:00" first_start_time="2026-07-11T13:20:45+02:00" first_finish_time="2026-07-11T14:37:10+02:00" last_ss_finish_time="2026-07-11T15:51:55+02:00" last_landed_before_ess_finish_time="2026-07-11T14:58:16+02:00" no_of_pilots_reaching_es="6" no_of_pilots_reaching_goal="6" max_time_to_get_time_points="2.4202" goalratio="0.5455" arrival_weight="0" departure_weight="0" leading_weight="0.1544" time_weight="0.4394" distance_weight="0.4062" smallest_leading_coefficient="0.966" available_points_distance="406.2" available_points_time="439.4" available_points_departure="0" available_points_leading="154.4" available_points_arrival="0" time_validity="1" launch_validity="1" distance_validity="1" stop_validity="1" day_quality="1" ftv_day_validity="1" time_points_stop_correction="0" counts_for_competition="True" validity_below_minimum_to_count_for_competition="False">
               <FsTaskDistToTp tp_no="1" distance="0.000" />
               <FsTaskDistToTp tp_no="2" distance="0.988" />
               <FsTaskDistToTp tp_no="3" distance="2.632" />
@@ -444,39 +452,41 @@
               <FsTaskDistToTp tp_no="7" distance="29.325" />
             </FsTaskScoreParams>
             <FsTaskResultParticipants>
-              <FsTaskParticipantResult id="93180" rank="1" distance_points="446.8" departure_points="0" arrival_points="0" leading_points="143.8" time_points="409.4" points="1000" />
-              <FsTaskParticipantResult id="93414" rank="2" distance_points="446.8" departure_points="0" arrival_points="0" leading_points="112.7" time_points="357.8" points="917.3" />
-              <FsTaskParticipantResult id="96939" rank="3" distance_points="446.8" departure_points="0" arrival_points="0" leading_points="0" time_points="89.6" points="536.4" />
-              <FsTaskParticipantResult id="79319" rank="4" distance_points="427.8" departure_points="0" arrival_points="0" leading_points="82.9" time_points="0" points="510.7" />
-              <FsTaskParticipantResult id="93485" rank="5" distance_points="364.4" departure_points="0" arrival_points="0" leading_points="87.4" time_points="0" points="451.8" />
-              <FsTaskParticipantResult id="96695" rank="6" distance_points="446.8" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="446.8" />
-              <FsTaskParticipantResult id="96110" rank="7" distance_points="254" departure_points="0" arrival_points="0" leading_points="36.7" time_points="0" points="290.7" />
-              <FsTaskParticipantResult id="93529" rank="8" distance_points="252.7" departure_points="0" arrival_points="0" leading_points="10.5" time_points="0" points="263.2" />
-              <FsTaskParticipantResult id="93272" rank="9" distance_points="76.2" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="76.2" />
-              <FsTaskParticipantResult id="96090" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="89003" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="96093" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="96909" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="93242" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="95539" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="93439" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="93744" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="96962" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="93178" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="93229" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="96060" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="93185" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="95564" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="95813" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="97261" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="93275" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="93282" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="93234" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
-              <FsTaskParticipantResult id="96881" rank="10" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93180" rank="1" distance_points="406.2" departure_points="0" arrival_points="0" leading_points="154.4" time_points="439.4" points="1000" />
+              <FsTaskParticipantResult id="97342" rank="2" distance_points="406.2" departure_points="0" arrival_points="0" leading_points="144.2" time_points="426.7" points="977.1" />
+              <FsTaskParticipantResult id="93414" rank="3" distance_points="406.2" departure_points="0" arrival_points="0" leading_points="121.1" time_points="384" points="911.3" />
+              <FsTaskParticipantResult id="94478" rank="4" distance_points="406.2" departure_points="0" arrival_points="0" leading_points="118.1" time_points="364.4" points="888.7" />
+              <FsTaskParticipantResult id="96939" rank="5" distance_points="406.2" departure_points="0" arrival_points="0" leading_points="0" time_points="96.2" points="502.4" />
+              <FsTaskParticipantResult id="79319" rank="6" distance_points="389" departure_points="0" arrival_points="0" leading_points="89" time_points="0" points="478" />
+              <FsTaskParticipantResult id="93485" rank="7" distance_points="331.3" departure_points="0" arrival_points="0" leading_points="93.8" time_points="0" points="425.1" />
+              <FsTaskParticipantResult id="96695" rank="8" distance_points="406.2" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="406.2" />
+              <FsTaskParticipantResult id="96110" rank="9" distance_points="231" departure_points="0" arrival_points="0" leading_points="39.5" time_points="0" points="270.5" />
+              <FsTaskParticipantResult id="93529" rank="10" distance_points="229.8" departure_points="0" arrival_points="0" leading_points="11.2" time_points="0" points="241" />
+              <FsTaskParticipantResult id="93272" rank="11" distance_points="69.3" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="69.3" />
+              <FsTaskParticipantResult id="96090" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="89003" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="95539" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="96909" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93242" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93439" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93744" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="96962" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93178" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93229" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="96060" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93185" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93282" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="95813" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="97261" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="96093" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="95564" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93234" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="96881" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
+              <FsTaskParticipantResult id="93275" rank="12" distance_points="0" departure_points="0" arrival_points="0" leading_points="0" time_points="0" points="0" no_distance="ABS" />
             </FsTaskResultParticipants>
           </FsTaskResult>
         </FsTaskResults>
-        <FsTaskScoreParams task_distance="29.325" ss_distance="27.337" launch_to_ess_distance="28.325" qnh_setting="1013.25" no_of_pilots_in_competition="31" max_time_en_route="00:00:00" max_time_en_route_tp="0" no_of_pilots_present="9" no_of_pilots_flying="9" no_of_pilots_lo="5" no_of_pilots_landed_before_stop="0" sum_dist_over_min="162.562" sum_real_dist_over_min="162.562" sum_flown_distances="206.153" best_dist="29.325" best_real_dist="29.325" best_time="1.2861" last_finisher_start_time="2026-07-11T13:20:00+02:00" last_start_time="2026-07-11T13:20:00+02:00" first_start_time="2026-07-11T13:20:45+02:00" first_finish_time="2026-07-11T14:37:10+02:00" last_ss_finish_time="2026-07-11T15:51:55+02:00" last_landed_before_ess_finish_time="2026-07-11T14:58:16+02:00" no_of_pilots_reaching_es="4" no_of_pilots_reaching_goal="4" max_time_to_get_time_points="2.4202" goalratio="0.4444" arrival_weight="0" departure_weight="0" leading_weight="0.1438" time_weight="0.4093" distance_weight="0.4468" smallest_leading_coefficient="0.966" available_points_distance="446.8" available_points_time="409.4" available_points_departure="0" available_points_leading="143.8" available_points_arrival="0" time_validity="1" launch_validity="1" distance_validity="1" stop_validity="1" day_quality="1" ftv_day_validity="1" time_points_stop_correction="0" counts_for_competition="True" validity_below_minimum_to_count_for_competition="False">
+        <FsTaskScoreParams task_distance="29.325" ss_distance="27.337" launch_to_ess_distance="28.325" qnh_setting="1013.25" no_of_pilots_in_competition="31" max_time_en_route="00:00:00" max_time_en_route_tp="0" no_of_pilots_present="11" no_of_pilots_flying="11" no_of_pilots_lo="5" no_of_pilots_landed_before_stop="0" sum_dist_over_min="211.214" sum_real_dist_over_min="211.214" sum_flown_distances="264.805" best_dist="29.325" best_real_dist="29.325" best_time="1.2861" last_finisher_start_time="2026-07-11T13:20:00+02:00" last_start_time="2026-07-11T13:20:00+02:00" first_start_time="2026-07-11T13:20:45+02:00" first_finish_time="2026-07-11T14:37:10+02:00" last_ss_finish_time="2026-07-11T15:51:55+02:00" last_landed_before_ess_finish_time="2026-07-11T14:58:16+02:00" no_of_pilots_reaching_es="6" no_of_pilots_reaching_goal="6" max_time_to_get_time_points="2.4202" goalratio="0.5455" arrival_weight="0" departure_weight="0" leading_weight="0.1544" time_weight="0.4394" distance_weight="0.4062" smallest_leading_coefficient="0.966" available_points_distance="406.2" available_points_time="439.4" available_points_departure="0" available_points_leading="154.4" available_points_arrival="0" time_validity="1" launch_validity="1" distance_validity="1" stop_validity="1" day_quality="1" ftv_day_validity="1" time_points_stop_correction="0" counts_for_competition="True" validity_below_minimum_to_count_for_competition="False">
           <FsTaskDistToTp tp_no="1" distance="0.000" />
           <FsTaskDistToTp tp_no="2" distance="0.988" />
           <FsTaskDistToTp tp_no="3" distance="2.632" />
@@ -1236,8 +1246,8 @@
         </FsParticipants>
       </FsTask>
     </FsTasks>
-    <FsCompetitionResults H116625695="20" H2250966595="194">
-      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V188" top="all" tasks="1" version="188" filter_from_category="" ts="2026-09-06T17:18:55+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
+    <FsCompetitionResults H116625695="20" H2250966595="201">
+      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V195" top="all" tasks="1" version="195" filter_from_category="" ts="2026-09-07T12:07:38+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
         <FsParticipant id="95813" points="670" rank="1">
           <FsTask id="1" points="1000" counting_points="670" counts="1" />
         </FsParticipant>
@@ -1269,174 +1279,187 @@
           <FsTask id="1" points="180" counting_points="120.6" counts="1" />
         </FsParticipant>
       </FsCompetitionResult>
-      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V189" top="all" tasks="1;2" version="189" filter_from_category="" ts="2026-09-06T17:18:55+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
-        <FsParticipant id="93180" points="1000" rank="1">
-          <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="1000" counting_points="1000" counts="1" />
-        </FsParticipant>
+      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V196" top="all" tasks="1;2" version="196" filter_from_category="" ts="2026-09-07T12:07:38+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
         <FsParticipant id="95813" points="1000" rank="1">
           <FsTask id="1" points="1000" counting_points="1000" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93414" points="978.5" rank="3">
-          <FsTask id="1" points="180" counting_points="61.2" counts="1" />
-          <FsTask id="2" points="917.3" counting_points="917.3" counts="1" />
+        <FsParticipant id="93180" points="1000" rank="1">
+          <FsTask id="1" points="0" counting_points="0" counts="1" />
+          <FsTask id="2" points="1000" counting_points="1000" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96939" points="597.6" rank="4">
-          <FsTask id="1" points="180" counting_points="61.2" counts="1" />
-          <FsTask id="2" points="536.4" counting_points="536.4" counts="1" />
+        <FsParticipant id="97342" points="977.1" rank="3">
+          <FsTask id="1" points="0" counting_points="0" counts="1" />
+          <FsTask id="2" points="977.1" counting_points="977.1" counts="1" />
         </FsParticipant>
-        <FsParticipant id="79319" points="581.8" rank="5">
+        <FsParticipant id="93414" points="972.5" rank="4">
+          <FsTask id="1" points="180" counting_points="61.2" counts="1" />
+          <FsTask id="2" points="911.3" counting_points="911.3" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="94478" points="888.7" rank="5">
+          <FsTask id="1" points="0" counting_points="0" counts="1" />
+          <FsTask id="2" points="888.7" counting_points="888.7" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="96939" points="563.6" rank="6">
+          <FsTask id="1" points="180" counting_points="61.2" counts="1" />
+          <FsTask id="2" points="502.4" counting_points="502.4" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="79319" points="549.1" rank="7">
           <FsTask id="1" points="209" counting_points="71.1" counts="1" />
-          <FsTask id="2" points="510.7" counting_points="510.7" counts="1" />
+          <FsTask id="2" points="478" counting_points="478" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96695" points="508" rank="6">
+        <FsParticipant id="96695" points="467.4" rank="8">
           <FsTask id="1" points="180" counting_points="61.2" counts="1" />
-          <FsTask id="2" points="446.8" counting_points="446.8" counts="1" />
+          <FsTask id="2" points="406.2" counting_points="406.2" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93485" points="451.8" rank="7">
+        <FsParticipant id="93485" points="425.1" rank="9">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="451.8" counting_points="451.8" counts="1" />
+          <FsTask id="2" points="425.1" counting_points="425.1" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93529" points="324.4" rank="8">
+        <FsParticipant id="93529" points="302.2" rank="10">
           <FsTask id="1" points="180" counting_points="61.2" counts="1" />
-          <FsTask id="2" points="263.2" counting_points="263.2" counts="1" />
+          <FsTask id="2" points="241" counting_points="241" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96110" points="290.7" rank="9">
+        <FsParticipant id="96110" points="270.5" rank="11">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="290.7" counting_points="290.7" counts="1" />
+          <FsTask id="2" points="270.5" counting_points="270.5" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96090" points="215.9" rank="10">
+        <FsParticipant id="96090" points="215.9" rank="12">
           <FsTask id="1" points="215.9" counting_points="215.9" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93242" points="180" rank="11">
+        <FsParticipant id="93234" points="180" rank="13">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93282" points="180" rank="11">
+        <FsParticipant id="93242" points="180" rank="13">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93234" points="180" rank="11">
+        <FsParticipant id="93282" points="180" rank="13">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93272" points="76.2" rank="14">
+        <FsParticipant id="93272" points="69.3" rank="16">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="76.2" counting_points="76.2" counts="1" />
+          <FsTask id="2" points="69.3" counting_points="69.3" counts="1" />
         </FsParticipant>
       </FsCompetitionResult>
-      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V190" top="all" tasks="1;2;3" version="190" filter_from_category="" ts="2026-09-06T17:18:55+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
-        <FsParticipant id="93180" points="1502.6" rank="1">
+      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V197" top="all" tasks="1;2;3" version="197" filter_from_category="" ts="2026-09-07T12:07:38+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
+        <FsParticipant id="94478" points="1558" rank="1">
+          <FsTask id="1" points="0" counting_points="0" counts="1" />
+          <FsTask id="2" points="888.7" counting_points="888.7" counts="1" />
+          <FsTask id="3" points="669.3" counting_points="669.3" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="93180" points="1502.6" rank="2">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
           <FsTask id="2" points="1000" counting_points="1000" counts="1" />
           <FsTask id="3" points="502.6" counting_points="502.6" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96695" points="1405.1" rank="2">
+        <FsParticipant id="96695" points="1364.5" rank="3">
           <FsTask id="1" points="180" counting_points="4.6" counts="1" />
-          <FsTask id="2" points="446.8" counting_points="446.8" counts="1" />
+          <FsTask id="2" points="406.2" counting_points="406.2" counts="1" />
           <FsTask id="3" points="953.7" counting_points="953.7" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93414" points="1188.7" rank="3">
+        <FsParticipant id="93414" points="1182.7" rank="4">
           <FsTask id="1" points="180" counting_points="4.6" counts="1" />
-          <FsTask id="2" points="917.3" counting_points="917.3" counts="1" />
+          <FsTask id="2" points="911.3" counting_points="911.3" counts="1" />
           <FsTask id="3" points="266.8" counting_points="266.8" counts="1" />
         </FsParticipant>
-        <FsParticipant id="95813" points="1000" rank="4">
+        <FsParticipant id="95813" points="1000" rank="5">
           <FsTask id="1" points="1000" counting_points="1000" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96110" points="859.8" rank="5">
+        <FsParticipant id="97342" points="977.1" rank="6">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="290.7" counting_points="290.7" counts="1" />
+          <FsTask id="2" points="977.1" counting_points="977.1" counts="1" />
+          <FsTask id="3" points="0" counting_points="0" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="96110" points="839.6" rank="7">
+          <FsTask id="1" points="0" counting_points="0" counts="1" />
+          <FsTask id="2" points="270.5" counting_points="270.5" counts="1" />
           <FsTask id="3" points="569.1" counting_points="569.1" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93234" points="792" rank="6">
+        <FsParticipant id="93234" points="792" rank="8">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="612" counting_points="612" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93485" points="718.5" rank="7">
+        <FsParticipant id="93485" points="691.8" rank="9">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="451.8" counting_points="451.8" counts="1" />
+          <FsTask id="2" points="425.1" counting_points="425.1" counts="1" />
           <FsTask id="3" points="266.7" counting_points="266.7" counts="1" />
         </FsParticipant>
-        <FsParticipant id="79319" points="715.3" rank="8">
+        <FsParticipant id="79319" points="682.6" rank="10">
           <FsTask id="1" points="209" counting_points="204.6" counts="1" />
-          <FsTask id="2" points="510.7" counting_points="510.7" counts="1" />
+          <FsTask id="2" points="478" counting_points="478" counts="1" />
           <FsTask id="3" points="126.6" counting_points="0" counts="0" />
         </FsParticipant>
-        <FsParticipant id="96939" points="712.6" rank="9">
+        <FsParticipant id="96939" points="678.6" rank="11">
           <FsTask id="1" points="180" counting_points="176.2" counts="1" />
-          <FsTask id="2" points="536.4" counting_points="536.4" counts="1" />
+          <FsTask id="2" points="502.4" counting_points="502.4" counts="1" />
           <FsTask id="3" points="126.6" counting_points="0" counts="0" />
         </FsParticipant>
-        <FsParticipant id="94478" points="669.3" rank="10">
-          <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="0" counting_points="0" counts="1" />
-          <FsTask id="3" points="669.3" counting_points="669.3" counts="1" />
-        </FsParticipant>
-        <FsParticipant id="93529" points="623.1" rank="11">
+        <FsParticipant id="93529" points="600.9" rank="12">
           <FsTask id="1" points="180" counting_points="4.6" counts="1" />
-          <FsTask id="2" points="263.2" counting_points="263.2" counts="1" />
+          <FsTask id="2" points="241" counting_points="241" counts="1" />
           <FsTask id="3" points="355.3" counting_points="355.3" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93439" points="559.6" rank="12">
+        <FsParticipant id="93439" points="559.6" rank="13">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="559.6" counting_points="559.6" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96090" points="215.9" rank="13">
+        <FsParticipant id="96090" points="215.9" rank="14">
           <FsTask id="1" points="215.9" counting_points="215.9" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93282" points="180" rank="14">
+        <FsParticipant id="93282" points="180" rank="15">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93242" points="180" rank="14">
+        <FsParticipant id="93242" points="180" rank="15">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93272" points="76.2" rank="16">
+        <FsParticipant id="93272" points="69.3" rank="17">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="76.2" counting_points="76.2" counts="1" />
+          <FsTask id="2" points="69.3" counting_points="69.3" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
         </FsParticipant>
       </FsCompetitionResult>
-      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V191" top="all" tasks="1;2;3;4" version="191" filter_from_category="" ts="2026-09-06T17:18:55+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
-        <FsParticipant id="94478" points="1660.5" rank="1">
-          <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="0" counting_points="0" counts="0" />
-          <FsTask id="3" points="669.3" counting_points="669.3" counts="1" />
+      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V198" top="all" tasks="1;2;3;4" version="198" filter_from_category="" ts="2026-09-07T12:07:38+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
+        <FsParticipant id="94478" points="2337.4" rank="1">
+          <FsTask id="1" points="0" counting_points="0" counts="0" />
+          <FsTask id="2" points="888.7" counting_points="888.7" counts="1" />
+          <FsTask id="3" points="669.3" counting_points="457.5" counts="1" />
           <FsTask id="4" points="991.2" counting_points="991.2" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93414" points="1654.9" rank="2">
+        <FsParticipant id="93414" points="1648.9" rank="2">
           <FsTask id="1" points="180" counting_points="0" counts="0" />
-          <FsTask id="2" points="917.3" counting_points="917.3" counts="1" />
+          <FsTask id="2" points="911.3" counting_points="911.3" counts="1" />
           <FsTask id="3" points="266.8" counting_points="182.4" counts="1" />
           <FsTask id="4" points="555.2" counting_points="555.2" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96695" points="1524.6" rank="3">
-          <FsTask id="1" points="180" counting_points="124.1" counts="1" />
-          <FsTask id="2" points="446.8" counting_points="446.8" counts="1" />
-          <FsTask id="3" points="953.7" counting_points="953.7" counts="1" />
-          <FsTask id="4" points="0" counting_points="0" counts="0" />
-        </FsParticipant>
-        <FsParticipant id="93180" points="1502.6" rank="4">
+        <FsParticipant id="93180" points="1502.6" rank="3">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
           <FsTask id="2" points="1000" counting_points="1000" counts="1" />
           <FsTask id="3" points="502.6" counting_points="502.6" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="79319" points="1058.8" rank="5">
+        <FsParticipant id="96695" points="1484" rank="4">
+          <FsTask id="1" points="180" counting_points="124.1" counts="1" />
+          <FsTask id="2" points="406.2" counting_points="406.2" counts="1" />
+          <FsTask id="3" points="953.7" counting_points="953.7" counts="1" />
+          <FsTask id="4" points="0" counting_points="0" counts="0" />
+        </FsParticipant>
+        <FsParticipant id="79319" points="1026.1" rank="5">
           <FsTask id="1" points="209" counting_points="136.2" counts="1" />
-          <FsTask id="2" points="510.7" counting_points="510.7" counts="1" />
+          <FsTask id="2" points="478" counting_points="478" counts="1" />
           <FsTask id="3" points="126.6" counting_points="0" counts="0" />
           <FsTask id="4" points="411.9" counting_points="411.9" counts="1" />
         </FsParticipant>
@@ -1446,17 +1469,17 @@
           <FsTask id="3" points="0" counting_points="0" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96110" points="981.8" rank="7">
+        <FsParticipant id="97342" points="977.1" rank="7">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="290.7" counting_points="290.7" counts="1" />
+          <FsTask id="2" points="977.1" counting_points="977.1" counts="1" />
+          <FsTask id="3" points="0" counting_points="0" counts="1" />
+          <FsTask id="4" points="0" counting_points="0" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="96110" points="961.6" rank="8">
+          <FsTask id="1" points="0" counting_points="0" counts="0" />
+          <FsTask id="2" points="270.5" counting_points="270.5" counts="1" />
           <FsTask id="3" points="569.1" counting_points="569.1" counts="1" />
           <FsTask id="4" points="175.4" counting_points="122" counts="1" />
-        </FsParticipant>
-        <FsParticipant id="96939" points="813.3" rank="8">
-          <FsTask id="1" points="180" counting_points="180" counts="1" />
-          <FsTask id="2" points="536.4" counting_points="536.4" counts="1" />
-          <FsTask id="3" points="126.6" counting_points="0" counts="0" />
-          <FsTask id="4" points="149.4" counting_points="96.9" counts="1" />
         </FsParticipant>
         <FsParticipant id="93234" points="792" rank="9">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
@@ -1464,17 +1487,17 @@
           <FsTask id="3" points="612" counting_points="612" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93529" points="742.6" rank="10">
+        <FsParticipant id="96939" points="779.3" rank="10">
+          <FsTask id="1" points="180" counting_points="180" counts="1" />
+          <FsTask id="2" points="502.4" counting_points="502.4" counts="1" />
+          <FsTask id="3" points="126.6" counting_points="0" counts="0" />
+          <FsTask id="4" points="149.4" counting_points="96.9" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="93529" points="720.4" rank="11">
           <FsTask id="1" points="180" counting_points="124.1" counts="1" />
-          <FsTask id="2" points="263.2" counting_points="263.2" counts="1" />
+          <FsTask id="2" points="241" counting_points="241" counts="1" />
           <FsTask id="3" points="355.3" counting_points="355.3" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="0" />
-        </FsParticipant>
-        <FsParticipant id="93485" points="718.5" rank="11">
-          <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="451.8" counting_points="451.8" counts="1" />
-          <FsTask id="3" points="266.7" counting_points="266.7" counts="1" />
-          <FsTask id="4" points="0" counting_points="0" counts="1" />
         </FsParticipant>
         <FsParticipant id="93439" points="704" rank="12">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
@@ -1482,55 +1505,61 @@
           <FsTask id="3" points="559.6" counting_points="559.6" counts="1" />
           <FsTask id="4" points="144.4" counting_points="144.4" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96090" points="215.9" rank="13">
+        <FsParticipant id="93485" points="691.8" rank="13">
+          <FsTask id="1" points="0" counting_points="0" counts="0" />
+          <FsTask id="2" points="425.1" counting_points="425.1" counts="1" />
+          <FsTask id="3" points="266.7" counting_points="266.7" counts="1" />
+          <FsTask id="4" points="0" counting_points="0" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="96090" points="215.9" rank="14">
           <FsTask id="1" points="215.9" counting_points="215.9" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="0" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93242" points="180" rank="14">
+        <FsParticipant id="93282" points="180" rank="15">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="0" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93282" points="180" rank="14">
+        <FsParticipant id="93242" points="180" rank="15">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="0" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93185" points="147.2" rank="16">
+        <FsParticipant id="93185" points="147.2" rank="17">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="0" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
           <FsTask id="4" points="147.2" counting_points="147.2" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93272" points="76.2" rank="17">
+        <FsParticipant id="93272" points="69.3" rank="18">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="76.2" counting_points="76.2" counts="1" />
+          <FsTask id="2" points="69.3" counting_points="69.3" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
         </FsParticipant>
       </FsCompetitionResult>
-      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V192" top="all" tasks="1;2;3;4;5" version="192" filter_from_category="" ts="2026-09-06T17:18:55+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
-        <FsParticipant id="94478" points="2660.5" rank="1">
-          <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="0" counting_points="0" counts="0" />
-          <FsTask id="3" points="669.3" counting_points="669.3" counts="1" />
+      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V199" top="all" tasks="1;2;3;4;5" version="199" filter_from_category="" ts="2026-09-07T12:07:38+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
+        <FsParticipant id="94478" points="3105.8" rank="1">
+          <FsTask id="1" points="0" counting_points="0" counts="0" />
+          <FsTask id="2" points="888.7" counting_points="888.7" counts="1" />
+          <FsTask id="3" points="669.3" counting_points="225.9" counts="1" />
           <FsTask id="4" points="991.2" counting_points="991.2" counts="1" />
           <FsTask id="5" points="1000" counting_points="1000" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96695" points="2135.6" rank="2">
+        <FsParticipant id="96695" points="2095" rank="2">
           <FsTask id="1" points="180" counting_points="64.7" counts="1" />
-          <FsTask id="2" points="446.8" counting_points="446.8" counts="1" />
+          <FsTask id="2" points="406.2" counting_points="406.2" counts="1" />
           <FsTask id="3" points="953.7" counting_points="953.7" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="0" />
           <FsTask id="5" points="670.4" counting_points="670.4" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93414" points="1927" rank="3">
+        <FsParticipant id="93414" points="1921" rank="3">
           <FsTask id="1" points="180" counting_points="0" counts="0" />
-          <FsTask id="2" points="917.3" counting_points="917.3" counts="1" />
+          <FsTask id="2" points="911.3" counting_points="911.3" counts="1" />
           <FsTask id="3" points="266.8" counting_points="90" counts="1" />
           <FsTask id="4" points="555.2" counting_points="555.2" counts="1" />
           <FsTask id="5" points="364.5" counting_points="364.5" counts="1" />
@@ -1542,16 +1571,16 @@
           <FsTask id="4" points="0" counting_points="0" counts="0" />
           <FsTask id="5" points="317.3" counting_points="317.3" counts="1" />
         </FsParticipant>
-        <FsParticipant id="79319" points="1314.3" rank="5">
+        <FsParticipant id="79319" points="1281.6" rank="5">
           <FsTask id="1" points="209" counting_points="67.3" counts="1" />
-          <FsTask id="2" points="510.7" counting_points="510.7" counts="1" />
+          <FsTask id="2" points="478" counting_points="478" counts="1" />
           <FsTask id="3" points="126.6" counting_points="0" counts="0" />
           <FsTask id="4" points="411.9" counting_points="411.9" counts="1" />
           <FsTask id="5" points="324.4" counting_points="324.4" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96110" points="1077.6" rank="6">
+        <FsParticipant id="96110" points="1057.4" rank="6">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="290.7" counting_points="290.7" counts="1" />
+          <FsTask id="2" points="270.5" counting_points="270.5" counts="1" />
           <FsTask id="3" points="569.1" counting_points="569.1" counts="1" />
           <FsTask id="4" points="175.4" counting_points="175.4" counts="1" />
           <FsTask id="5" points="115.1" counting_points="42.4" counts="1" />
@@ -1577,88 +1606,87 @@
           <FsTask id="4" points="144.4" counting_points="144.4" counts="1" />
           <FsTask id="5" points="280.5" counting_points="280.5" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96939" points="908.5" rank="10">
+        <FsParticipant id="97342" points="977.1" rank="10">
+          <FsTask id="1" points="0" counting_points="0" counts="1" />
+          <FsTask id="2" points="977.1" counting_points="977.1" counts="1" />
+          <FsTask id="3" points="0" counting_points="0" counts="0" />
+          <FsTask id="4" points="0" counting_points="0" counts="1" />
+          <FsTask id="5" points="0" counting_points="0" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="96939" points="874.5" rank="11">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
-          <FsTask id="2" points="536.4" counting_points="536.4" counts="1" />
+          <FsTask id="2" points="502.4" counting_points="502.4" counts="1" />
           <FsTask id="3" points="126.6" counting_points="42.7" counts="1" />
           <FsTask id="4" points="149.4" counting_points="149.4" counts="1" />
           <FsTask id="5" points="115.1" counting_points="0" counts="0" />
         </FsParticipant>
-        <FsParticipant id="93529" points="798.5" rank="11">
+        <FsParticipant id="93529" points="776.3" rank="12">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
-          <FsTask id="2" points="263.2" counting_points="263.2" counts="1" />
+          <FsTask id="2" points="241" counting_points="241" counts="1" />
           <FsTask id="3" points="355.3" counting_points="355.3" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="0" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93485" points="718.5" rank="12">
+        <FsParticipant id="93485" points="691.8" rank="13">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="451.8" counting_points="451.8" counts="1" />
+          <FsTask id="2" points="425.1" counting_points="425.1" counts="1" />
           <FsTask id="3" points="266.7" counting_points="266.7" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96881" points="626" rank="13">
+        <FsParticipant id="96881" points="626" rank="14">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
           <FsTask id="5" points="626" counting_points="626" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93185" points="429.6" rank="14">
+        <FsParticipant id="93185" points="429.6" rank="15">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
           <FsTask id="4" points="147.2" counting_points="147.2" counts="1" />
           <FsTask id="5" points="282.4" counting_points="282.4" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96090" points="215.9" rank="15">
+        <FsParticipant id="96090" points="215.9" rank="16">
           <FsTask id="1" points="215.9" counting_points="215.9" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93242" points="180" rank="16">
+        <FsParticipant id="93242" points="180" rank="17">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93282" points="180" rank="16">
+        <FsParticipant id="93282" points="180" rank="17">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93272" points="76.2" rank="18">
+        <FsParticipant id="93272" points="69.3" rank="19">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="76.2" counting_points="76.2" counts="1" />
+          <FsTask id="2" points="69.3" counting_points="69.3" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
         </FsParticipant>
       </FsCompetitionResult>
-      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V193" top="all" tasks="1;2;3;4;5;6" version="193" filter_from_category="" ts="2026-09-06T17:18:55+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
-        <FsParticipant id="94478" points="3654.3" rank="1">
-          <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="0" counting_points="0" counts="0" />
-          <FsTask id="3" points="669.3" counting_points="669.3" counts="1" />
+      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V200" top="all" tasks="1;2;3;4;5;6" version="200" filter_from_category="" ts="2026-09-07T12:07:38+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
+        <FsParticipant id="94478" points="3868.3" rank="1">
+          <FsTask id="1" points="0" counting_points="0" counts="0" />
+          <FsTask id="2" points="888.7" counting_points="883.3" counts="1" />
+          <FsTask id="3" points="669.3" counting_points="0" counts="0" />
           <FsTask id="4" points="991.2" counting_points="991.2" counts="1" />
           <FsTask id="5" points="1000" counting_points="1000" counts="1" />
           <FsTask id="6" points="993.8" counting_points="993.8" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93414" points="2726.4" rank="2">
-          <FsTask id="1" points="180" counting_points="0" counts="0" />
-          <FsTask id="2" points="917.3" counting_points="917.3" counts="1" />
-          <FsTask id="3" points="266.8" counting_points="0" counts="0" />
-          <FsTask id="4" points="555.2" counting_points="555.2" counts="1" />
-          <FsTask id="5" points="364.5" counting_points="362.3" counts="1" />
-          <FsTask id="6" points="891.6" counting_points="891.6" counts="1" />
-        </FsParticipant>
-        <FsParticipant id="93180" points="2724.9" rank="3">
+        <FsParticipant id="93180" points="2724.9" rank="2">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
           <FsTask id="2" points="1000" counting_points="1000" counts="1" />
           <FsTask id="3" points="502.6" counting_points="502.6" counts="1" />
@@ -1666,31 +1694,47 @@
           <FsTask id="5" points="317.3" counting_points="317.3" counts="1" />
           <FsTask id="6" points="905" counting_points="905" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96695" points="2542.7" rank="4">
+        <FsParticipant id="93414" points="2720.4" rank="3">
+          <FsTask id="1" points="180" counting_points="0" counts="0" />
+          <FsTask id="2" points="911.3" counting_points="911.3" counts="1" />
+          <FsTask id="3" points="266.8" counting_points="0" counts="0" />
+          <FsTask id="4" points="555.2" counting_points="555.2" counts="1" />
+          <FsTask id="5" points="364.5" counting_points="362.3" counts="1" />
+          <FsTask id="6" points="891.6" counting_points="891.6" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="96695" points="2502.1" rank="4">
           <FsTask id="1" points="180" counting_points="5.7" counts="1" />
-          <FsTask id="2" points="446.8" counting_points="446.8" counts="1" />
+          <FsTask id="2" points="406.2" counting_points="406.2" counts="1" />
           <FsTask id="3" points="953.7" counting_points="953.7" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="0" />
           <FsTask id="5" points="670.4" counting_points="670.4" counts="1" />
           <FsTask id="6" points="466.1" counting_points="466.1" counts="1" />
         </FsParticipant>
-        <FsParticipant id="79319" points="2052.2" rank="5">
+        <FsParticipant id="79319" points="2019.5" rank="5">
           <FsTask id="1" points="209" counting_points="0" counts="0" />
-          <FsTask id="2" points="510.7" counting_points="510.7" counts="1" />
+          <FsTask id="2" points="478" counting_points="478" counts="1" />
           <FsTask id="3" points="126.6" counting_points="0" counts="0" />
           <FsTask id="4" points="411.9" counting_points="411.9" counts="1" />
           <FsTask id="5" points="324.4" counting_points="322.4" counts="1" />
           <FsTask id="6" points="807.2" counting_points="807.2" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96110" points="1516.3" rank="6">
+        <FsParticipant id="97342" points="1877.4" rank="6">
+          <FsTask id="1" points="0" counting_points="0" counts="1" />
+          <FsTask id="2" points="977.1" counting_points="977.1" counts="1" />
+          <FsTask id="3" points="0" counting_points="0" counts="0" />
+          <FsTask id="4" points="0" counting_points="0" counts="0" />
+          <FsTask id="5" points="0" counting_points="0" counts="1" />
+          <FsTask id="6" points="900.3" counting_points="900.3" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="96110" points="1496.1" rank="7">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="290.7" counting_points="290.7" counts="1" />
+          <FsTask id="2" points="270.5" counting_points="270.5" counts="1" />
           <FsTask id="3" points="569.1" counting_points="569.1" counts="1" />
           <FsTask id="4" points="175.4" counting_points="175.4" counts="1" />
           <FsTask id="5" points="115.1" counting_points="4.6" counts="1" />
           <FsTask id="6" points="476.5" counting_points="476.5" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93234" points="1461.5" rank="7">
+        <FsParticipant id="93234" points="1461.5" rank="8">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="612" counting_points="612" counts="1" />
@@ -1698,7 +1742,7 @@
           <FsTask id="5" points="231" counting_points="231" counts="1" />
           <FsTask id="6" points="438.5" counting_points="438.5" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93439" points="1300.3" rank="8">
+        <FsParticipant id="93439" points="1300.3" rank="9">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="0" />
           <FsTask id="3" points="559.6" counting_points="559.6" counts="1" />
@@ -1706,15 +1750,15 @@
           <FsTask id="5" points="280.5" counting_points="280.5" counts="1" />
           <FsTask id="6" points="315.8" counting_points="315.8" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93529" points="1195.8" rank="9">
+        <FsParticipant id="93529" points="1173.6" rank="10">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
-          <FsTask id="2" points="263.2" counting_points="263.2" counts="1" />
+          <FsTask id="2" points="241" counting_points="241" counts="1" />
           <FsTask id="3" points="355.3" counting_points="355.3" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
           <FsTask id="5" points="0" counting_points="0" counts="0" />
           <FsTask id="6" points="397.3" counting_points="397.3" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96090" points="1156.6" rank="10">
+        <FsParticipant id="96090" points="1156.6" rank="11">
           <FsTask id="1" points="215.9" counting_points="215.9" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="1" />
@@ -1722,7 +1766,7 @@
           <FsTask id="5" points="0" counting_points="0" counts="1" />
           <FsTask id="6" points="940.7" counting_points="940.7" counts="1" />
         </FsParticipant>
-        <FsParticipant id="95813" points="1000" rank="11">
+        <FsParticipant id="95813" points="1000" rank="12">
           <FsTask id="1" points="1000" counting_points="1000" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="0" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
@@ -1730,21 +1774,13 @@
           <FsTask id="5" points="0" counting_points="0" counts="1" />
           <FsTask id="6" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96939" points="996.3" rank="12">
+        <FsParticipant id="96939" points="962.3" rank="13">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
-          <FsTask id="2" points="536.4" counting_points="536.4" counts="1" />
+          <FsTask id="2" points="502.4" counting_points="502.4" counts="1" />
           <FsTask id="3" points="126.6" counting_points="126.6" counts="1" />
           <FsTask id="4" points="149.4" counting_points="149.4" counts="1" />
           <FsTask id="5" points="115.1" counting_points="3.9" counts="1" />
           <FsTask id="6" points="84.7" counting_points="0" counts="0" />
-        </FsParticipant>
-        <FsParticipant id="97342" points="900.3" rank="13">
-          <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="0" counting_points="0" counts="0" />
-          <FsTask id="3" points="0" counting_points="0" counts="0" />
-          <FsTask id="4" points="0" counting_points="0" counts="1" />
-          <FsTask id="5" points="0" counting_points="0" counts="1" />
-          <FsTask id="6" points="900.3" counting_points="900.3" counts="1" />
         </FsParticipant>
         <FsParticipant id="93185" points="831.4" rank="14">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
@@ -1754,9 +1790,9 @@
           <FsTask id="5" points="282.4" counting_points="282.4" counts="1" />
           <FsTask id="6" points="401.8" counting_points="401.8" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93485" points="718.5" rank="15">
+        <FsParticipant id="93485" points="691.8" rank="15">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="451.8" counting_points="451.8" counts="1" />
+          <FsTask id="2" points="425.1" counting_points="425.1" counts="1" />
           <FsTask id="3" points="266.7" counting_points="266.7" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="0" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
@@ -1786,28 +1822,28 @@
           <FsTask id="5" points="0" counting_points="0" counts="1" />
           <FsTask id="6" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93272" points="76.2" rank="19">
+        <FsParticipant id="93272" points="69.3" rank="19">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="76.2" counting_points="76.2" counts="1" />
+          <FsTask id="2" points="69.3" counting_points="69.3" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
           <FsTask id="4" points="0" counting_points="0" counts="1" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
           <FsTask id="6" points="0" counting_points="0" counts="1" />
         </FsParticipant>
       </FsCompetitionResult>
-      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V194" top="all" tasks="1;2;3;4;5;6;7" version="194" filter_from_category="" ts="2026-09-06T17:18:55+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
-        <FsParticipant id="94478" points="4325.4" rank="1">
+      <FsCompetitionResult id="overall" title="Overall" report_title="Competition: Overall V201" top="all" tasks="1;2;3;4;5;6;7" version="201" filter_from_category="" ts="2026-09-07T12:07:38+02:00" task_result_pattern="#0.0" comp_result_pattern="#0.0">
+        <FsParticipant id="94478" points="4454.3" rank="1">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="0" counting_points="0" counts="0" />
-          <FsTask id="3" points="669.3" counting_points="465.9" counts="1" />
+          <FsTask id="2" points="888.7" counting_points="888.7" counts="1" />
+          <FsTask id="3" points="669.3" counting_points="0" counts="0" />
           <FsTask id="4" points="991.2" counting_points="991.2" counts="1" />
           <FsTask id="5" points="1000" counting_points="1000" counts="1" />
           <FsTask id="6" points="993.8" counting_points="993.8" counts="1" />
-          <FsTask id="7" points="874.5" counting_points="874.5" counts="1" />
+          <FsTask id="7" points="874.5" counting_points="580.6" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93414" points="3606.1" rank="2">
+        <FsParticipant id="93414" points="3600.1" rank="2">
           <FsTask id="1" points="180" counting_points="0" counts="0" />
-          <FsTask id="2" points="917.3" counting_points="917.3" counts="1" />
+          <FsTask id="2" points="911.3" counting_points="911.3" counts="1" />
           <FsTask id="3" points="266.8" counting_points="0" counts="0" />
           <FsTask id="4" points="555.2" counting_points="555.2" counts="1" />
           <FsTask id="5" points="364.5" counting_points="242" counts="1" />
@@ -1823,25 +1859,34 @@
           <FsTask id="6" points="905" counting_points="905" counts="1" />
           <FsTask id="7" points="957.7" counting_points="957.7" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96695" points="2988.5" rank="4">
+        <FsParticipant id="96695" points="2960" rank="4">
           <FsTask id="1" points="180" counting_points="0" counts="0" />
-          <FsTask id="2" points="446.8" counting_points="313.4" counts="1" />
+          <FsTask id="2" points="406.2" counting_points="284.9" counts="1" />
           <FsTask id="3" points="953.7" counting_points="953.7" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="0" />
           <FsTask id="5" points="670.4" counting_points="670.4" counts="1" />
           <FsTask id="6" points="466.1" counting_points="466.1" counts="1" />
           <FsTask id="7" points="584.9" counting_points="584.9" counts="1" />
         </FsParticipant>
-        <FsParticipant id="79319" points="2525.9" rank="5">
+        <FsParticipant id="97342" points="2652.1" rank="5">
+          <FsTask id="1" points="0" counting_points="0" counts="1" />
+          <FsTask id="2" points="977.1" counting_points="977.1" counts="1" />
+          <FsTask id="3" points="0" counting_points="0" counts="0" />
+          <FsTask id="4" points="0" counting_points="0" counts="0" />
+          <FsTask id="5" points="0" counting_points="0" counts="1" />
+          <FsTask id="6" points="900.3" counting_points="900.3" counts="1" />
+          <FsTask id="7" points="774.7" counting_points="774.7" counts="1" />
+        </FsParticipant>
+        <FsParticipant id="79319" points="2493.2" rank="6">
           <FsTask id="1" points="209" counting_points="0" counts="0" />
-          <FsTask id="2" points="510.7" counting_points="510.7" counts="1" />
+          <FsTask id="2" points="478" counting_points="478" counts="1" />
           <FsTask id="3" points="126.6" counting_points="0" counts="0" />
           <FsTask id="4" points="411.9" counting_points="411.9" counts="1" />
           <FsTask id="5" points="324.4" counting_points="215.4" counts="1" />
           <FsTask id="6" points="807.2" counting_points="807.2" counts="1" />
           <FsTask id="7" points="580.7" counting_points="580.7" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93234" points="2217.7" rank="6">
+        <FsParticipant id="93234" points="2217.7" rank="7">
           <FsTask id="1" points="180" counting_points="126.3" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="0" />
           <FsTask id="3" points="612" counting_points="612" counts="1" />
@@ -1850,7 +1895,7 @@
           <FsTask id="6" points="438.5" counting_points="438.5" counts="1" />
           <FsTask id="7" points="809.9" counting_points="809.9" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93439" points="2051.8" rank="7">
+        <FsParticipant id="93439" points="2051.8" rank="8">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
           <FsTask id="2" points="0" counting_points="0" counts="0" />
           <FsTask id="3" points="559.6" counting_points="559.6" counts="1" />
@@ -1859,7 +1904,7 @@
           <FsTask id="6" points="315.8" counting_points="315.8" counts="1" />
           <FsTask id="7" points="793.7" counting_points="793.7" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96090" points="2035.8" rank="8">
+        <FsParticipant id="96090" points="2035.8" rank="9">
           <FsTask id="1" points="215.9" counting_points="215.9" counts="1" />
           <FsTask id="2" points="0" counting_points="0" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
@@ -1868,36 +1913,27 @@
           <FsTask id="6" points="940.7" counting_points="940.7" counts="1" />
           <FsTask id="7" points="879.2" counting_points="879.2" counts="1" />
         </FsParticipant>
-        <FsParticipant id="96939" points="1746" rank="9">
+        <FsParticipant id="96939" points="1712" rank="10">
           <FsTask id="1" points="180" counting_points="180" counts="1" />
-          <FsTask id="2" points="536.4" counting_points="536.4" counts="1" />
+          <FsTask id="2" points="502.4" counting_points="502.4" counts="1" />
           <FsTask id="3" points="126.6" counting_points="87.3" counts="1" />
           <FsTask id="4" points="149.4" counting_points="149.4" counts="1" />
           <FsTask id="5" points="115.1" counting_points="0" counts="0" />
           <FsTask id="6" points="84.7" counting_points="0" counts="0" />
           <FsTask id="7" points="792.9" counting_points="792.9" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93529" points="1689" rank="10">
+        <FsParticipant id="93529" points="1666.8" rank="11">
           <FsTask id="1" points="180" counting_points="126.3" counts="1" />
-          <FsTask id="2" points="263.2" counting_points="263.2" counts="1" />
+          <FsTask id="2" points="241" counting_points="241" counts="1" />
           <FsTask id="3" points="355.3" counting_points="355.3" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="0" />
           <FsTask id="5" points="0" counting_points="0" counts="0" />
           <FsTask id="6" points="397.3" counting_points="397.3" counts="1" />
           <FsTask id="7" points="546.9" counting_points="546.9" counts="1" />
         </FsParticipant>
-        <FsParticipant id="97342" points="1675" rank="11">
-          <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="0" counting_points="0" counts="1" />
-          <FsTask id="3" points="0" counting_points="0" counts="0" />
-          <FsTask id="4" points="0" counting_points="0" counts="0" />
-          <FsTask id="5" points="0" counting_points="0" counts="1" />
-          <FsTask id="6" points="900.3" counting_points="900.3" counts="1" />
-          <FsTask id="7" points="774.7" counting_points="774.7" counts="1" />
-        </FsParticipant>
-        <FsParticipant id="96110" points="1640.5" rank="12">
+        <FsParticipant id="96110" points="1620.3" rank="12">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="290.7" counting_points="290.7" counts="1" />
+          <FsTask id="2" points="270.5" counting_points="270.5" counts="1" />
           <FsTask id="3" points="569.1" counting_points="569.1" counts="1" />
           <FsTask id="4" points="175.4" counting_points="124.1" counts="1" />
           <FsTask id="5" points="115.1" counting_points="0" counts="0" />
@@ -1922,9 +1958,9 @@
           <FsTask id="6" points="401.8" counting_points="401.8" counts="1" />
           <FsTask id="7" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93485" points="718.5" rank="15">
+        <FsParticipant id="93485" points="691.8" rank="15">
           <FsTask id="1" points="0" counting_points="0" counts="0" />
-          <FsTask id="2" points="451.8" counting_points="451.8" counts="1" />
+          <FsTask id="2" points="425.1" counting_points="425.1" counts="1" />
           <FsTask id="3" points="266.7" counting_points="266.7" counts="1" />
           <FsTask id="4" points="0" counting_points="0" counts="0" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
@@ -1958,9 +1994,9 @@
           <FsTask id="6" points="0" counting_points="0" counts="1" />
           <FsTask id="7" points="0" counting_points="0" counts="1" />
         </FsParticipant>
-        <FsParticipant id="93272" points="76.2" rank="19">
+        <FsParticipant id="93272" points="69.3" rank="19">
           <FsTask id="1" points="0" counting_points="0" counts="1" />
-          <FsTask id="2" points="76.2" counting_points="76.2" counts="1" />
+          <FsTask id="2" points="69.3" counting_points="69.3" counts="1" />
           <FsTask id="3" points="0" counting_points="0" counts="0" />
           <FsTask id="4" points="0" counting_points="0" counts="0" />
           <FsTask id="5" points="0" counting_points="0" counts="1" />
