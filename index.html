@@ -3,214 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Classificacions Parapent</title>
-  <!-- Favicon de la web -->
-   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/MiquelVillarta/classificacions/main/trofeo.png">
+  <title>Classificacions - Lliga Catalana 2026</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-red-900 font-sans min-h-screen flex flex-col">
+<body class="bg-red-900 min-h-screen p-4 md:p-8 flex justify-center">
 
-  <!-- VISTA 1: MENÚ PRINCIPAL (Móvil First) -->
-  <div id="menu-view" class="flex-1 flex flex-col max-w-lg w-full mx-auto p-4">
+  <div class="w-full max-w-xl space-y-4">
     
-    <!-- Header principal -->
-    <header class="bg-blue-900 text-white p-4 rounded-xl shadow-md mb-4 flex justify-between items-center">
+    <!-- Capçalera -->
+    <div class="bg-blue-900 text-white rounded-2xl p-5 shadow-lg flex justify-between items-center">
       <div>
-        <h1 class="text-xl font-bold tracking-tight">Classificacions</h1>
-        <p class="text-xs text-blue-200">Lliga Catalana 2026</p>
+        <h1 class="text-2xl font-black tracking-wide">Classificacions</h1>
+        <p class="text-blue-200 text-sm">Lliga Catalana 2026</p>
       </div>
-      <span class="bg-red-600 text-white text-xs font-extrabold px-2.5 py-1 rounded-md shadow">2026</span>
-    </header>
+      <div id="updated-at" class="bg-red-600 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow">
+        Modificat: --/--/---- --:--
+      </div>
+    </div>
 
-    <!-- Listado de Secciones (Generals, Campionat, Tasks) -->
-    <main id="sections-container" class="space-y-3 flex-1">
-      <!-- Se generan dinámicamente -->
-    </main>
-  </div>
-
-  <!-- VISTA 2: VISOR A PANTALLA COMPLETA -->
-  <div id="viewer-view" class="hidden fixed inset-0 bg-white flex flex-col z-50">
-    
-    <!-- Barra superior compacta para móvil -->
-    <header class="bg-blue-900 text-white px-3 py-2.5 flex items-center justify-between shadow flex-shrink-0">
-      <button id="back-btn" class="bg-blue-800 hover:bg-blue-700 text-white text-xs font-bold px-3 py-1.5 rounded flex items-center gap-1">
-        <span>⬅️ Tornar</span>
+    <!-- Secció Generals -->
+    <div class="border-2 border-white/20 rounded-2xl overflow-hidden bg-emerald-700 shadow-md">
+      <button onclick="toggleSection('generals')" class="w-full p-4 text-left text-white font-bold text-lg flex justify-between items-center">
+        <span>GENERALS</span>
+        <i id="icon-generals" class="fa-solid fa-play text-sm transition-transform duration-200"></i>
       </button>
-      
-      <span id="current-title" class="text-xs font-bold truncate max-w-[180px] text-center"></span>
-      
-      <a id="map-btn" href="#" target="_blank" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-2.5 py-1.5 rounded flex items-center gap-1">
-        <span>🗺️ Mapa</span>
-      </a>
-    </header>
+      <div id="content-generals" class="hidden bg-white p-3 space-y-2"></div>
+    </div>
 
-    <!-- Contenido HTML de la clasificación (100% de pantalla) -->
-    <iframe id="viewer-iframe" class="w-full flex-grow border-none" title="Classificació"></iframe>
+    <!-- Secció Campionat Cat -->
+    <div class="border-2 border-white/20 rounded-2xl overflow-hidden bg-amber-600 shadow-md">
+      <button onclick="toggleSection('campionat')" class="w-full p-4 text-left text-white font-bold text-lg flex justify-between items-center">
+        <span>CAMPIONAT CAT</span>
+        <i id="icon-campionat" class="fa-solid fa-play text-sm transition-transform duration-200"></i>
+      </button>
+      <div id="content-campionat" class="hidden bg-white p-3 space-y-2"></div>
+    </div>
+
+    <!-- Contenidor dinàmic per les TASKS -->
+    <div id="tasks-container" class="space-y-4"></div>
+
   </div>
 
   <script>
-  function getCategoryScore(name) {
-  const u = name.toUpperCase().trim();
-
-  // 1º GENERAL de Liga A
-  if (
-    (u === 'GENERAL' || u.endsWith('-GENERAL') || u.endsWith('_GENERAL') || u.endsWith(' GENERAL') || u.includes('OVERALL')) &&
-    !u.startsWith('B_') && !u.includes('LLIGA B') && !u.includes('CAMPIONAT B')
-  ) {
-    if (!u.includes('SERIAL') && !u.includes('SPORT') && !u.includes('CLUB') && !u.includes('FEMINES')) {
-      return 1;
-    }
-  }
-
-  // 2º SERIAL, 3º SPORT, 4º CLUB
-  if (u.includes('SERIAL')) return 2;
-  if (u.includes('SPORT')) return 3;
-  if (u.includes('CLUBS-LLICENCIA') || u.includes('CLUBS_LLICENCIA') || u.includes('CLUBS LLICENCIA')) return 4;
-  if (u.includes('CLUB')) return 5;
-  if (u.includes('FEMINES') || u.includes('FEMENINA')) return 6;
-
-  // 5º Liga B al final
-  if (u.includes('LLIGA B') || u.includes('LLIGA_B') || u.startsWith('B_') || u.includes('B_GENERAL') || u.includes('CAMPIONAT B')) return 7;
-
-  return 99;
-}
-
-    async function init() {
-      try {
-        const res = await fetch('manifest.json');
-        if (!res.ok) throw new Error('manifest.json no trobat');
-        const data = await res.json();
-        
-        const sectionsContainer = document.getElementById('sections-container');
-        const menuView = document.getElementById('menu-view');
-        const viewerView = document.getElementById('viewer-view');
-        const iframe = document.getElementById('viewer-iframe');
-        const backBtn = document.getElementById('back-btn');
-        const currentTitle = document.getElementById('current-title');
-        const mapBtn = document.getElementById('map-btn');
-
-        // Función para abrir la clasificación
-        function openClassification(item, isTask = false, taskName = '') {
-          iframe.src = item.path;
-          currentTitle.textContent = item.name;
-          
-          if (isTask) {
-            mapBtn.classList.remove('hidden');
-
-            // Detectar automáticamente si es Liga A o Liga B
-            const uName = item.name.toUpperCase();
-            let compParam = 'A'; // Por defecto Liga A
-
-            if (uName.startsWith('B_') || uName.includes('LLIGA_B') || uName.includes('CAMPIONAT B')) {
-              compParam = 'B';
-            }
-
-            // Extraer solo los números de taskName (ej: "T01" -> "1", "T05" -> "5")
-            const mangaNum = taskName.replace(/\D/g, '').replace(/^0+/, '');
-
-            // Construir la URL completa que requiere visor.html
-            mapBtn.href = `visor.html?task=${encodeURIComponent(taskName)}&comp=${compParam}&manga=${mangaNum}`;
-          } else {
-            mapBtn.classList.add('hidden');
-          }
-
-          menuView.classList.add('hidden');
-          viewerView.classList.remove('hidden');
-        }      
-        
-        // Botón volver
-        backBtn.onclick = () => {
-          viewerView.classList.add('hidden');
-          menuView.classList.remove('hidden');
-          iframe.src = 'about:blank';
-        };
-
-        // Construir datos
-        const sections = [];
-
-        if (data.generals && data.generals.length > 0) {
-          sections.push({ label: 'GENERALS', items: data.generals, isTask: false, headerBg: 'bg-emerald-700' });
-        }
-        if (data.campionat && data.campionat.length > 0) {
-          sections.push({ label: 'CAMPIONAT CAT', items: data.campionat, isTask: false, headerBg: 'bg-amber-600' });
-        }
-        
-        if (data.tasks) {
-          const sortedTasks = Object.keys(data.tasks).sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
-          sortedTasks.forEach(taskKey => {
-            sections.push({ label: taskKey.toUpperCase(), items: data.tasks[taskKey], isTask: true, taskName: taskKey, headerBg: 'bg-blue-900' });
-          });
-        }
-
-        // Renderizar acordeones para móvil
-        sections.forEach(sec => {
-          const card = document.createElement('div');
-          card.className = 'bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden';
-
-          const cardHeader = document.createElement('button');
-          cardHeader.className = `w-full text-left px-4 py-3 text-white font-bold text-sm flex justify-between items-center ${sec.headerBg}`;
-          
-          // Flecha inicial hacia la derecha ▶ (indica que está plegado)
-          cardHeader.innerHTML = `<span>${sec.label}</span><span class="text-xs opacity-75 arrow-icon">▶</span>`;
-
-          const cardBody = document.createElement('div');
-          // Se añade la clase 'hidden' por defecto para que aparezca plegado
-          cardBody.className = 'p-3 grid grid-cols-1 gap-2 bg-red-100 hidden';
-
-
-          
-
-          const sortedItems = [...sec.items].sort((a, b) => {
-            const scoreA = getCategoryScore(a.name);
-            const scoreB = getCategoryScore(b.name);
-            if (scoreA !== scoreB) return scoreA - scoreB;
-            return a.name.localeCompare(b.name);
-          });
-
-          sortedItems.forEach(item => {
-            const btn = document.createElement('button');
-            const uName = item.name.toUpperCase();
-            
-            const isCategoryB = getCategoryScore(item.name) === 7 || 
-                                uName.startsWith('B_') || 
-                                uName.includes('CAMPIONAT B') ||
-                                uName.includes('LLIGA-B') ||
-                                uName.includes('LLIGA B');
-
-            // ESTILOS DE BOTONES MEJORADOS (Mayor contraste + efecto Hover)
-            const btnStyle = isCategoryB 
-              ? 'bg-blue-200 hover:bg-blue-600 text-blue-950 hover:text-white border-blue-600' 
-              : 'bg-red-300 hover:bg-red-600 text-red-900 hover:text-white border-red-800';
-
-            btn.className = `group w-full text-left px-3 py-2.5 text-xs font-bold uppercase rounded-lg border shadow-sm hover:shadow-md transition-all duration-200 flex justify-between items-center ${btnStyle}`;
-            btn.innerHTML = `<span>${item.name}</span> <span class="text-blue-950 group-hover:text-white transition-colors duration-200 text-xs">➔</span>`;
-
-            btn.onclick = () => openClassification(item, sec.isTask, sec.taskName);
-            cardBody.appendChild(btn);
-          });
-
-          // Plegar/desplegar acordeón y alternar la flecha (▶ / ▼)
-          cardHeader.onclick = () => {
-            const isHidden = cardBody.classList.toggle('hidden');
-            const arrow = cardHeader.querySelector('.arrow-icon');
-            if (arrow) {
-              arrow.textContent = isHidden ? '▶' : '▼';
-            }
-          };
-
-          card.appendChild(cardHeader);
-          card.appendChild(cardBody);
-          sectionsContainer.appendChild(card);
-        });
-        
-      } catch (err) {
-        console.error('Error carregant el manifest:', err);
+    function toggleSection(id) {
+      const el = document.getElementById(`content-${id}`);
+      const icon = document.getElementById(`icon-${id}`);
+      el.classList.toggle('hidden');
+      if (icon) {
+        icon.classList.toggle('rotate-90');
       }
     }
 
-    init();
+    fetch('manifest.json')
+      .then(res => res.json())
+      .then(data => {
+        // 1. Mostrar data d'actualització global
+        if (data.updated_at) {
+          document.getElementById('updated-at').textContent = `Modificat: ${data.updated_at}`;
+        }
+
+        // 2. Renderitzar Generals
+        const genDiv = document.getElementById('content-generals');
+        data.generals.forEach(item => {
+          genDiv.innerHTML += `
+            <a href="${item.path}" class="flex justify-between items-center p-3 bg-red-200 hover:bg-red-300 rounded-xl font-bold text-blue-950 transition">
+              <span>${item.name}</span>
+              <i class="fa-solid fa-arrow-right text-sm"></i>
+            </a>`;
+        });
+
+        // 3. Renderitzar Campionat
+        const campDiv = document.getElementById('content-campionat');
+        data.campionat.forEach(item => {
+          campDiv.innerHTML += `
+            <a href="${item.path}" class="flex justify-between items-center p-3 bg-red-200 hover:bg-red-300 rounded-xl font-bold text-blue-950 transition">
+              <span>${item.name}</span>
+              <i class="fa-solid fa-arrow-right text-sm"></i>
+            </a>`;
+        });
+
+        // 4. Renderitzar Tasks amb la data de la FSDB
+        const tasksContainer = document.getElementById('tasks-container');
+        tasksContainer.innerHTML = '';
+
+        Object.keys(data.tasks).sort().forEach(taskKey => {
+          const taskData = data.tasks[taskKey];
+          
+          // Comprovar si tenim l'estructura nova (amb date i items) o l'antiga
+          const items = Array.isArray(taskData) ? taskData : taskData.items;
+          const taskDate = (!Array.isArray(taskData) && taskData.date) ? ` (${taskData.date})` : '';
+
+          const taskBlock = document.createElement('div');
+          taskBlock.className = 'border-2 border-white/20 rounded-2xl overflow-hidden bg-blue-900 shadow-md';
+          
+          let linksHTML = items.map(item => {
+            const isBlue = item.name.startsWith('B_');
+            const bgClass = isBlue ? 'bg-blue-200 hover:bg-blue-300' : 'bg-red-200 hover:bg-red-300';
+            return `
+              <a href="${item.path}" class="flex justify-between items-center p-3 ${bgClass} rounded-xl font-bold text-blue-950 transition mb-2 last:mb-0">
+                <span>${item.name}</span>
+                <i class="fa-solid fa-arrow-right text-sm"></i>
+              </a>`;
+          }).join('');
+
+          taskBlock.innerHTML = `
+            <button onclick="toggleSection('${taskKey}')" class="w-full p-4 text-left text-white font-bold text-lg flex justify-between items-center">
+              <span>${taskKey}${taskDate}</span>
+              <i id="icon-${taskKey}" class="fa-solid fa-play text-sm transition-transform duration-200"></i>
+            </button>
+            <div id="content-${taskKey}" class="hidden bg-white p-3 space-y-2">
+              ${linksHTML}
+            </div>
+          `;
+
+          tasksContainer.appendChild(taskBlock);
+        });
+      })
+      .catch(err => console.error("Error carregant el manifest:", err));
   </script>
 </body>
-</html>
-
 </html>

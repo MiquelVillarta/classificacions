@@ -36,27 +36,26 @@ jobs:
 
           results_dir = 'RESULTS'
 
+          # 1. Escanejar fitxers HTML
           if os.path.exists(results_dir):
               for root, dirs, files in os.walk(results_dir):
                   for file in files:
                       if file.endswith('.html'):
                           full_path = os.path.join(root, file).replace('\\\\', '/')
-                          rel_path = full_path
                           name = os.path.splitext(file)[0]
-                          
                           folder_name = os.path.basename(root)
 
                           if folder_name == 'RESULTS':
-                              manifest['generals'].append({'name': name, 'path': rel_path})
+                              manifest['generals'].append({'name': name, 'path': full_path})
                           elif folder_name == 'CAMPIONAT CAT':
-                              manifest['campionat'].append({'name': name, 'path': rel_path})
+                              manifest['campionat'].append({'name': name, 'path': full_path})
                           elif folder_name.startswith('T'):
                               task_key = folder_name
                               if task_key not in manifest['tasks']:
                                   manifest['tasks'][task_key] = {'date': '', 'items': []}
-                              manifest['tasks'][task_key]['items'].append({'name': name, 'path': rel_path})
+                              manifest['tasks'][task_key]['items'].append({'name': name, 'path': full_path})
 
-          # Intentar extreure dates dels fitxers .fsdb si existeixen
+          # 2. Llegir dates des de les bases de dades .fsdb
           for db_file in ['LLIGA_A.fsdb', 'LLIGA_B.fsdb']:
               if os.path.exists(db_file):
                   try:
@@ -72,6 +71,9 @@ jobs:
                   except Exception as e:
                       print(f'Error llegint {db_file}: {e}')
 
+          # Sort de les tasques
+          manifest['tasks'] = dict(sorted(manifest['tasks'].items()))
+
           with open('manifest.json', 'w', encoding='utf-8') as f:
               json.dump(manifest, f, ensure_ascii=False, indent=2)
           "
@@ -81,4 +83,4 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add manifest.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update manifest.json with task dates" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update manifest.json with dates" && git push)
