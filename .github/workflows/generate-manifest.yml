@@ -36,25 +36,26 @@ jobs:
 
           results_dir = 'RESULTS'
 
-          # Ordre exacte establert per les teves imatges (1 al 7)
-          ORDER_MAP = {
-              'GENERAL': 1,
-              'SERIAL': 2,
-              'SPORT': 3,
-              'CLUB': 4,
-              'EQUIPS': 5,
-              'CLUBS LLICENCIA': 5,
-              'FEMINES': 6,
-              'LLIGA-B': 7,
-              'CAMPIONAT B': 7
-          }
+# Ordre de cerca: de més específic a més general
+          ORDER_KEYWORDS = [
+              ('SERIAL', 2),
+              ('SPORT', 3),
+              ('EQUIPS', 5),
+              ('LLICENCIA', 5),
+              ('FEMINES', 6),
+              ('LLIGA-B', 7),
+              ('CAMPIONAT B', 7),
+              ('B_', 7),        # Captura qualsevol element de la Lliga B a les TASKS
+              ('CLUB', 4),
+              ('GENERAL', 1)    # Al final de tot per no aixafar la resta
+          ]
 
           def get_sort_key(item):
               name = item['name'].upper()
               score = 99
-              # Buscar la millor coincidència d'ordre
-              for key, val in ORDER_MAP.items():
-                  if key in name:
+              for key, val in ORDER_KEYWORDS:
+                  # Si volem usar | (regex) o comprovació directa:
+                  if any(k in name for k in key.split('|')):
                       score = val
                       break
               return (score, name)
