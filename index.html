@@ -7,7 +7,6 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Animació suau per desplegar/plegar seccions */
     .accordion-content {
       transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
       max-height: 0;
@@ -30,7 +29,7 @@
 
   <div class="max-w-3xl mx-auto space-y-4">
     
-    <!-- Capçalera amb títol a l'esquerra i última actualització a la dreta -->
+    <!-- Capçalera -->
     <header class="bg-white rounded-xl shadow-sm p-4 flex justify-between items-center border border-slate-200">
       <div>
         <h1 class="text-xl md:text-2xl font-bold text-slate-900">Classificacions</h1>
@@ -40,7 +39,7 @@
       </div>
     </header>
 
-    <!-- Contenidor principal on es generaran dinàmicament les seccions -->
+    <!-- Contenidor principal -->
     <main id="app" class="space-y-3">
       <div class="p-8 text-center text-slate-500">
         Carregant classificacions...
@@ -51,26 +50,25 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Afegim un timestamp per evitar problemes de memòria cau amb manifest.json
       fetch('manifest.json?v=' + new Date().getTime())
         .then(response => {
           if (!response.ok) {
-            throw new Error('No s'ha pogut carregar el manifest.json');
+            throw new Error('No s\'ha pogut carregar el manifest.json');
           }
           return response.json();
         })
         .then(data => {
-          // 1. Mostrar la data d'última actualització a dalt a la dreta
+          // 1. Data d'última actualització
           if (data.updated_at) {
             document.getElementById('last-updated').textContent = `Actualitzat: ${data.updated_at}`;
           }
 
           const app = document.getElementById('app');
-          app.innerHTML = ''; // Netejar missatge de càrrega
+          app.innerHTML = '';
 
           const sections = [];
 
-          // 2. Processar Secció GENERALS
+          // 2. Secció GENERALS
           if (data.generals && data.generals.length > 0) {
             sections.push({
               label: 'GENERALS',
@@ -79,7 +77,7 @@
             });
           }
 
-          // 3. Processar Secció CAMPIONAT
+          // 3. Secció CAMPIONAT
           if (data.campionat && data.campionat.length > 0) {
             sections.push({
               label: 'CAMPIONAT CATALUNYA',
@@ -88,17 +86,14 @@
             });
           }
 
-          // 4. Processar TASKS (MANGUES)
+          // 4. Secció TASKS
           if (data.tasks) {
-            // Ordenar les tasques de forma natural (T01, T02... T10)
             const sortedTasks = Object.keys(data.tasks).sort((a, b) => 
               a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
             );
 
             sortedTasks.forEach(taskKey => {
               const taskData = data.tasks[taskKey];
-              
-              // Suporta l'estructura nova (objecte amb items i date) i l'antiga (array)
               const items = Array.isArray(taskData) ? taskData : (taskData.items || []);
               const taskDate = taskData.date || '';
 
@@ -111,15 +106,13 @@
             });
           }
 
-          // 5. Renderitzar les seccions a l'HTML
-          sections.forEach((sec, idx) => {
+          // 5. Renderitzar
+          sections.forEach((sec) => {
             const card = document.createElement('div');
             card.className = 'bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200';
 
-            // Data formatada si existeix la propietat sec.date
             const dateHTML = sec.date ? `<span class="text-xs font-normal text-blue-200 ml-1.5">(${sec.date})</span>` : '';
 
-            // Capçalera desplegable (Accordion Header)
             const cardHeader = document.createElement('button');
             cardHeader.className = `w-full text-left px-4 py-3 text-white font-semibold flex justify-between items-center ${sec.headerBg} hover:opacity-95 transition-opacity`;
             cardHeader.innerHTML = `
@@ -130,7 +123,6 @@
               <span class="text-xs opacity-75 arrow-icon">▶</span>
             `;
 
-            // Contingut desplegable (Accordion Content)
             const cardContent = document.createElement('div');
             cardContent.className = 'accordion-content border-t border-slate-100 bg-slate-50';
 
@@ -154,7 +146,6 @@
             card.appendChild(cardContent);
             app.appendChild(card);
 
-            // Esdeveniment d'obertura/tancament de l'acordió
             cardHeader.addEventListener('click', () => {
               const isOpen = cardContent.classList.contains('open');
               const arrow = cardHeader.querySelector('.arrow-icon');
