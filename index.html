@@ -55,9 +55,25 @@
       }
     }
 
+    function getCategoryClass(name) {
+      const u = name.toUpperCase();
+
+      // Lliga B sempre en blau
+      const isB = u.startsWith('B_') || u.includes('LLIGA-B') || u.includes('LLIGA_B') || u.includes('LLIGA B') || u.includes('CAMPIONAT B');
+      if (isB) return 'bg-blue-200 hover:bg-blue-300';
+
+      // FEMINES diferenciat en lila
+      if (u.includes('FEMINES') || u.includes('FEMENINA')) return 'bg-purple-300 hover:bg-purple-400';
+
+      // SERIAL, SPORT i CLUB en ambre
+      if (u.includes('SERIAL') || u.includes('SPORT') || u.includes('CLUB')) return 'bg-amber-300 hover:bg-amber-400';
+
+      // GENERAL i la resta, vermellós per defecte
+      return 'bg-red-200 hover:bg-red-300';
+    }
+
     function renderLink(item) {
-      const isBlue = item.name.startsWith('B_') || item.name.includes('LLIGA-B') || item.name.includes('CAMPIONAT B');
-      const bgClass = isBlue ? 'bg-blue-200 hover:bg-blue-300' : 'bg-red-200 hover:bg-red-300';
+      const bgClass = getCategoryClass(item.name);
       return `
         <a href="${item.path}" class="flex justify-between items-center p-3 ${bgClass} rounded-xl font-bold text-blue-950 transition mb-2 last:mb-0">
           <span>${item.name}</span>
