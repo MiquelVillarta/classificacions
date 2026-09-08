@@ -1,5 +1,5 @@
 {
-  "updated_at": "07/09/2026 23:49",
+  "updated_at": "08/09/2026 05:23",
   "generals": [
     {
       "name": "GENERAL",
@@ -62,7 +62,7 @@
   ],
   "tasks": {
     "T01": {
-      "date": "",
+      "date": "24/05/2026",
       "items": [
         {
           "name": "A_T01_GENERAL",
@@ -91,7 +91,7 @@
       ]
     },
     "T02": {
-      "date": "",
+      "date": "11/07/2026",
       "items": [
         {
           "name": "A_T02_GENERAL",
@@ -120,7 +120,7 @@
       ]
     },
     "T03": {
-      "date": "",
+      "date": "12/07/2026",
       "items": [
         {
           "name": "A_T03_GENERAL",
@@ -149,7 +149,7 @@
       ]
     },
     "T04": {
-      "date": "",
+      "date": "01/08/2026",
       "items": [
         {
           "name": "A_T04_GENERAL",
@@ -178,7 +178,7 @@
       ]
     },
     "T05": {
-      "date": "",
+      "date": "02/08/2026",
       "items": [
         {
           "name": "A_T05_GENERAL",
@@ -207,7 +207,7 @@
       ]
     },
     "T06": {
-      "date": "",
+      "date": "05/09/2026",
       "items": [
         {
           "name": "A_T06_GENERAL",
@@ -236,7 +236,7 @@
       ]
     },
     "T07": {
-      "date": "",
+      "date": "06/09/2026",
       "items": [
         {
           "name": "A_T07_GENERAL",
