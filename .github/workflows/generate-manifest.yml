@@ -24,18 +24,15 @@ jobs:
       - name: Execute Python script to update manifest
         run: |
           python -c "
-          import os, json
+          import os, re, json
           import xml.etree.ElementTree as ET
           from datetime import datetime
 
           manifest = {
               'updated_at': datetime.now().strftime('%d/%m/%Y %H:%M'),
-              'generals': [],
-              'campionat': [],
-              'tasks': {}
+              'years': {},
+              'latest_year': None
           }
-
-          results_dir = 'RESULTS'
 
           ORDER_KEYWORDS = [
               ('B_', 7),
@@ -59,37 +56,12 @@ jobs:
                       break
               return (score, name)
 
-          if os.path.exists(results_dir):
-              for root, dirs, files in os.walk(results_dir):
-                  for file in files:
-                      if file.endswith('.html'):
-                          full_path = os.path.join(root, file).replace('\\\\', '/')
-                          name = os.path.splitext(file)[0]
-                          folder_name = os.path.basename(root)
-
-                          item_data = {'name': name, 'path': full_path}
-
-                          if folder_name == 'RESULTS':
-                              manifest['generals'].append(item_data)
-                          elif folder_name == 'CAMPIONAT CAT':
-                              manifest['campionat'].append(item_data)
-                          elif folder_name.startswith('T'):
-                              task_key = folder_name
-                              if task_key not in manifest['tasks']:
-                                  manifest['tasks'][task_key] = {'date': '', 'items': []}
-                              manifest['tasks'][task_key]['items'].append(item_data)
-
-          manifest['generals'].sort(key=get_sort_key)
-          manifest['campionat'].sort(key=get_sort_key)
-
           def task_date_from_element(task_el):
-              # 1) Fecha del primer FsTurnpoint 'open' (igual que fa visor.html)
               definition = task_el.find('FsTaskDefinition')
               if definition is not None:
                   tp = definition.find('FsTurnpoint')
                   if tp is not None and tp.get('open'):
                       return tp.get('open')[:10]
-              # 2) Fallback: patró de 8 dígits dins de tracklog_folder
               folder = task_el.get('tracklog_folder') or ''
               for i in range(len(folder) - 7):
                   chunk = folder[i:i + 8]
@@ -103,33 +75,69 @@ jobs:
               except ValueError:
                   return iso_date
 
-          # Els fitxers .fsdb son XML (no SQLite), tal com els llegeix visor.html
-          for fsdb_file in ['LLIGA_A.fsdb', 'LLIGA_B.fsdb', 'RESULTS/LLIGA_A.fsdb', 'RESULTS/LLIGA_B.fsdb']:
-              if os.path.exists(fsdb_file):
-                  try:
-                      tree = ET.parse(fsdb_file)
-                      xml_root = tree.getroot()
-                      for task_el in xml_root.iter('FsTask'):
-                          raw_id = task_el.get('id')
-                          if raw_id is None:
-                              continue
-                          try:
-                              t_num = int(raw_id)
-                          except ValueError:
-                              continue
-                          t_key = f'T{t_num:02d}'
-                          if t_key not in manifest['tasks']:
-                              continue
-                          iso_date = task_date_from_element(task_el)
-                          if iso_date:
-                              manifest['tasks'][t_key]['date'] = format_date(iso_date)
-                  except ET.ParseError as e:
-                      print(f'Error llegint {fsdb_file}: {e}')
+          # Detecta automàticament totes les carpetes d'any (2026, 2027, ...) a l'arrel
+          year_dirs = sorted(
+              d for d in os.listdir('.')
+              if os.path.isdir(d) and re.fullmatch(r'20\d{2}', d)
+          )
 
-          for t_key in manifest['tasks']:
-              manifest['tasks'][t_key]['items'].sort(key=get_sort_key)
+          for year in year_dirs:
+              year_data = {'generals': [], 'campionat': [], 'tasks': {}}
+              results_dir = os.path.join(year, 'RESULTS')
 
-          manifest['tasks'] = dict(sorted(manifest['tasks'].items()))
+              if os.path.exists(results_dir):
+                  for root, dirs, files in os.walk(results_dir):
+                      for file in files:
+                          if file.endswith('.html'):
+                              full_path = os.path.join(root, file).replace('\\\\', '/')
+                              name = os.path.splitext(file)[0]
+                              folder_name = os.path.basename(root)
+                              item_data = {'name': name, 'path': full_path}
+
+                              if folder_name == 'RESULTS':
+                                  year_data['generals'].append(item_data)
+                              elif folder_name == 'CAMPIONAT CAT':
+                                  year_data['campionat'].append(item_data)
+                              elif folder_name.startswith('T'):
+                                  task_key = folder_name
+                                  if task_key not in year_data['tasks']:
+                                      year_data['tasks'][task_key] = {'date': '', 'items': []}
+                                  year_data['tasks'][task_key]['items'].append(item_data)
+
+              year_data['generals'].sort(key=get_sort_key)
+              year_data['campionat'].sort(key=get_sort_key)
+
+              for fsdb_rel in ['LLIGA_A.fsdb', 'LLIGA_B.fsdb', 'RESULTS/LLIGA_A.fsdb', 'RESULTS/LLIGA_B.fsdb']:
+                  fsdb_file = os.path.join(year, fsdb_rel)
+                  if os.path.exists(fsdb_file):
+                      try:
+                          tree = ET.parse(fsdb_file)
+                          xml_root = tree.getroot()
+                          for task_el in xml_root.iter('FsTask'):
+                              raw_id = task_el.get('id')
+                              if raw_id is None:
+                                  continue
+                              try:
+                                  t_num = int(raw_id)
+                              except ValueError:
+                                  continue
+                              t_key = f'T{t_num:02d}'
+                              if t_key not in year_data['tasks']:
+                                  continue
+                              iso_date = task_date_from_element(task_el)
+                              if iso_date:
+                                  year_data['tasks'][t_key]['date'] = format_date(iso_date)
+                      except ET.ParseError as e:
+                          print(f'Error llegint {fsdb_file}: {e}')
+
+              for t_key in year_data['tasks']:
+                  year_data['tasks'][t_key]['items'].sort(key=get_sort_key)
+              year_data['tasks'] = dict(sorted(year_data['tasks'].items()))
+
+              manifest['years'][year] = year_data
+
+          if year_dirs:
+              manifest['latest_year'] = year_dirs[-1]
 
           with open('manifest.json', 'w', encoding='utf-8') as f:
               json.dump(manifest, f, ensure_ascii=False, indent=2)
@@ -140,4 +148,4 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add manifest.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Extract task date from fsdb XML" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update manifest" && git push)

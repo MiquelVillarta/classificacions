@@ -204,7 +204,7 @@
 <div id="panel">
   <div id="panel-header">
     <div>
-      <h1>Lliga Catalana 2026</h1>
+      <h1 id="panel-title">Lliga Catalana</h1>
     </div>
     <button id="collapse-btn" title="Mostrar/amagar">−</button>
   </div>
@@ -266,6 +266,7 @@
   const urlComp = params.get('comp');
   const urlManga = params.get('manga');
   const urlPilot = params.get('pilot');
+  const urlSeason = params.get('season');
 
   const COMPETITIONS = [
     {id:'A', label:'Lliga A', fsdb:'LLIGA_A.fsdb'},
@@ -348,6 +349,7 @@
   shareBtn.addEventListener('click', () => {
     const url = new URL(window.location.href);
     url.searchParams.set('comp', competitionSelect.value);
+    url.searchParams.set('season', currentSeason);
     if (taskSelect.value) url.searchParams.set('manga', taskSelect.value);
     
     const activePilotIds = Object.keys(activePilots);
@@ -364,6 +366,27 @@
       setStatus('Error al copiar l\'enllaç', 'error');
     });
   });
+
+  let currentSeason = urlSeason || null;
+
+  // Si no ve la temporada per URL, la deduïm del manifest.json (latest_year)
+  async function resolveSeason(){
+    if (currentSeason) return currentSeason;
+    try {
+      const res = await fetch('manifest.json');
+      if (res.ok) {
+        const data = await res.json();
+        if (data.latest_year) return data.latest_year;
+      }
+    } catch (e) { /* ignorem, farem servir el fallback */ }
+    return String(new Date().getFullYear());
+  }
+
+  // Anteposa la carpeta de temporada a un fsdb, tret que ja vingui amb ruta pròpia
+  function seasonFsdbUrl(fsdbName){
+    if (!fsdbName || fsdbName.includes('/')) return fsdbName;
+    return currentSeason + '/' + fsdbName;
+  }
 
   function setStatus(msg, kind){
     statusEl.textContent = msg || '';
@@ -546,7 +569,7 @@
 
       tasksById[id] = {
         id, name: taskEl.getAttribute('name') || ('T'+id),
-        folder: normPath(taskEl.getAttribute('tracklog_folder')),
+        folder: currentSeason + '/' + normPath(taskEl.getAttribute('tracklog_folder')),
         goal: def.getAttribute('goal') || '',
         ss, es,
         turnpoints, shortestPath, startGates,
@@ -1074,23 +1097,29 @@
 
   competitionSelect.addEventListener('change', () => {
     const comp = COMPETITIONS.find(c => c.id === competitionSelect.value);
-    if (comp) loadFsdb(comp.fsdb);
+    if (comp) loadFsdb(seasonFsdbUrl(comp.fsdb));
   });
 
-  // Carga inicial y lectura de parámetros URL
-  buildCompetitionSelect();
-  const initialComp = COMPETITIONS.find(c => c.id === competitionSelect.value);
-  loadFsdb(initialComp.fsdb, () => {
-    if (urlManga && tasksById[urlManga]) {
-      taskSelect.value = urlManga;
-      selectTask(tasksById[urlManga], () => {
-        if (urlPilot) {
-          const pilots = urlPilot.split(',');
-          pilots.forEach(pId => addPilotTrack(pId.trim()));
-        }
-      });
-    }
-  });
+  // Carga inicial: primer resolem la temporada, després lectura de parámetros URL
+  (async function bootstrap(){
+    currentSeason = await resolveSeason();
+    const titleEl = document.getElementById('panel-title');
+    if (titleEl) titleEl.textContent = 'Lliga Catalana ' + currentSeason;
+
+    buildCompetitionSelect();
+    const initialComp = COMPETITIONS.find(c => c.id === competitionSelect.value);
+    loadFsdb(seasonFsdbUrl(initialComp.fsdb), () => {
+      if (urlManga && tasksById[urlManga]) {
+        taskSelect.value = urlManga;
+        selectTask(tasksById[urlManga], () => {
+          if (urlPilot) {
+            const pilots = urlPilot.split(',');
+            pilots.forEach(pId => addPilotTrack(pId.trim()));
+          }
+        });
+      }
+    });
+  })();
 })();
 </script>
 </body>

@@ -3,22 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Classificacions - Lliga Catalana 2026</title>
+  <title>Classificacions - Lliga Catalana</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-red-900 min-h-screen p-4 md:p-8 flex justify-center">
 
   <div class="w-full max-w-xl space-y-4">
-    
+
     <!-- Capçalera -->
-    <div class="bg-blue-900 text-white rounded-2xl p-5 shadow-lg flex justify-between items-center">
-      <div>
-        <h1 class="text-2xl font-black tracking-wide">Classificacions</h1>
-        <p class="text-blue-200 text-sm">Lliga Catalana 2026</p>
+    <div class="bg-blue-900 text-white rounded-2xl p-5 shadow-lg space-y-3">
+      <div class="flex justify-between items-center">
+        <div>
+          <h1 class="text-2xl font-black tracking-wide">Classificacions</h1>
+          <p class="text-blue-200 text-sm">Lliga Catalana</p>
+        </div>
+        <div id="updated-at" class="bg-red-600 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow">
+          Modificat: --/--/---- --:--
+        </div>
       </div>
-      <div id="updated-at" class="bg-red-600 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow">
-        Modificat: --/--/---- --:--
+
+      <!-- Selector de temporada -->
+      <div class="flex items-center gap-2">
+        <label for="year-select" class="text-blue-200 text-sm font-bold">Temporada:</label>
+        <select id="year-select" class="flex-1 rounded-lg px-3 py-1.5 text-blue-950 font-bold bg-white"></select>
       </div>
     </div>
 
@@ -46,6 +54,8 @@
   </div>
 
   <script>
+    let manifestData = null;
+
     function toggleSection(id) {
       const el = document.getElementById(`content-${id}`);
       const icon = document.getElementById(`icon-${id}`);
@@ -81,48 +91,77 @@
         </a>`;
     }
 
+    function renderYear(year) {
+      const yearData = manifestData.years[year];
+      if (!yearData) return;
+
+      // Generals
+      const genDiv = document.getElementById('content-generals');
+      genDiv.innerHTML = '';
+      yearData.generals.forEach(item => { genDiv.innerHTML += renderLink(item); });
+
+      // Campionat
+      const campDiv = document.getElementById('content-campionat');
+      campDiv.innerHTML = '';
+      yearData.campionat.forEach(item => { campDiv.innerHTML += renderLink(item); });
+
+      // Tasks
+      const tasksContainer = document.getElementById('tasks-container');
+      tasksContainer.innerHTML = '';
+
+      Object.keys(yearData.tasks).sort().forEach(taskKey => {
+        const taskData = yearData.tasks[taskKey];
+        const items = Array.isArray(taskData) ? taskData : taskData.items;
+        const taskDate = (!Array.isArray(taskData) && taskData.date) ? ` - ${taskData.date}` : '';
+
+        const taskBlock = document.createElement('div');
+        taskBlock.className = 'border-2 border-white/20 rounded-2xl overflow-hidden bg-blue-900 shadow-md';
+
+        let linksHTML = items.map(item => renderLink(item)).join('');
+
+        // Número de mànega per al visor (ex: "T07" -> "7")
+        const mangaNum = taskKey.replace(/\D/g, '').replace(/^0+/, '');
+        const mapUrl = `visor.html?season=${encodeURIComponent(year)}&manga=${encodeURIComponent(mangaNum)}`;
+
+        taskBlock.innerHTML = `
+          <div class="w-full p-4 flex justify-between items-center gap-2">
+            <button onclick="toggleSection('${taskKey}')" class="flex-1 text-left text-white font-bold text-lg flex justify-between items-center">
+              <span>${taskKey}${taskDate}</span>
+              <i id="icon-${taskKey}" class="fa-solid fa-play text-sm transition-transform duration-200 ml-2"></i>
+            </button>
+            <a href="${mapUrl}" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-2.5 py-1.5 rounded flex items-center gap-1 flex-shrink-0">
+              <span>🗺️ Mapa</span>
+            </a>
+          </div>
+          <div id="content-${taskKey}" class="hidden bg-white p-3 space-y-2">
+            ${linksHTML}
+          </div>
+        `;
+
+        tasksContainer.appendChild(taskBlock);
+      });
+    }
+
     fetch('manifest.json')
       .then(res => res.json())
       .then(data => {
-        // 1. Data d'actualització global
+        manifestData = data;
+
         if (data.updated_at) {
           document.getElementById('updated-at').textContent = `Modificat: ${data.updated_at}`;
         }
 
-        // 2. Renderitzar Generals
-        const genDiv = document.getElementById('content-generals');
-        data.generals.forEach(item => { genDiv.innerHTML += renderLink(item); });
+        // Omplir el desplegable d'anys (més recent primer)
+        const yearSelect = document.getElementById('year-select');
+        const years = Object.keys(data.years).sort((a, b) => b.localeCompare(a));
+        yearSelect.innerHTML = years.map(y => `<option value="${y}">${y}</option>`).join('');
 
-        // 3. Renderitzar Campionat
-        const campDiv = document.getElementById('content-campionat');
-        data.campionat.forEach(item => { campDiv.innerHTML += renderLink(item); });
+        const defaultYear = data.latest_year && years.includes(data.latest_year) ? data.latest_year : years[0];
+        yearSelect.value = defaultYear;
 
-        // 4. Renderitzar Tasks amb la data extreta
-        const tasksContainer = document.getElementById('tasks-container');
-        tasksContainer.innerHTML = '';
+        yearSelect.addEventListener('change', () => renderYear(yearSelect.value));
 
-        Object.keys(data.tasks).sort().forEach(taskKey => {
-          const taskData = data.tasks[taskKey];
-          const items = Array.isArray(taskData) ? taskData : taskData.items;
-          const taskDate = (!Array.isArray(taskData) && taskData.date) ? ` - ${taskData.date}` : '';
-
-          const taskBlock = document.createElement('div');
-          taskBlock.className = 'border-2 border-white/20 rounded-2xl overflow-hidden bg-blue-900 shadow-md';
-          
-          let linksHTML = items.map(item => renderLink(item)).join('');
-
-          taskBlock.innerHTML = `
-            <button onclick="toggleSection('${taskKey}')" class="w-full p-4 text-left text-white font-bold text-lg flex justify-between items-center">
-              <span>${taskKey}${taskDate}</span>
-              <i id="icon-${taskKey}" class="fa-solid fa-play text-sm transition-transform duration-200"></i>
-            </button>
-            <div id="content-${taskKey}" class="hidden bg-white p-3 space-y-2">
-              ${linksHTML}
-            </div>
-          `;
-
-          tasksContainer.appendChild(taskBlock);
-        });
+        renderYear(defaultYear);
       })
       .catch(err => console.error("Error carregant el manifest:", err));
   </script>
